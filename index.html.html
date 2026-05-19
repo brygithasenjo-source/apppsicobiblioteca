@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA para Psicólogos · Biblioteca de Contenido Estratégico</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #F9F7F4;
+            --sage: #7A9E87;
+            --sage-soft: #C4D9CC;
+            --sage-pale: #EBF2EE;
+            --terracotta: #C47A5A;
+            --terracotta-soft: #F0D5C8;
+            --ink: #2C2C2C;
+            --ink-light: #5A5A5A;
+            --cream: #FDF8F2;
+            --white: #FFFFFF;
+            --shadow-sm: 0 4px 16px rgba(122,158,135,0.08);
+            --shadow-md: 0 12px 32px rgba(44,44,44,0.10);
+            --shadow-lg: 0 24px 56px rgba(0,0,0,0.13);
+            --radius-sm: 12px;
+            --radius-md: 20px;
+            --radius-lg: 32px;
+            --transition: all 0.3s cubic-bezier(0.25,0.8,0.25,1);
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+        body { background-color:var(--bg-main); color:var(--ink); line-height:1.6; overflow-x:hidden; font-family:'DM Sans',sans-serif; }
+
+        h1,h2,h3,h4,h5 { font-family:'DM Serif Display',serif; font-weight:400; color:var(--ink); line-height:1.3; }
+        p { color:var(--ink-light); font-size:0.95rem; font-family:'DM Sans',sans-serif; }
+
+        /* HEADER */
+        header {
+            background:rgba(253,248,242,0.95);
+            backdrop-filter:blur(12px);
+            padding:1rem 5%;
+            position:sticky; top:0; z-index:1000;
+            display:flex; justify-content:space-between; align-items:center;
+            border-bottom:1px solid var(--sage-pale);
+            box-shadow:var(--shadow-sm);
+        }
+        .header-logo { display:flex; align-items:center; gap:14px; cursor:pointer; }
+        .header-logo img { height:42px; border-radius:50%; object-fit:cover; }
+        .header-logo-text h1 { font-size:1rem; color:var(--sage); font-family:'DM Serif Display',serif; letter-spacing:0.01em; }
+        .header-logo-text span { font-size:0.72rem; color:var(--ink-light); font-family:'DM Sans',sans-serif; display:block; }
+        nav ul { display:flex; gap:24px; list-style:none; }
+        nav a { text-decoration:none; color:var(--ink); font-weight:500; font-size:0.88rem; transition:var(--transition); cursor:pointer; font-family:'DM Sans',sans-serif; }
+        nav a:hover { color:var(--sage); }
+
+        /* HERO */
+        .hero {
+            padding:5rem 5% 4rem;
+            text-align:center;
+            background:linear-gradient(160deg, var(--cream) 0%, var(--sage-pale) 100%);
+            border-bottom:1px solid var(--sage-soft);
+            position:relative; overflow:hidden;
+        }
+        .hero::before {
+            content:'';
+            position:absolute; top:-60px; right:-60px;
+            width:320px; height:320px;
+            border-radius:50%;
+            background:radial-gradient(circle, rgba(122,158,135,0.15) 0%, transparent 70%);
+        }
+        .hero::after {
+            content:'';
+            position:absolute; bottom:-80px; left:-40px;
+            width:260px; height:260px;
+            border-radius:50%;
+            background:radial-gradient(circle, rgba(196,122,90,0.10) 0%, transparent 70%);
+        }
+        .hero img { height:80px; width:80px; object-fit:cover; margin-bottom:1.5rem; border-radius:50%; box-shadow:var(--shadow-md); border:3px solid var(--white); }
+        .hero-badge { display:inline-block; background:var(--sage); color:var(--white); padding:0.3rem 1rem; border-radius:999px; font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:1rem; font-family:'DM Sans',sans-serif; }
+        .hero h2 { font-size:2.8rem; margin-bottom:1rem; max-width:720px; margin-inline:auto; color:var(--ink); }
+        .hero h2 em { font-style:italic; color:var(--sage); }
+        .hero p { font-size:1.05rem; max-width:580px; margin:0 auto 2.5rem; color:var(--ink-light); }
+        .hero-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+        /* BUTTONS */
+        .btn {
+            display:inline-flex; align-items:center; justify-content:center; gap:8px;
+            padding:0.8rem 1.8rem; border-radius:var(--radius-lg); font-weight:600;
+            font-size:0.88rem; cursor:pointer; transition:var(--transition); border:none;
+            font-family:'DM Sans',sans-serif;
+        }
+        .btn-sage { background:var(--sage); color:var(--white); box-shadow:0 4px 16px rgba(122,158,135,0.35); }
+        .btn-sage:hover { transform:translateY(-2px); background:#6a8e77; box-shadow:0 8px 24px rgba(122,158,135,0.4); }
+        .btn-terra { background:var(--terracotta); color:var(--white); box-shadow:0 4px 16px rgba(196,122,90,0.3); }
+        .btn-terra:hover { transform:translateY(-2px); background:#b36b4a; }
+        .btn-outline { background:transparent; color:var(--ink); border:1.5px solid var(--sage-soft); }
+        .btn-outline:hover { background:var(--sage-pale); border-color:var(--sage); color:var(--sage); }
+        .btn-sm { padding:0.45rem 1rem; font-size:0.82rem; border-radius:var(--radius-sm); }
+        .btn-close-section { background:var(--ink); color:var(--white); margin-bottom:2rem; border-radius:var(--radius-lg); }
+        .btn-close-section:hover { background:#444; }
+
+        /* HUB */
+        .hub-container { padding:4rem 5%; max-width:1400px; margin:0 auto; }
+        .hub-intro { margin-bottom:2.5rem; }
+        .hub-intro h2 { font-size:1.8rem; margin-bottom:0.4rem; }
+        .hub-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:1.2rem; }
+        .hub-card {
+            background:var(--white); border:1.5px solid var(--sage-pale); border-radius:var(--radius-md);
+            padding:1.8rem 1.5rem; cursor:pointer; transition:var(--transition);
+            box-shadow:var(--shadow-sm); display:flex; flex-direction:column; align-items:flex-start; gap:0.8rem;
+        }
+        .hub-card:hover { transform:translateY(-4px); border-color:var(--sage-soft); box-shadow:var(--shadow-md); }
+        .hub-icon { font-size:1.8rem; background:var(--sage-pale); width:52px; height:52px; display:flex; align-items:center; justify-content:center; border-radius:14px; }
+        .hub-card h3 { font-size:1.05rem; color:var(--ink); font-family:'DM Serif Display',serif; }
+        .hub-card p { font-size:0.82rem; }
+
+        /* SECTIONS */
+        .content-section { display:none; padding:4rem 5%; max-width:1400px; margin:0 auto; animation:fadeIn 0.4s ease; }
+        @keyframes fadeIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+        .content-section.active { display:block; }
+        .section-header { margin-bottom:2.5rem; text-align:center; }
+        .section-header h2 { font-size:2.2rem; color:var(--sage); margin-bottom:0.4rem; }
+        .section-header p { font-size:1.02rem; max-width:640px; margin:0 auto; }
+
+        .cards-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:1.4rem; }
+        .data-card {
+            background:var(--white); border-radius:var(--radius-md); padding:1.8rem;
+            border:1.5px solid var(--sage-pale); box-shadow:var(--shadow-sm); transition:var(--transition);
+            display:flex; flex-direction:column;
+        }
+        .data-card:hover { border-color:var(--sage-soft); box-shadow:var(--shadow-md); }
+        .card-tag { background:var(--sage-pale); color:var(--sage); padding:0.28rem 0.8rem; border-radius:999px; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; align-self:flex-start; margin-bottom:0.8rem; font-family:'DM Sans',sans-serif; }
+        .card-tag.terra { background:var(--terracotta-soft); color:var(--terracotta); }
+        .data-card h4 { font-size:1.05rem; margin-bottom:0.6rem; font-family:'DM Serif Display',serif; font-weight:400; }
+        .data-card .meta { font-size:0.84rem; color:var(--ink-light); margin-bottom:1.2rem; flex-grow:1; }
+        .card-actions { display:flex; gap:8px; margin-top:auto; flex-wrap:wrap; }
+
+        /* ACCORDION */
+        .accordion { background:var(--white); border:1.5px solid var(--sage-pale); border-radius:var(--radius-sm); margin-bottom:1rem; overflow:hidden; }
+        .accordion-head { padding:1.1rem 1.5rem; cursor:pointer; font-weight:600; display:flex; justify-content:space-between; align-items:center; background:var(--cream); transition:var(--transition); font-family:'DM Sans',sans-serif; font-size:0.95rem; }
+        .accordion-head:hover { background:var(--sage-pale); color:var(--sage); }
+        .accordion-body { max-height:0; overflow:hidden; transition:max-height 0.4s ease; background:var(--white); }
+        .accordion.open .accordion-body { max-height:6000px; padding:1.5rem; border-top:1px solid var(--sage-pale); }
+
+        .copy-row { display:flex; justify-content:space-between; align-items:center; padding:0.9rem 1rem; background:var(--sage-pale); border-radius:var(--radius-sm); margin-bottom:0.7rem; gap:14px; }
+        .copy-text { font-size:0.92rem; font-weight:500; color:var(--ink); font-family:'DM Sans',sans-serif; }
+
+        /* MODAL */
+        .modal-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(44,44,44,0.5); backdrop-filter:blur(6px); display:none; justify-content:center; align-items:center; z-index:2000; padding:20px; opacity:0; transition:opacity 0.3s; }
+        .modal-overlay.active { display:flex; opacity:1; }
+        .modal-content { background:var(--bg-main); width:100%; max-width:860px; max-height:90vh; border-radius:var(--radius-md); display:flex; flex-direction:column; box-shadow:var(--shadow-lg); transform:translateY(20px); transition:transform 0.3s; }
+        .modal-overlay.active .modal-content { transform:translateY(0); }
+        .modal-header { padding:1.5rem 2rem; background:var(--white); border-bottom:1px solid var(--sage-pale); display:flex; justify-content:space-between; align-items:flex-start; border-radius:var(--radius-md) var(--radius-md) 0 0; }
+        .modal-close { background:var(--sage-pale); border:none; width:36px; height:36px; border-radius:50%; font-size:1.2rem; color:var(--sage); cursor:pointer; display:flex; justify-content:center; align-items:center; transition:var(--transition); }
+        .modal-close:hover { background:var(--sage); color:var(--white); transform:rotate(90deg); }
+        .modal-body { padding:2rem; overflow-y:auto; flex-grow:1; }
+        .m-grid-info { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; margin-bottom:1.5rem; }
+        .m-info-box { background:var(--white); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--sage-pale); }
+        .m-info-box span { display:block; font-size:0.72rem; text-transform:uppercase; color:var(--sage); font-weight:700; margin-bottom:4px; font-family:'DM Sans',sans-serif; letter-spacing:0.06em; }
+        .m-info-box strong { font-size:0.88rem; color:var(--ink); font-family:'DM Sans',sans-serif; }
+        .m-block { background:var(--white); padding:1.4rem; border-radius:var(--radius-sm); border:1px solid var(--sage-pale); margin-bottom:1.2rem; }
+        .m-block h4 { color:var(--sage); margin-bottom:0.8rem; display:flex; align-items:center; gap:8px; font-size:1rem; font-family:'DM Serif Display',serif; font-weight:400; }
+        .m-block ul { padding-left:1.2rem; margin-top:0.5rem; }
+        .m-block li { margin-bottom:0.5rem; font-size:0.92rem; color:var(--ink-light); }
+        .prompt-box { background:var(--ink); color:#e8f0eb; padding:1.5rem; border-radius:var(--radius-sm); font-family:monospace; font-size:0.86rem; white-space:pre-wrap; line-height:1.6; margin:1rem 0; border:1px solid #3a3a3a; }
+        .modal-footer { padding:1.4rem 2rem; background:var(--white); border-top:1px solid var(--sage-pale); display:flex; gap:12px; border-radius:0 0 var(--radius-md) var(--radius-md); flex-wrap:wrap; }
+
+        /* BUILDER */
+        .builder-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.4rem; background:var(--white); padding:2rem; border-radius:var(--radius-md); border:1.5px solid var(--sage-pale); margin-bottom:2rem; }
+        .input-group label { display:block; font-size:0.8rem; font-weight:700; color:var(--ink-light); margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:0.06em; font-family:'DM Sans',sans-serif; }
+        .input-group select { width:100%; padding:0.75rem 1rem; border:1.5px solid var(--sage-pale); border-radius:var(--radius-sm); background:var(--cream); font-size:0.92rem; color:var(--ink); outline:none; transition:var(--transition); font-family:'DM Sans',sans-serif; }
+        .input-group select:focus { border-color:var(--sage); }
+        #builder-result { display:none; margin-top:2rem; animation:fadeIn 0.5s ease; }
+
+        /* TOAST */
+        .toast { position:fixed; bottom:-100px; left:50%; transform:translateX(-50%); background:var(--ink); color:var(--sage-soft); padding:1rem 2rem; border-radius:var(--radius-lg); font-weight:500; font-size:0.88rem; box-shadow:var(--shadow-lg); transition:bottom 0.4s cubic-bezier(0.68,-0.55,0.265,1.55); z-index:3000; border:1px solid #3a3a3a; font-family:'DM Sans',sans-serif; }
+        .toast.show { bottom:40px; }
+
+        /* GLOSSARY */
+        .gloss-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; margin-top:24px; }
+        .gloss-item { position:relative; background:var(--white); border:1.5px solid var(--sage-pale); border-radius:16px; padding:20px; overflow:hidden; transition:transform .2s ease, box-shadow .2s ease; }
+        .gloss-item::before { content:''; position:absolute; top:0; left:0; width:100%; height:4px; background:linear-gradient(90deg, var(--sage), var(--sage-soft), var(--terracotta-soft)); }
+        .gloss-item:hover { transform:translateY(-3px); box-shadow:var(--shadow-md); }
+        .gloss-level { display:inline-flex; align-items:center; gap:5px; background:var(--sage-pale); border-radius:999px; padding:4px 10px; font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; color:var(--sage); margin-bottom:10px; font-family:'DM Sans',sans-serif; }
+        .gloss-term { font-family:'DM Serif Display',serif; font-size:1.05rem; font-weight:400; color:var(--ink); margin-bottom:7px; }
+        .gloss-def { font-size:0.82rem; color:var(--ink-light); line-height:1.58; font-family:'DM Sans',sans-serif; }
+
+        /* PROMPT LAB */
+        .prompt-lab-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; margin-top:24px; }
+        .prompt-lab-card { background:var(--white); border:1.5px solid var(--sage-pale); border-radius:20px; padding:24px; box-shadow:var(--shadow-sm); }
+        .prompt-lab-step { display:inline-flex; background:var(--sage-pale); border-radius:999px; padding:4px 12px; font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:var(--sage); margin-bottom:12px; font-family:'DM Sans',sans-serif; }
+        .prompt-lab-card h3 { font-family:'DM Serif Display',serif; font-size:1.15rem; margin-bottom:8px; }
+        .prompt-lab-card p { font-size:0.84rem; margin-bottom:14px; }
+        .prompt-lab-card pre { max-height:340px; overflow:auto; white-space:pre-wrap; background:var(--ink); color:#e8f0eb; border-radius:14px; padding:18px; font-size:0.76rem; line-height:1.55; margin-bottom:16px; }
+
+        /* FOOTER */
+        footer { background:var(--ink); color:var(--white); text-align:center; padding:4rem 5%; margin-top:4rem; }
+        footer img { height:56px; width:56px; object-fit:cover; margin-bottom:1.5rem; border-radius:50%; border:2px solid var(--sage); }
+        footer p { color:#aaa; margin-bottom:0.5rem; max-width:500px; margin-inline:auto; font-size:0.92rem; }
+        .signature { color:var(--sage-soft); font-family:'DM Serif Display',serif; font-size:1.2rem; margin-top:1.5rem; display:block; }
+        .sub-signature { font-size:0.78rem; color:#888; display:block; margin-top:6px; }
+        .ig-link { color:var(--sage-soft); text-decoration:none; font-size:0.82rem; display:inline-block; margin-top:6px; opacity:0.8; transition:opacity .2s; }
+        .ig-link:hover { opacity:1; }
+
+        @media(max-width:768px){
+            header { flex-direction:column; gap:14px; padding:1rem; }
+            nav ul { flex-wrap:wrap; justify-content:center; gap:14px; }
+            .hero h2 { font-size:2rem; }
+            .hub-grid, .cards-grid { grid-template-columns:1fr; }
+            .modal-footer { flex-direction:column; }
+            .btn { width:100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-logo" onclick="closeSection()">
+            <img src="https://i.ibb.co/MDsC0Zt1/Chat-GPT-Image-18-may-2026-08-53-18-p-m.png" alt="Logo IA para Psicólogos">
+            <div class="header-logo-text">
+                <h1>IA para Psicólogos</h1>
+                <span>Biblioteca de Contenido Estratégico</span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a onclick="closeSection()">Inicio</a></li>
+                <li><a onclick="document.getElementById('hub').scrollIntoView()">Secciones</a></li>
+                <li><a onclick="openSection('sec-builder')">Constructor</a></li>
+                <li><a onclick="openSection('sec-glossary')">Glosario</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero" id="hero">
+        <img src="https://i.ibb.co/MDsC0Zt1/Chat-GPT-Image-18-may-2026-08-53-18-p-m.png" alt="Logo">
+        <div class="hero-badge">IA para Psicólogos</div>
+        <h2>Crea contenido que <em>sana</em> y que vende</h2>
+        <p>Biblioteca estratégica de formatos, hooks y prompts diseñada para psicólogos que quieren impactar en redes, atraer clientes y compartir su conocimiento con intención.</p>
+        <div class="hero-btns">
+            <button class="btn btn-sage" onclick="openSection('sec-video-formats')">Ver Formatos de Video</button>
+            <button class="btn btn-outline" onclick="openSection('sec-hooks')">Ver Hooks</button>
+            <button class="btn btn-outline" onclick="openSection('sec-prompts')">Ver Prompts</button>
+            <button class="btn btn-outline" onclick="openSection('sec-builder')">Crear Fórmula</button>
+        </div>
+    </div>
+
+    <main id="hub" class="hub-container">
+        <div class="hub-intro">
+            <h2>Hub Estratégico</h2>
+            <p style="margin:0;">Selecciona una categoría para desplegar su contenido.</p>
+        </div>
+        <div class="hub-grid">
+            <div class="hub-card" onclick="openSection('sec-video-formats')">
+                <div class="hub-icon">🎥</div>
+                <h3>1. Formatos de Video</h3>
+                <p>50 estructuras comprobadas con prompts adaptados a psicología</p>
+            </div>
+            <div class="hub-card" onclick="openSection('sec-hooks')">
+                <div class="hub-icon">🪝</div>
+                <h3>2. Banco de Hooks</h3>
+                <p>Ganchos textuales por categoría emocional y clínica</p>
+            </div>
+            <div class="hub-card" onclick="openSection('sec-ctas')">
+                <div class="hub-icon">🎯</div>
+                <h3>3. Banco de CTAs</h3>
+                <p>Llamados a la acción para consulta, recursos y comunidad</p>
+            </div>
+            <div class="hub-card" onclick="openSection('sec-prompts')">
+                <div class="hub-icon">🤖</div>
+                <h3>4. Prompts para IA</h3>
+                <p>Prompts listos para generar guiones psicológicos premium</p>
+            </div>
+            <div class="hub-card" onclick="openSection('sec-recursos')">
+                <div class="hub-icon">📦</div>
+                <h3>5. Recursos Digitales</h3>
+                <p>20 formatos para vender guías, talleres y recursos de salud mental</p>
+            </div>
+            <div class="hub-card" onclick="openSection('sec-highticket')">
+                <div class="hub-icon">💎</div>
+                <h3>6. Servicios Premium</h3>
+                <p>15 formatos para mentoría, supervisión y programas terapéuticos</p>
+            </div>
+            <div class="hub-card" onclick="openSection('sec-faceless')">
+                <div class="hub-icon">🎭</div>
+                <h3>7. Faceless</h3>
+                <p>20 formatos sin mostrar el rostro, ideales para temas sensibles</p>
+            </div>
+            <div class="hub-card" onclick="openSection('sec-objectives')">
+                <div class="hub-icon">🧭</div>
+                <h3>8. Por Objetivo</h3>
+                <p>Formatos según lo que quieras lograr hoy</p>
+            </div>
+            <div class="hub-card" onclick="openSection('sec-visual-hooks')">
+                <div class="hub-icon">👁️</div>
+                <h3>9. Ganchos Visuales</h3>
+                <p>Retención visual en los primeros 3 segundos</p>
+            </div>
+            <div class="hub-card" onclick="openSection('sec-peaks')">
+                <div class="hub-icon">📈</div>
+                <h3>10. Picos de Interés</h3>
+                <p>Frases para reactivar la atención a mitad del video</p>
+            </div>
+            <div class="hub-card" onclick="openSection('sec-structures')">
+                <div class="hub-icon">🏗️</div>
+                <h3>11. Estructuras Narrativas</h3>
+                <p>12 guiones paso a paso para psicólogos</p>
+            </div>
+            <div class="hub-card" onclick="openSection('sec-builder')">
+                <div class="hub-icon">🧪</div>
+                <h3>12. Constructor Estratégico</h3>
+                <p>Crea tu fórmula de contenido al instante</p>
+            </div>
+            <div class="hub-card" onclick="openSection('sec-situations')">
+                <div class="hub-icon">📍</div>
+                <h3>13. Situaciones Reales</h3>
+                <p>Qué publicar según dónde estés o cómo te sientes</p>
+            </div>
+            <div class="hub-card" onclick="openSection('sec-new-format-lab')">
+                <div class="hub-icon">🔬</div>
+                <h3>14. Adapta un Formato Nuevo</h3>
+                <p>Analiza tendencias y conviértelas en formatos para psicología</p>
+            </div>
+            <div class="hub-card" onclick="openSection('sec-errors')">
+                <div class="hub-icon">❌</div>
+                <h3>15. Errores a Evitar</h3>
+                <p>Lo que destruye la autoridad y la confianza en tu contenido</p>
+            </div>
+            <div class="hub-card" onclick="openSection('sec-glossary')">
+                <div class="hub-icon">📖</div>
+                <h3>16. Glosario</h3>
+                <p>Diccionario de términos de contenido para psicólogos</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="dynamic-sections-container">
+
+        <!-- VIDEO FORMATS -->
+        <section id="sec-video-formats" class="content-section">
+            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+            <div class="section-header">
+                <h2>Formatos de Video</h2>
+                <p>50 estructuras maestras adaptadas al lenguaje, ética y autoridad de la psicología. Haz clic en "Ver estructura" para acceder a la psicología, el guion y el prompt.</p>
+            </div>
+            <div class="cards-grid" id="grid-video-formats"></div>
+        </section>
+
+        <!-- OBJECTIVES -->
+        <section id="sec-objectives" class="content-section">
+            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+            <div class="section-header">
+                <h2>Formatos por Objetivo</h2>
+                <p>Despliega lo que quieres lograr hoy y copia la lista de recomendaciones.</p>
+            </div>
+            <div id="acc-objectives"></div>
+        </section>
+
+        <!-- RECURSOS DIGITALES -->
+        <section id="sec-recursos" class="content-section">
+            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+            <div class="section-header">
+                <h2>Formatos para Recursos Digitales</h2>
+                <p>20 estructuras para vender guías de salud mental, talleres, cursos, plantillas y recursos terapéuticos.</p>
+            </div>
+            <div class="cards-grid" id="grid-recursos"></div>
+        </section>
+
+        <!-- HIGH TICKET / SERVICIOS PREMIUM -->
+        <section id="sec-highticket" class="content-section">
+            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+            <div class="section-header">
+                <h2>Servicios Premium</h2>
+                <p>15 formatos para psicólogos que ofrecen mentoría, supervisión clínica, programas intensivos o acompañamiento de alto impacto.</p>
+            </div>
+            <div class="cards-grid" id="grid-highticket"></div>
+        </section>
+
+        <!-- FACELESS -->
+        <section id="sec-faceless" class="content-section">
+            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+            <div class="section-header">
+                <h2>Formatos Faceless</h2>
+                <p>20 formas de crear contenido de alto valor sin mostrar tu rostro, ideales para temas sensibles o días de baja energía.</p>
+            </div>
+            <div class="m-block" style="background:var(--sage-pale); border-color:var(--sage); margin-bottom:2rem;">
+                <h4 style="color:var(--ink);">💡 ¿Por qué faceless funciona en psicología?</h4>
+                <p>El anonimato parcial puede generar mayor apertura emocional en la audiencia. Al no ver un rostro, el espectador proyecta menos juicio y se identifica más con el mensaje. Perfecto para temas de salud mental delicados.</p>
+            </div>
+            <div class="cards-grid" id="grid-faceless"></div>
+        </section>
+
+        <!-- HOOKS -->
+        <section id="sec-hooks" class="content-section">
+            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+            <div class="section-header">
+                <h2>Banco de Hooks para Psicólogos</h2>
+                <p>Las frases exactas para captar atención en los primeros 3 segundos sin sensacionalismo y con autoridad clínica.</p>
+            </div>
+            <div id="acc-hooks"></div>
+        </section>
+
+        <!-- CTAs -->
+        <section id="sec-ctas" class="content-section">
+            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+            <div class="section-header">
+                <h2>Banco de Llamados a la Acción</h2>
+                <p>CTAs éticos, cálidos y estratégicos para consulta, recursos y comunidad terapéutica.</p>
+            </div>
+            <div id="acc-ctas"></div>
+        </section>
+
+        <!-- VISUAL HOOKS -->
+        <section id="sec-visual-hooks" class="content-section">
+            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+            <div class="section-header">
+                <h2>Banco de Ganchos Visuales</h2>
+                <p>Acciones visuales para detener el scroll desde el primer segundo.</p>
+            </div>
+            <div id="acc-visual-hooks"></div>
+        </section>
+
+        <!-- PEAKS -->
+        <section id="sec-peaks" class="content-section">
+            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+            <div class="section-header">
+                <h2>Banco de Picos de Interés</h2>
+                <p>Frases estratégicas para reactivar la atención a mitad del video.</p>
+            </div>
+            <div id="acc-peaks"></div>
+        </section>
+
+        <!-- STRUCTURES -->
+        <section id="sec-structures" class="content-section">
+            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+            <div class="section-header">
+                <h2>Estructuras Narrativas Maestras</h2>
+                <p>El esqueleto psicológico y estratégico detrás de un buen guion para psicólogos.</p>
+            </div>
+            <div id="acc-structures"></div>
+        </section>
+
+        <!-- PROMPTS -->
+        <section id="sec-prompts" class="content-section">
+            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+            <div class="section-header">
+                <h2>Prompts Maestros para IA</h2>
+                <p>Copia y pega en tu inteligencia artificial favorita para generar guiones terapéuticos premium y éticamente responsables.</p>
+            </div>
+            <div id="acc-prompts"></div>
+        </section>
+
+        <!-- BUILDER -->
+        <section id="sec-builder" class="content-section">
+            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+            <div class="section-header">
+                <h2>Constructor Estratégico</h2>
+                <p>Combina tus variables y genera tu receta de contenido al instante.</p>
+            </div>
+            <div class="builder-grid">
+                <div class="input-group">
+                    <label>Objetivo</label>
+                    <select id="b-obj">
+                        <option value="Atraer pacientes">Atraer pacientes</option>
+                        <option value="Educar sobre salud mental">Educar sobre salud mental</option>
+                        <option value="Vender recurso digital">Vender recurso digital</option>
+                        <option value="Generar comunidad terapéutica">Generar comunidad</option>
+                        <option value="Mostrar autoridad clínica">Mostrar autoridad clínica</option>
+                        <option value="Romper estigma">Romper estigma</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Formato</label>
+                    <select id="b-fmt">
+                        <option value="Frente a cámara">Frente a cámara</option>
+                        <option value="Faceless">Faceless</option>
+                        <option value="Carrusel educativo">Carrusel educativo</option>
+                        <option value="Recurso digital">Recurso digital</option>
+                        <option value="Servicio premium">Servicio premium</option>
+                        <option value="Historias">Historias</option>
+                        <option value="B-roll reflexivo">B-roll reflexivo</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Tono</label>
+                    <select id="b-eng">
+                        <option value="Cálido y empático">Cálido y empático</option>
+                        <option value="Directo y clínico">Directo y clínico</option>
+                        <option value="Reflexivo e íntimo">Reflexivo e íntimo</option>
+                        <option value="Educativo y accesible">Educativo y accesible</option>
+                        <option value="Confrontador suave">Confrontador suave</option>
+                        <option value="Inspirador">Inspirador</option>
+                        <option value="Premium y sereno">Premium y sereno</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>CTA Final</label>
+                    <select id="b-cta">
+                        <option value="Guardar">Guardar</option>
+                        <option value="Comentar">Comentar</option>
+                        <option value="DM para consulta">DM para consulta</option>
+                        <option value="Descargar recurso">Descargar recurso</option>
+                        <option value="Agendar sesión">Agendar sesión</option>
+                        <option value="Unirse a comunidad">Unirse a comunidad</option>
+                        <option value="Compartir">Compartir</option>
+                    </select>
+                </div>
+            </div>
+            <div style="text-align:center;">
+                <button class="btn btn-sage" onclick="buildFormula()">Generar Fórmula Estratégica ✨</button>
+            </div>
+            <div id="builder-result">
+                <div class="m-block" style="border-color:var(--sage); margin-top:2rem;">
+                    <h3 style="color:var(--sage); margin-bottom:1rem;">Tu Receta de Contenido</h3>
+                    <p><strong>Formato Recomendado:</strong> <span id="r-fmt">...</span></p>
+                    <p><strong>Hook Visual:</strong> <span id="r-hvis">...</span></p>
+                    <p><strong>Hook Textual:</strong> <span id="r-htex">...</span></p>
+                    <p><strong>Hook Verbal:</strong> <span id="r-hver">...</span></p>
+                    <p><strong>Estructura:</strong> <span id="r-str">...</span></p>
+                    <p><strong>CTA:</strong> <span id="r-cta">...</span></p>
+                    <h4 style="margin-top:1.5rem; color:var(--ink);">Prompt para IA:</h4>
+                    <div class="prompt-box" id="r-prompt">...</div>
+                    <button class="btn btn-sm btn-outline" onclick="copyText(document.getElementById('r-prompt').innerText)">Copiar Prompt</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SITUATIONS -->
+        <section id="sec-situations" class="content-section">
+            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+            <div class="section-header">
+                <h2>Situaciones Reales</h2>
+                <p>¿No sabes qué publicar hoy? Selecciona tu situación actual.</p>
+            </div>
+            <div class="cards-grid" id="grid-situations"></div>
+        </section>
+
+        <!-- NEW FORMAT LAB -->
+        <section id="sec-new-format-lab" class="content-section">
+            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+            <div class="section-header">
+                <h2>Adapta cualquier formato nuevo</h2>
+                <p>Analiza una tendencia, extrae su estructura y conviértela en un formato reutilizable para psicología.</p>
+            </div>
+            <div class="prompt-lab-grid">
+                <div class="prompt-lab-card">
+                    <div class="prompt-lab-step">Paso 1</div>
+                    <h3>Analiza el video viral</h3>
+                    <p>Copia este prompt junto con el link, descripción o transcripción del video que quieras adaptar.</p>
+                    <pre id="analysisPromptBox">PROMPT 1 - ANALIZAR UN VIDEO VIRAL
+
+Actúa como estratega de contenido especializado en salud mental y psicología.
+
+VIDEO A ANALIZAR:
+[PEGA AQUÍ EL LINK, TRANSCRIPCIÓN O DESCRIPCIÓN DEL VIDEO]
+
+MI ESPECIALIDAD:
+[Ej: psicología clínica, neuropsicología, terapia familiar, psicología infantil, etc.]
+
+MI AUDIENCIA:
+[Ej: adultos con ansiedad, padres, profesionales de salud mental, adolescentes, etc.]
+
+Analiza el video y extrae:
+1. Hook visual del primer segundo.
+2. Hook textual si aparece texto en pantalla.
+3. Hook verbal si la persona habla.
+4. Estructura narrativa paso a paso.
+5. Duración aproximada de cada parte.
+6. Picos de interés.
+7. Patrón psicológico que hace que funcione.
+8. Emoción que activa en el espectador.
+9. CTA usado o CTA sugerido.
+10. Qué elementos son replicables y cuáles dependen del creador original.
+
+Considera siempre la ética profesional de la psicología: no reproduzcas contenido que trivialice diagnósticos, genere dependencia o prometa curas. Extrae solo la estructura estratégica del formato.</pre>
+                    <button class="btn btn-sage" onclick="copyFromElement('analysisPromptBox')">Copiar Prompt 1</button>
+                </div>
+                <div class="prompt-lab-card">
+                    <div class="prompt-lab-step">Paso 2</div>
+                    <h3>Conviértelo en tu formato</h3>
+                    <p>Después de recibir el análisis, usa este prompt para adaptarlo a tu práctica o especialidad.</p>
+                    <pre id="adaptationPromptBox">PROMPT 2 - CONVERTIR EL ANÁLISIS EN FORMATO PARA PSICOLOGÍA
+
+Actúa como estratega de contenido especializado en psicología y salud mental.
+
+ANÁLISIS DEL VIDEO:
+[PEGA AQUÍ EL ANÁLISIS DEL PROMPT 1]
+
+MI ESPECIALIDAD:
+[Tu especialidad psicológica]
+
+MI AUDIENCIA:
+[Quién te sigue o a quién quieres llegar]
+
+MI SERVICIO / RECURSO:
+[Consulta, mentoría, guía, taller, programa, etc.]
+
+TEMA O IDEA BASE:
+[Pega aquí tu tema]
+
+OBJETIVO DEL CONTENIDO:
+[EDUCAR / ATRAER PACIENTES / ROMPER ESTIGMA / VENDER RECURSO / CONECTAR]
+
+Convierte ese análisis en un formato reutilizable para mi práctica.
+
+Entrega:
+1. Nombre del nuevo formato.
+2. Qué es y cómo funciona.
+3. Para qué objetivo sirve.
+4. Ideal para qué tipo de contenido de salud mental.
+5. Cuándo usarlo.
+6. Por qué funciona psicológicamente.
+7. Cómo grabarlo.
+8. Hook visual adaptable.
+9. Hook textual adaptable.
+10. Hook verbal adaptable.
+11. Estructura narrativa paso a paso.
+12. CTA recomendado (ético y acorde a la profesión).
+13. 5 ideas aplicadas a mi especialidad.
+14. 3 versiones del guion: educativa, conexión y oferta de servicio/recurso.
+15. Errores a evitar para no comprometer la ética profesional.
+
+No copies el video original. Crea una versión estratégica, ética y adaptada a mi marca como psicólogo/a.</pre>
+                    <button class="btn btn-sage" onclick="copyFromElement('adaptationPromptBox')">Copiar Prompt 2</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ERRORS -->
+        <section id="sec-errors" class="content-section">
+            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+            <div class="section-header">
+                <h2>Errores que destruyen tu autoridad</h2>
+                <p>Audita tu contenido y evita estos bloqueos comunes en psicólogos que crean contenido.</p>
+            </div>
+            <div id="acc-errors"></div>
+        </section>
+
+        <!-- GLOSSARY -->
+        <section id="sec-glossary" class="content-section">
+            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+            <div class="section-header">
+                <h2>Glosario de Contenido para Psicólogos</h2>
+                <p>El diccionario del psicólogo que crea contenido estratégico y con propósito.</p>
+            </div>
+            <div id="acc-glossary"></div>
+        </section>
+
+    </div>
+
+    <!-- FORMAT MODAL -->
+    <div class="modal-overlay" id="formatModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h2 id="fm-title" style="color:var(--sage); font-size:1.7rem; margin-bottom:5px;">Título</h2>
+                    <span id="fm-cat" class="card-tag" style="margin:0;">Categoría</span>
+                </div>
+                <button class="modal-close" onclick="closeModal('formatModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="m-grid-info">
+                    <div class="m-info-box"><span>🎯 Objetivo</span><strong id="fm-obj">...</strong></div>
+                    <div class="m-info-box"><span>👤 Ideal para</span><strong id="fm-idl">...</strong></div>
+                    <div class="m-info-box"><span>⚖️ Dificultad</span><strong id="fm-dif">...</strong></div>
+                    <div class="m-info-box"><span>⏱️ Cuándo usar</span><strong id="fm-whe">...</strong></div>
+                </div>
+                <div class="m-block"><h4>🧠 Por qué funciona psicológicamente</h4><p id="fm-psy">...</p></div>
+                <div class="m-block">
+                    <h4>🎥 Grabación y Ganchos</h4>
+                    <p style="margin-bottom:10px;"><strong>Cómo grabarlo:</strong> <span id="fm-rec">...</span></p>
+                    <ul>
+                        <li><strong>Hook Visual (0-3s):</strong> <span id="fm-hv">...</span></li>
+                        <li><strong>Hook Textual:</strong> <span id="fm-ht">...</span></li>
+                        <li><strong>Hook Verbal:</strong> <span id="fm-hb">...</span></li>
+                    </ul>
+                </div>
+                <div class="m-block">
+                    <h4>🏗️ Estructura Narrativa</h4>
+                    <div id="fm-str" style="white-space:pre-line; color:var(--ink-light); margin-bottom:15px;">...</div>
+                    <div style="background:var(--sage-pale); padding:1rem; border-radius:8px;">
+                        <strong>🎯 CTA Recomendado:</strong> <span id="fm-cta" style="color:var(--sage); font-weight:600;">...</span>
+                    </div>
+                </div>
+                <div class="m-block" style="background:var(--cream);">
+                    <h4>🌿 Ejemplo Aplicado</h4>
+                    <p style="margin-bottom:10px;"><strong>Ejemplo:</strong> <span id="fm-ej">...</span></p>
+                    <p style="color:#c0392b;"><strong>❌ Error a evitar:</strong> <span id="fm-err">...</span></p>
+                </div>
+                <div class="m-block" style="border-color:var(--ink);">
+                    <h4>🤖 Prompt Listo para IA</h4>
+                    <p style="font-size:0.84rem; margin-bottom:8px;">Copia esto en ChatGPT o Claude para generar tu guion personalizado:</p>
+                    <div class="prompt-box" id="fm-prm">...</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sage" onclick="copyText(document.getElementById('fm-prm').innerText)">Copiar Prompt</button>
+                <button class="btn btn-outline" onclick="copyText(document.getElementById('fm-str').innerText)">Copiar Estructura</button>
+                <button class="btn btn-outline" onclick="closeModal('formatModal')">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SITUATION MODAL -->
+    <div class="modal-overlay" id="sitModal">
+        <div class="modal-content" style="max-width:580px;">
+            <div class="modal-header">
+                <h2 id="sm-title" style="color:var(--sage); font-size:1.4rem;">Situación</h2>
+                <button class="modal-close" onclick="closeModal('sitModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="m-block"><h4>📌 Formatos Recomendados</h4><ul id="sm-fmt">...</ul></div>
+                <div class="m-block"><h4>👁️ Hook Visual</h4><p id="sm-hv">...</p></div>
+                <div class="m-block"><h4>🗣️ Texto de apertura</h4><p id="sm-txt">...</p></div>
+                <div class="m-block"><h4>🎯 CTA Sugerido</h4><p id="sm-cta" style="color:var(--sage); font-weight:600;">...</p></div>
+                <div class="m-block" style="border-color:var(--ink);">
+                    <h4>🤖 Prompt de emergencia</h4>
+                    <div class="prompt-box" id="sm-prm">...</div>
+                    <button class="btn btn-sm btn-sage" onclick="copyText(document.getElementById('sm-prm').innerText)" style="margin-top:10px;">Copiar Prompt</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">Copiado al portapapeles ✓</div>
+
+    <footer>
+        <img src="https://i.ibb.co/MDsC0Zt1/Chat-GPT-Image-18-may-2026-08-53-18-p-m.png" alt="Logo">
+        <p>Biblioteca creada para psicólogos que quieren compartir su conocimiento, impactar vidas y construir un negocio con propósito.</p>
+        <span class="signature">Creada por Brygith Asenjo</span>
+        <span class="sub-signature">Psicóloga · Estratega de Contenido para Psicólogos</span>
+        <a href="https://instagram.com/brygith.asenjo" class="ig-link" target="_blank">@brygith.asenjo</a>
+    </footer>
+
+    <script>
+    /* =====================================================================
+       DATA — Adapted for Psychology
+    ===================================================================== */
+
+    function makeFmt(n,c,d,o,i,w,psy,r,hv,ht,hb,s,cta,p,ej,err){
+        return{n,c,d,o,i,w,psy,r,hv,ht,hb,s,cta,p,ej,err};
+    }
+
+    const videoFormats = [
+        makeFmt("1. Hábito + Tiempo → Resultado terapéutico","Valor / Viral","Fácil","Mostrar avance concreto.","Psicólogos de todas las especialidades","Tráfico frío, aumentar alcance.","El cerebro ama las victorias pequeñas. La promesa de tiempo genera esperanza sin crear falsas expectativas.","Plano frontal cálido o faceless mostrando el proceso.","Resultado visible o temporizador simple.","Cómo reducir la ansiedad en solo 5 minutos.","Si tienes este patrón de pensamiento, necesitas ver esto.","1. Hook visual.\n2. El hábito/técnica explicado con claridad.\n3. Por qué funciona neurológicamente.\n4. Cómo empezar hoy.\n5. CTA guardar.","Guarda esto para cuando lo necesites.","Actúa como psicólogo experto en contenido educativo. Crea un guion 'Hábito + Tiempo = Resultado' sobre [TÉCNICA TERAPÉUTICA]. Incluye: la base científica en lenguaje accesible, 2 pasos prácticos, CTA a guardar. Nicho: [ESPECIALIDAD]. Audiencia: [PACIENTE IDEAL].","Técnica de respiración 4-7-8 para reducir ansiedad antes de dormir.","Prometer curas o resultados imposibles en plazos irreales."),
+        makeFmt("2. Si estás viviendo A o B, esto es para ti","Segmentación","Fácil","Identificar a tu paciente ideal.","Psicólogos clínicos, terapeutas.","Fase de consideración.","Efecto de identificación personal. Al sentirse nombrados, las personas bajan sus defensas y escuchan con más apertura.","Cámara cálida, formato conversacional íntimo.","Señalar suavemente a cámara o texto descriptivo.","Si estás en [situación A] o [situación B]...","Si te reconoces en alguno de estos dos perfiles, sigue viendo.","1. Hook segmentando dos perfiles.\n2. Perfil A y su patrón.\n3. Qué le recomendarías al perfil A.\n4. Perfil B y su patrón.\n5. Qué le recomendarías al B.\n6. CTA DM.","Comenta A o B y te envío el recurso.","Escribe un guion 'Si estás en A o B' para [ESPECIALIDAD]. Define 2 perfiles de paciente con sus patrones emocionales y da a cada uno una recomendación psicológica concreta.","Si tienes ansiedad social (A) o agotamiento emocional (B), esto es para ti.","Ser tan genérico que nadie se identifica."),
+        makeFmt("3. Mito + Verdad = Cambio de perspectiva","Autoridad clínica","Fácil","Desmontar creencias dañinas.","Psicólogos educadores.","Posicionamiento y alcance.","La disonancia cognitiva bien manejada genera curiosidad y gratitud. Romper un mito activa el pensamiento crítico.","Pizarra, libreta o fondo limpio.","Texto tachado de 'falso' con corrección.","El mito más peligroso sobre [tema de salud mental].","Esto que te enseñaron sobre [X] no es lo que crees.","1. Presentar el mito.\n2. Por qué se cree.\n3. La verdad científica.\n4. Cómo este cambio te ayuda.\n5. CTA.","Comparte si alguien lo necesita escuchar.","Crea un guion que desmonte el mito más dañino en [ESPECIALIDAD]. Usa lenguaje accesible, cita brevemente la evidencia científica, y cierra con una perspectiva liberadora. Audiencia: [PERFIL].","Mito: La depresión es solo tristeza. Verdad: Es una condición multidimensional.","Usar jerga clínica que aleje a la audiencia."),
+        makeFmt("4. Señales que nadie te dice","Carrusel / Valor","Media","Revelar síntomas invisibles.","Especialistas en salud mental.","Generar guardados y compartidos.","Las señales ocultas generan reconocimiento emocional profundo. La audiencia siente que finalmente alguien los entiende.","Carrusel minimalista, fondo suave.","Texto grande en fondo claro.","5 señales de [condición] que casi nadie reconoce.","N/A","1. Portada impactante.\n2. Contexto empático.\n3. Señal 1 + explicación breve.\n4. Señales 2-5.\n5. CTA de recurso.","Guarda esto para identificarlas en ti o en alguien que amas.","Escribe un carrusel de 7 slides sobre señales poco conocidas de [CONDICIÓN O PATRÓN EMOCIONAL]. Tono empático, evidencia en lenguaje simple, sin patologizar.","5 señales de burnout emocional que confundes con pereza.","Listar síntomas sin contexto que genera hipocondría."),
+        makeFmt("5. Pregunta en pizarra / libreta","Didáctico","Fácil","Enseñar conceptos clínicos.","Psicólogos educadores.","Demostrar autoridad clínica accesible.","El formato 'profesor' activa el sesgo de autoridad y genera confianza institucional hacia el profesional.","Cámara fija, dibujando en iPad, libreta o pizarra.","Mano escribiendo el concepto principal.","Clase rápida: ¿Qué es realmente [concepto]?","Acércate, te explico cómo funciona esto en menos de 1 minuto.","1. Escribir la pregunta o concepto.\n2. Diagrama simple.\n3. Explicación accesible.\n4. Para qué sirve saberlo.\n5. CTA.","Comenta CLASE para el video completo.","Crea una idea visual para explicar [CONCEPTO PSICOLÓGICO] en 1 minuto con pizarra o libreta. Incluye qué dibujar y el guion narrado en lenguaje accesible.","Dibujando el ciclo pensamiento-emoción-conducta del modelo cognitivo-conductual.","Usar DSM sin contextualizar para audiencia general."),
+        makeFmt("6. Lo que hago vs Lo que no hago","Posicionamiento","Media","Diferenciar enfoque terapéutico.","Terapeutas con enfoque definido.","Elevar el estándar y justificar el valor.","El anclaje por contraste define claramente tu forma de trabajar y aleja pacientes no alineados.","Pantalla dividida o listas visuales.","❌ y ✅ grandes en pantalla.","Lo que hago y lo que nunca haré en terapia.","Muchos me preguntan si hago X. La respuesta es no. Esto es lo que sí hago.","1. Hook de posicionamiento.\n2. Lo que NO hago (3 puntos).\n3. Lo que SÍ hago (mi enfoque).\n4. Por qué importa la diferencia.\n5. CTA consulta.","Si buscas este enfoque, escríbeme.","Guion 'Lo que hago vs No hago' explicando mi enfoque terapéutico diferenciador como [ENFOQUE/ESPECIALIDAD]. Que sea claro, ético y atractivo para el paciente ideal.","No doy consejos de vida, sí acompaño el proceso de autoconocimiento.","Sonar arrogante o desvalorizar otros enfoques."),
+        makeFmt("7. Reacción + análisis clínico","Tendencia","Media","Analizar contenido de salud mental viral.","Psicólogos críticos y educadores.","Posicionarte como referente con criterio.","Apalancamiento de atención + autoridad. Comentar contenido viral con criterio clínico eleva tu credibilidad sin generar tu propio tema.","Green screen sobre video o pantalla dividida.","Tu expresión de análisis sobre el video.","Analizando este viral de salud mental.","Pausa. Como psicólogo, necesito comentar esto.","1. Hook con el video viral.\n2. Tu pausa analítica.\n3. Punto 1 de análisis clínico.\n4. Punto 2.\n5. Lección o corrección.\n6. CTA.","Sígueme para análisis con criterio clínico.","Guion para reaccionar a un video viral que toca un tema de salud mental de forma incorrecta o incompleta. Hook, 3 puntos de análisis ético y clínico, CTA.","Analizando el video viral sobre 'las fases del duelo' que omite la variabilidad individual.","Atacar al creador en lugar de corregir la información."),
+        makeFmt("8. Algo que aprendí en consulta (sin revelar pacientes)","Valor / Conexión","Fácil","Compartir sabiduría clínica.","Terapeutas en ejercicio.","Humanizar la práctica y generar confianza.","La autenticidad clínica sin romper confidencialidad activa identificación masiva. La audiencia siente que el profesional realmente trabaja con sus problemas.","Tono reflexivo, mirada directa, luz natural.","Pequeña pausa antes de hablar.","Algo que aprendo de mis pacientes cada semana.","No voy a revelar nada privado, pero sí quiero contarte algo que veo repetirse mucho.","1. Contexto de la observación clínica.\n2. El patrón que observas.\n3. Por qué es importante.\n4. Qué aprendes tú de eso.\n5. CTA reflexivo.","¿Te identificas? Cuéntame en comentarios.","Guion sobre un patrón emocional recurrente que observo en consulta [ESPECIALIDAD], sin revelar datos de pacientes, que conecte con la audiencia general. Tono reflexivo y empático.","La mayoría de personas no lloran por lo que dicen que les pasa, sino por lo que no se han atrevido a decir.","Usar detalles que comprometan la confidencialidad."),
+        makeFmt("9. Sin terapia vs Con proceso terapéutico","Comparativa","Media","Mostrar el valor del proceso.","Terapeutas clínicos.","Eliminar excusas para no buscar ayuda.","Validación dual. Muestra que entiendes ambas realidades y no juzgas a quienes no han podido acceder aún a terapia.","Pantalla dividida o comparativa visual.","Dos escenarios contrastados.","Cómo vives [situación] antes y después de terapia.","No es magia, es proceso. Mira la diferencia real.","1. Hook de contraste.\n2. Cómo se vive el problema sin apoyo.\n3. Cómo cambia con proceso terapéutico.\n4. Qué hace posible ese cambio.\n5. CTA.","¿Listo para empezar? Escríbeme.","Guion comparando cómo se experimenta [SITUACIÓN EMOCIONAL] antes y después de un proceso terapéutico real. Sin romantizar ni prometer curas.","Relaciones de pareja antes y después de terapia de pareja.","Prometer que terapia 'lo arregla todo'."),
+        makeFmt("10. Creencia dañina vs Perspectiva terapéutica","Carrusel","Fácil","Romper narrativas autolimitantes.","Psicólogos y coaches con base clínica.","Fase de consciencia.","La disonancia cognitiva empática cuestiona sin atacar. La audiencia siente que la entiendes antes de desafiarla.","Carrusel texto grande, fondo suave.","Tachar texto de la creencia dañina.","Lo que te dijiste toda la vida vs lo que el proceso muestra.","N/A","1. Portada con la creencia.\n2. De dónde viene.\n3. Qué costo tiene.\n4. La perspectiva alternativa.\n5. Cómo empezar a cambiarla.\n6. CTA.","Comparte si esto también te pasó.","Carrusel de 6 slides cuestionando la creencia más limitante que comparte mi paciente ideal de [ESPECIALIDAD]. Tono confrontativo pero amoroso.","'Si lo pienso mucho, lo atraigo' → La rumiación no crea realidad, señala miedo sin procesar.","Sonar como regaño o charla de autoayuda superficial."),
+        makeFmt("11. Emoción que confundes con otra","Claridad clínica","Media","Enseñar inteligencia emocional.","Psicólogos y terapeutas emocionales.","Educar sobre mundo emocional.","La confusión emocional es universal. Nombrar con precisión una emoción genera enorme alivio y gratitud.","Plano cercano, tono calmado.","Dos emociones en pantalla con flechas.","Lo que crees que es ansiedad puede ser otra cosa.","Hay una diferencia importante entre sentir X y sentir Y. Vamos a verla.","1. Hook de confusión emocional.\n2. Emoción A: qué es y cómo se siente.\n3. Emoción B: qué es y cómo se siente.\n4. Por qué importa distinguirlas.\n5. CTA.","¿Cuál reconoces más en ti? Comenta.","Guion explicando la diferencia psicológica entre [EMOCIÓN A] y [EMOCIÓN B], con ejemplos cotidianos accesibles. Especialidad: [ESPECIALIDAD].","Diferencia entre ansiedad y estrés: no son lo mismo aunque se sienten parecido.","Usar DSM sin contextualizar."),
+        makeFmt("12. Lo que se ve desde afuera vs Lo que pasa por dentro","Revelación emocional","Fácil","Visibilizar el mundo interno.","Terapeutas de cualquier enfoque.","Generar identificación profunda.","La brecha entre apariencia y experiencia interna es uno de los dolores más universales. Nombrarlo genera conexión instantánea.","Plano frontal o video de situación cotidiana.","Plano de persona 'normal' con texto del mundo interno.","Cómo te ven: bien. Cómo te sientes por dentro: esto.","Desde afuera pareces estar bien. Por dentro, lleva semanas sin dormir bien.","1. Hook visual del contraste.\n2. La fachada cotidiana.\n3. El mundo interno que nadie ve.\n4. Por qué nos cuesta mostrarlo.\n5. CTA empático.","Si te identificas, no estás solo/a. Escríbeme.","Guion sobre la brecha entre cómo se ve desde afuera y cómo se vive por dentro [SITUACIÓN EMOCIONAL]. Tono empático y validador. Audiencia: [PERFIL].","Cómo te ven: una persona funcional. Cómo te sientes: agotado de fingir que todo está bien.","Romantizar el sufrimiento o convertirlo en estética."),
+        makeFmt("13. Cómo funciona [mecanismo psicológico] en 1 minuto","Tutorial clínico","Fácil","Explicar conceptos de forma accesible.","Psicólogos educadores.","Aumentar alcance y guardados.","Alta utilidad percibida. El conocimiento psicológico se guarda para entenderse mejor o para compartir con alguien querido.","Pantalla compartida o plano cercano gesticulando.","Acción relacionada con el concepto.","Te explico [concepto] antes de que acabe este video.","En 60 segundos vas a entender algo que puede cambiar cómo te relacionas contigo mismo.","1. Promesa de tiempo.\n2. Qué es el mecanismo.\n3. Cómo se activa.\n4. Cómo reconocerlo en ti.\n5. CTA guardar.","Guarda esto para entenderte mejor.","Tutorial de 60s explicando [MECANISMO PSICOLÓGICO] en lenguaje accesible: qué es, cómo se activa y cómo reconocerlo. Especialidad: [ESPECIALIDAD].","Cómo funciona el mecanismo de defensa 'proyección' en la vida cotidiana.","Explicar sin dar herramientas o sin cerrar con aplicación práctica."),
+        makeFmt("14. Tipos de pacientes / perfiles emocionales","Identificación","Media","Que la audiencia se reconozca.","Terapeutas con comunidad activa.","Generar compartidos en stories.","Pertenencia tribal. A las personas les encanta reconocerse en una categoría, especialmente cuando está descrita con empatía.","Carrusel diseño limpio y cálido.","Iconos representativos por tipo.","¿Con cuál de estos perfiles te identificas?","N/A","1. Portada curiosa.\n2. Perfil 1 (El hiper-exigente).\n3. Perfil 2 (El que ayuda para no sentir).\n4. Perfil 3 (El que evita el conflicto).\n5. Perfil 4 (El que pospone buscar ayuda).\n6. CTA compartir.","Etiqueta a alguien que reconozcas en uno de estos.","Carrusel definiendo 4 perfiles emocionales comunes en [ESPECIALIDAD]. Tono empático y sin patologizar, que invite a la reflexión.","4 formas de relacionarse con la ansiedad: el que ataca, el que evita, el que finge y el que procesa.","Patologizar o hacer sentir mal a la persona por reconocerse en un perfil."),
+        makeFmt("15. 3 cosas que hacemos para no sentir","Diagnóstico conductual","Fácil","Revelar mecanismos de evitación.","Psicólogos clínicos y terapeutas.","Fase inicial de embudo.","Efecto de reconocimiento. Las conductas de evitación son tan comunes que casi todos se identifican con al menos una.","Contando con dedos, mirada cercana.","Mirada analítica y cálida.","3 cosas que hacemos para no sentir lo que nos duele.","Si haces alguna de estas, no te juzgo. Yo también las he hecho.","1. Hook empático.\n2. Conducta 1 (leve).\n3. Conducta 2 (común).\n4. Conducta 3 (la más difícil de reconocer).\n5. CTA a recurso.","¿Te identificas con alguna? Cuéntame.","Guion enumerando 3 mecanismos de evitación emocional comunes en [ESPECIALIDAD]. Tono no juzgador, empático y con una pequeña puerta de salida al final.","Comer en exceso, llenarse de trabajo, buscar validación constante.","Juzgar o hacer sentir vergüenza al espectador."),
+        makeFmt("16. Antes de buscar ayuda vs Después","Transformación","Fácil","Mostrar la evolución del proceso terapéutico.","Terapeutas en ejercicio.","Motivar a dar el primer paso.","Prueba de posibilidad. Ver que el cambio es real activa la esperanza, que es el primer ingrediente del cambio terapéutico.","Pantalla dividida o fotos/clips comparativos.","Texto en dos mitades contrastadas.","Cómo cambia la vida cuando finalmente pides ayuda.","No es debilidad. Es el paso más valiente.","1. Estado anterior al proceso.\n2. Lo que sentían pero no decían.\n3. El momento de decisión.\n4. Cómo se siente ahora.\n5. CTA.","Si estás en el 'antes', escríbeme.","Guion comparando la experiencia emocional antes y después de iniciar un proceso terapéutico real. Sin romantizar, con honestidad y esperanza.","Antes: 'no sé por qué me siento así'. Después: 'entiendo mi patrón y puedo elegir'.","Prometer resultados específicos o tiempos exactos."),
+        makeFmt("17. Análisis de un patrón relacional común","Análisis / Autoridad","Media","Demostrar profundidad clínica.","Psicólogos de pareja, familia, sistémicos.","Demostrar maestría terapéutica.","El análisis de patrones cotidianos activa el reconocimiento y genera autoridad sin necesitar hablar de casos privados.","Gráficos simples o texto en pantalla.","Diagrama del patrón relacional.","Este patrón está destruyendo muchas relaciones sin que nadie lo nombre.","N/A","1. Nombre del patrón.\n2. Cómo se manifiesta.\n3. Origen probable.\n4. Cómo se mantiene.\n5. Primera herramienta.\n6. CTA consulta.","Si lo reconoces en tu relación, escríbeme.","Carrusel detallando el ciclo de un patrón relacional disfuncional común en [ESPECIALIDAD]. Lenguaje accesible, sin culpabilizar.","El ciclo demanda-evitación en parejas: uno persigue, el otro se aleja. Y ambos sufren.","Culpar a una de las partes del patrón."),
+        makeFmt("18. ¿Esto es normal? (Preguntas frecuentes)","Claridad","Fácil","Resolver dudas frecuentes con honestidad.","Psicólogos de cualquier área.","Manejo de mitos y gestión de la demanda.","Transparencia radical. Responder sin rodeos construye confianza instantánea y reduce el miedo a buscar ayuda.","Caja de preguntas de IG flotando.","Señalar la pregunta en pantalla.","Me preguntan mucho si [X] es normal...","¿Es normal sentir [X]? Te respondo con honestidad.","1. Leer la pregunta.\n2. Respuesta directa y empática.\n3. Contexto clínico breve.\n4. Cuándo sí preocuparse.\n5. CTA.","Déjame tu duda en comentarios.","Guion respondiendo la pregunta más frecuente de mi paciente ideal sobre [TEMA CLÍNICO]. Tono empático, honesto y accesible. Sin minimizar ni alarmar.","¿Es normal tener pensamientos intrusivos? Sí, y aquí te explico por qué.","Responder solo 'depende' sin dar contexto útil."),
+        makeFmt("19. Lo que NO es terapia (desmontando mitos)","Educación","Media","Aclarar expectativas sobre el proceso.","Terapeutas que quieren cualificar pacientes.","Educar al mercado sobre el proceso real.","Organización mental. Al aclarar qué es y qué no es terapia, el paciente llega con expectativas reales y el vínculo terapéutico se fortalece.","Pizarra o pantalla dividida ❌/✅.","Texto '❌ Mito' vs '✅ Realidad'.","Lo que la gente cree que es terapia vs lo que realmente es.","Spoiler: el terapeuta no te va a decir qué hacer con tu vida.","1. Hook clarificador.\n2. Mito 1 (te dicen qué hacer).\n3. Mito 2 (se habla del pasado todo el tiempo).\n4. Mito 3 (es para gente con problemas graves).\n5. La realidad de cada uno.\n6. CTA.","¿Tienes dudas sobre el proceso? Escríbeme.","Guion desmontando los 3 mitos más frecuentes sobre lo que es terapia. Tono cálido y educativo. Especialidad: [ENFOQUE].","Mito: El psicólogo te va a juzgar. Realidad: Su trabajo es crear el espacio más seguro que hayas tenido.","Sonar defensivo o distante al desmontar los mitos."),
+        makeFmt("20. Categoría A vs B (dos enfoques o estilos terapéuticos)","Educación","Media","Clarificar diferencias entre enfoques.","Psicólogos con formación específica.","Educar y posicionarse.","Organización cognitiva. Al ofrecer marcos claros, te posicionas como guía y aumentas la confianza del potencial paciente.","Pantalla dividida o lista visual.","Texto A (izq) vs B (der).","La diferencia real entre [Enfoque A] y [Enfoque B].","Mucha gente confunde [A] con [B]. Aquí lo aclaro.","1. Hook diferenciador.\n2. Definir A.\n3. Definir B.\n4. Para qué sirve mejor cada uno.\n5. CTA.","¿Cuál crees que es para ti? Comenta.","Guion contrastando dos enfoques o modalidades terapéuticas que mi audiencia suele confundir en [ESPECIALIDAD]. Lenguaje accesible y sin sectarismo.","Diferencia entre psicología y psiquiatría: cuándo ir a uno y cuándo al otro.","Posicionar un enfoque como superior al otro."),
+        makeFmt("21. Ranqueo de recursos de autocuidado","Entretenimiento / Valor","Media","Evaluar con criterio clínico.","Psicólogos educadores.","Posicionarte como curador especializado.","El cerebro ama las clasificaciones y rankings. En salud mental, añadir criterio clínico convierte el entretenimiento en autoridad.","Fotos o íconos de los recursos flotantes.","Calificación grande en pantalla.","Calificando los recursos de autocuidado más populares.","Como psicólogo, voy a ser honesto sobre cuáles realmente funcionan.","1. Hook del ranking.\n2. Recurso 1 + Calificación y por qué.\n3. Recurso 2 + Matiz clínico.\n4. Recurso 3 (El más efectivo con evidencia).\n5. CTA.","¿Cuál usas tú? Comenta.","Guion calificando 3 recursos de autocuidado populares desde la evidencia clínica. Especialidad: [ESPECIALIDAD]. Tono honesto pero amable.","Calificando: respiración, meditación y journaling. ¿Cuál tiene más evidencia?","Descalificar prácticas sin dar alternativa."),
+        makeFmt("22. ¿Qué pasaría si normalizáramos [tema tabú]?","Hipotético / Ruptura de estigma","Fácil","Romper tabúes de salud mental.","Psicólogos activistas y educadores.","Generar debate y retención.","La hipótesis sobre un tabú social activa curiosidad y apertura. El cerebro se queda para ver si el argumento tiene sentido.","Fondo suave, mirada reflexiva.","Mirada pensativa mirando ligeramente al lado.","¿Qué pasaría si normalizáramos ir al psicólogo?","Imagina un mundo donde ir a terapia sea tan normal como ir al médico.","1. Planteamiento hipotético.\n2. Consecuencia 1.\n3. Consecuencia 2.\n4. Lección aplicable hoy.\n5. CTA.","¿Qué cambiaría en tu vida? Cuéntame.","Guion hipotético sobre qué pasaría si [TABÚ DE SALUD MENTAL] se normalizara. Tono esperanzador y reflexivo.","¿Qué pasaría si hablar de sufrimiento emocional fuera tan normal como hablar de un resfriado?","Trivializar condiciones clínicas serias en aras del humor."),
+        makeFmt("23. Cómo SÍ se dice vs Cómo NO se dice","Demostración lingüística","Fácil","Enseñar comunicación saludable.","Psicólogos en comunicación y relaciones.","Educar visualmente de forma práctica.","El contraste lingüístico directo activa el aprendizaje inmediato. Ver el error y la corrección juntos genera memorización.","Pantalla dividida (❌ y ✅).","Texto del error en rojo vs el correcto en verde.","Cómo NO decirle esto a alguien con ansiedad.","Si alguna vez dijiste esto, no te preocupes. Aquí está la versión que sí ayuda.","1. Mostrar frase dañina.\n2. Por qué hace daño.\n3. Alternativa compasiva.\n4. El micro-ajuste clave.\n5. CTA.","Guarda para usar en el momento justo.","Guion visual de 'Cómo NO decirlo vs Cómo SÍ' sobre [SITUACIÓN COMUNICATIVA] en el contexto de [ESPECIALIDAD]. Indica las frases exactas.","'Anímate' → 'Estoy aquí, no tienes que estar bien ahora mismo'.","Regañar al espectador por haber dicho la frase incorrecta."),
+        makeFmt("24. Observé este patrón y quiero compartirlo","Investigación clínica accesible","Media","Filtro de experiencia profesional.","Psicólogos con práctica activa.","Demostrar criterio clínico sin exponer pacientes.","La audiencia valora el tiempo que les ahorras. Te ven como alguien que trabaja de verdad, no solo habla de teoría.","Libreta o espacio de trabajo de fondo.","Mirada pensativa, tono reflexivo.","He observado este patrón en consulta y necesito hablarlo.","Después de [N] años/meses trabajando con [población], noté algo que se repite.","1. Hook de observación clínica.\n2. El patrón.\n3. Por qué ocurre.\n4. Qué ayuda a cambiar.\n5. CTA.","¿Lo reconoces? Cuéntame.","Guion donde comparto un patrón clínico recurrente observado en [ESPECIALIDAD], sin revelar datos privados. Tono de descubrimiento y generosidad profesional.","La mayoría de personas que piden ayuda no lo hacen por el motivo que dicen al inicio.","Inventar patrones o exagerar frecuencia."),
+        makeFmt("25. 10 cosas que un psicólogo nunca te diría","Guardable / Valor","Fácil","Lista de alto valor clínico.","Psicólogos de cualquier especialidad.","Generar guardados masivos.","Densidad de valor. Las listas largas con autoridad clínica prometen mucha recompensa cognitiva.","Video rápido o carrusel con lista en pantalla.","Lista en scroll rápido.","10 cosas que un psicólogo nunca te diría (y por qué).","Te daré 10 frases que ningún profesional serio debería decirte.","1. Hook directo.\n2. Puntos 1 a 5 rápido.\n3. Pico de interés.\n4. Puntos 6 a 10.\n5. CTA agresivo a guardar.","Guarda esto antes de buscar psicólogo.","Lista de 10 señales de alerta o frases que un psicólogo ético nunca debería decir, con breve explicación de por qué. Especialidad: [ESPECIALIDAD].","'Eso es lo que tú quieres creer', 'Más gente tiene problemas peores que los tuyos'.","Ser tan genérico que no eduque realmente."),
+        makeFmt("26. Proceso + Herramienta + Resultado","Framework propio","Fácil","Metodología memorable.","Psicólogos con método propio.","Explicar su forma de trabajar.","El poder del 3. Las tríadas se retienen perfectamente y posicionan tu metodología como un sistema.","Pizarra o texto visual grande.","3 elementos en pantalla.","El combo que uso en cada proceso terapéutico.","Tres cosas que siempre están presentes en mi forma de trabajar.","1. Hook del proceso.\n2. Elemento 1 (Base).\n3. Elemento 2 (Herramienta).\n4. Elemento 3 (Objetivo).\n5. CTA consulta.","Escríbeme si quieres conocer el proceso.","Crea una fórmula de 3 elementos que represente mi forma de trabajar en [ESPECIALIDAD]. Que sea memorable y comprensible para alguien sin formación psicológica.","Escucha activa + Técnicas de regulación + Autocomprensión = Cambio sostenido.","Elementos tan abstractos que no comunican nada."),
+        makeFmt("27. La parte que nadie quiere escuchar","Confrontación empática","Media","Decir verdades incómodas con amor.","Psicólogos directivos y con criterio.","Generar debate y autoridad.","La confrontación amable atraviesa defensas. Hablar de lo que nadie dice genera reconocimiento y respeto.","Mirada directa, pausa antes de hablar.","Texto: 'Esto puede incomodar'.","La parte difícil que nadie te va a decir sobre [tema].","No te voy a decir lo que quieres escuchar. Te voy a decir lo que necesitas saber.","1. Advertencia empática.\n2. La verdad incómoda.\n3. Por qué cuesta escucharla.\n4. Qué cambia cuando la aceptas.\n5. CTA reflexivo.","Si esto te movió algo, escríbeme.","Guion de confrontación empática sobre [TEMA DE SALUD MENTAL] que diga lo que nadie dice pero todos necesitan escuchar. Tono firme pero amoroso.","La recuperación no es lineal y tardar no significa que estás fallando.","Ser cruel disfrazándolo de honestidad."),
+        makeFmt("28. 1 Problema, 3 miradas psicológicas","Perspectivas","Media","Mostrar riqueza conceptual.","Psicólogos con formación integradora.","Posicionarte para distintos perfiles.","Escalabilidad conceptual. Demuestra que entiendes la complejidad sin simplificar en exceso.","Cambiar fondo o ropa levemente.","Pantalla dividida en 3 perspectivas.","El mismo problema visto desde 3 enfoques distintos.","La ansiedad vista desde lo cognitivo, lo corporal y lo relacional. Elige tu entrada.","1. Hook del problema general.\n2. Perspectiva 1 (cognitiva).\n3. Perspectiva 2 (corporal/emocional).\n4. Perspectiva 3 (relacional/sistémica).\n5. CTA.","¿Con cuál resonaste más? Cuéntame.","Guion sobre [PROBLEMA EMOCIONAL] visto desde 3 enfoques psicológicos distintos. Accesible, sin jerga excesiva. Especialidad: [ESPECIALIDAD].","El perfeccionismo desde lo cognitivo, lo emocional y lo familiar.","Hacer que un enfoque parezca superior a los demás."),
+        makeFmt("29. No lo hagas si no estás listo para esto","Psicología inversa ética","Fácil","Generar curiosidad responsable.","Psicólogos con recursos o programas.","Viralidad ética.","Reactancia psicológica responsable. Advertir antes de revelar genera deseo sin manipulación.","Tono serio, cercano a la cámara.","Texto de advertencia en pantalla.","No leas esto si no estás listo para cambiar algo.","Lo que voy a decir puede remover cosas. Si no es tu momento, está bien esperar.","1. Hook de advertencia empática.\n2. Por qué es importante estar listo.\n3. La revelación o técnica.\n4. Cómo aplicarla con cuidado.\n5. CTA.","Si estás listo, escríbeme.","Guion usando advertencia responsable para revelar una técnica o perspectiva de [ESPECIALIDAD] que puede generar cambio profundo. Ético y sin manipulación.","No veas esto si no puedes comprometerte a observarte sin juzgarte.","Usar el miedo para generar clics sin contenido de valor."),
+        makeFmt("30. Lo que aprendí de [figura, libro o estudio]","Transferencia de conocimiento","Media","Compartir lecturas clave.","Psicólogos educadores y en formación continua.","Contenido profundo con autoridad académica.","Efecto halo. Asociar tu análisis a fuentes reconocidas eleva tu credibilidad sin necesitar tu propia investigación.","B-roll del libro o estudio.","Portada del libro o nombre del estudio.","Lo que este libro cambió en mi forma de entender [tema].","Todo el mundo habla de [referente/libro], pero pocas personas nombran esta lección específica.","1. Hook con referente.\n2. El contexto.\n3. La lección más profunda.\n4. Cómo aplicarla hoy.\n5. CTA.","Sígueme para más lecturas clave.","Analiza una lección clave del [LIBRO/ESTUDIO/AUTOR] de psicología más relevante para mi audiencia y extrae su aplicación práctica. Especialidad: [ESPECIALIDAD].","Lo que Viktor Frankl no dijo explícitamente pero está en cada página de El Hombre en Busca de Sentido.","Solo citar sin aportar tu propia lectura del material."),
+        makeFmt("31. El psicólogo de antes vs El de ahora","Evolución profesional","Media","Mostrar crecimiento y honestidad.","Psicólogos con trayectoria.","Humanizar y generar confianza.","Autenticidad de proceso. Ver la evolución profesional honesta genera más confianza que la perfección proyectada.","Ropa o espacio distinto simulando el pasado.","Actitud más insegura vs serena.","Lo que pensaba sobre [tema] al salir de la universidad vs hoy.","Antes pensaba que tenía todas las respuestas. Hoy sé que las mejores preguntas son las que guían.","1. Hook del contraste.\n2. Creencia o práctica anterior.\n3. Qué la cambió.\n4. Cómo trabajo hoy.\n5. CTA.","¿Con cuál versión resonas más?","Sketch o guion contrastando cómo abordaba [TEMA CLÍNICO] al inicio de mi carrera vs cómo lo hago ahora. Honesto y reflexivo.","Antes le daba 'consejos' a mis pacientes. Hoy sé que acompañar es muy diferente a aconsejar.","Hacer que el pasado parezca vergonzoso en lugar de parte del aprendizaje."),
+        makeFmt("32. Metáfora visual para un concepto difícil","Metáfora clínica","Media","Hacer comprensibles conceptos complejos.","Psicólogos educadores.","Hacer memorable tu mensaje.","Anclaje visual. El cerebro recuerda mejor un concepto psicológico cuando se ancla a un objeto físico y observable.","Usar objetos cotidianos como metáforas.","Estirar o juntar objetos visualmente.","Esto es exactamente lo que hace tu sistema nervioso cuando...","Mira este [objeto]. Así funciona [mecanismo psicológico].","1. Acción visual con objeto.\n2. Presentar la metáfora.\n3. Conectar con el concepto psicológico.\n4. Aplicación práctica.\n5. CTA.","Comparte si la metáfora te ayudó a entender.","Crea una metáfora visual usando objetos cotidianos para explicar [CONCEPTO PSICOLÓGICO COMPLEJO] en lenguaje accesible.","El vaso de agua lleno = sistema nervioso al límite. Añadir una gota más = crisis.","Metáfora sin conexión lógica clara con el concepto."),
+        makeFmt("33. Infografía animada de un proceso terapéutico","Visual Premium","Avanzada","Proceso terapéutico visual y memorable.","Psicólogos con producción media-alta.","Educar con nivel visual alto.","Retención estética. Las animaciones fluidas elevan el valor percibido del profesional y hacen el conocimiento más accesible.","Sin cámara, solo animación gráfica.","Gráficos moviéndose suavemente.","Así funciona el proceso terapéutico paso a paso.","(Voz en off tranquila y clara).","1. El problema inicial visualizado.\n2. Zoom al bloqueo emocional.\n3. Presentación del proceso.\n4. Flujo de cambio.\n5. CTA en pantalla.","Guarda el mapa del proceso.","Guion para voz en off describiendo visualmente el proceso terapéutico de [MODALIDAD] paso a paso. Para animador o Canva animado.","Infografía del ciclo de la ansiedad y cómo interrumpirlo.","Animación confusa o con demasiados conceptos a la vez."),
+        makeFmt("34. Enfoque A vs Enfoque B: la batalla conceptual","Comparativa entretenida","Avanzada","Comparar enfoques entreteniendo.","Psicólogos con formación integradora.","Mostrar amplitud de criterio.","El dinamismo de una 'batalla' hace accesible lo abstracto sin perder rigor.","Dos perspectivas con personajes o texto enfrentado.","Miradas contrastadas (pantalla dividida).","TCC vs Psicoanálisis: ¿quién gana?","Enfoque A: 'Yo cambio el pensamiento'. Enfoque B: 'Yo voy al origen'. Ambos tienen razón.","1. Hook del enfrentamiento.\n2. Argumento del Enfoque A.\n3. Argumento del Enfoque B.\n4. Cuándo uno es mejor que el otro.\n5. CTA.","¿Con cuál enfoque conectas más? Comenta.","Debate conceptual entre [ENFOQUE A] y [ENFOQUE B] donde ambos tienen puntos válidos. Tono didáctico y sin parcialidad. Especialidad: [ESPECIALIDAD].","TCC vs EMDR para trauma: ¿cuándo usar cada uno?","Posicionarse a favor de un enfoque sin argumentos sólidos."),
+        makeFmt("35. Respuesta a una crítica frecuente","Manejo de objeciones","Fácil","Responder críticas públicas con altura.","Psicólogos con presencia en redes.","Manejar objeciones públicamente.","Confianza en postura. No tener miedo de exponer las críticas y responderlas con calma demuestra solidez profesional.","Caminando o en espacio natural, luz cálida.","Texto de la crítica visible.","Me dijeron que la psicología es para débiles.","Alguien me escribió esto. Necesito responderlo públicamente.","1. Mostrar la crítica o estigma.\n2. Validar de dónde viene.\n3. Reencuadre con base en evidencia.\n4. Conclusión profesional.\n5. CTA.","Si crees como yo, escríbeme.","Guion respondiendo la crítica más frecuente sobre [ESPECIALIDAD O PSICOLOGÍA EN GENERAL] con total calma, evidencia y autoridad.","Respondiendo: 'La psicología es pseudociencia'. Mi respuesta como profesional.","Atacar a quien critica o perder la calma en cámara."),
+        makeFmt("36. Terapeuta novel vs Terapeuta experimentado","Mentalidad y crecimiento","Media","Contraste de madurez profesional.","Psicólogos en formación y supervisores.","Posicionarte como mentor de colegas.","La identificación aspiracional funciona en dos vías: el novel se ve, el experimentado se reconoce.","Actitud ansiosa vs serena (misma persona o dos personas).","Ansioso mirando notas vs tranquilo escuchando.","Año 1 vs Año 10 en la práctica clínica.","Novel: 'No sé qué decir aquí'. Experimentado: 'La pausa también es intervención'.","1. Hook del contraste.\n2. Situación clínica difícil.\n3. Reacción del novel.\n4. Reacción del experimentado.\n5. CTA.","Sígueme si estás en tu primer año de práctica.","Guion contrastando cómo reacciona un psicólogo novel vs uno experimentado ante [SITUACIÓN CLÍNICA DIFÍCIL]. Sin hacer al novel sentir mal.","Cuando el paciente llora: el novel se paraliza, el experimentado se sienta en el silencio.","Hacer al terapeuta novel parecer incompetente."),
+        makeFmt("37. El diario de consulta (reflexión semanal)","Comunidad / Conexión","Fácil","Generar vínculo semana a semana.","Psicólogos con comunidad activa.","Crear ritual semanal de contenido.","La consistencia ritual crea anticipación. La audiencia espera el contenido como un pequeño momento de reflexión garantizado.","Libreta abierta o espacio íntimo.","Mano abriendo la libreta.","Mi reflexión de esta semana.","N/A","1. Portada de reflexión semanal.\n2. Una observación de la semana.\n3. Lo que te preguntó.\n4. Tu propia respuesta.\n5. Pregunta a la comunidad.\n6. CTA.","¿Y tú? ¿Qué observaste esta semana?","Genera una reflexión semanal breve sobre un aprendizaje clínico o personal de [ESPECIALIDAD]. Tono íntimo, sin tecnicismos. Para carrusel o stories.","Esta semana, una conversación me recordó que el cambio casi nunca se ve hasta que ya ocurrió.","Ser tan filosófico que nadie entienda la reflexión."),
+        makeFmt("38. Pasos escritos en notas / papelitos","Faceless / Valor","Fácil","Dar pasos prácticos sin rostro.","Psicólogos tímidos ante la cámara.","Contenido de valor sin producción alta.","Lo analógico destaca en un feed digital. El sonido del papel y la escritura retiene la atención de forma inesperada.","Solo se ven las manos y la libreta.","Mano escribiendo el primer paso.","Los 3 pasos que uso para trabajar [habilidad terapéutica].","(Audio suave o música instrumental).","1. Escribir paso 1.\n2. Escribir paso 2.\n3. Escribir paso 3.\n4. Texto flotante con CTA.\n5. CTA a recurso completo.","Lee el caption para los detalles completos.","3 pasos clave para trabajar [HABILIDAD O PROCESO TERAPÉUTICO] escritos a mano, formato Faceless. Lenguaje accesible.","3 pasos para empezar a regular el sistema nervioso desde hoy.","Letra ilegible o iluminación pobre."),
+        makeFmt("39. Explicado como si tuvieras 10 años","Claridad radical","Fácil","Simplificar conceptos complejos.","Psicólogos educadores para público general.","Hacer accesible tu especialidad.","Eliminación de la maldición del conocimiento clínico. Si lo entiende un niño, todos pueden guardarlo y compartirlo.","Plano cercano, tono cálido y pausado.","Objeto cotidiano para la analogía.","Te explico [concepto] sin palabras difíciles.","Si nunca has ido al psicólogo, esto es lo que realmente hacemos.","1. Hook reduccionista empático.\n2. La analogía simple.\n3. El concepto en términos cotidianos.\n4. Para qué sirve saberlo.\n5. CTA.","Si lo entendiste, compártelo.","Explica [CONCEPTO CLÍNICO COMPLEJO] usando una analogía cotidiana que cualquier persona sin formación pueda entender.","Explicar el apego ansioso usando el ejemplo de enviar un mensaje y esperar respuesta constantemente.","Simplificar tanto que se pierda la precisión."),
+        makeFmt("40. Pregunta que nadie se atreve a hacer","Interacción / Debate","Fácil","Generar conversación y normalización.","Psicólogos que quieren romper tabúes.","Aumentar comentarios y debate sano.","Normalización táctica. Hacer la pregunta que todos tienen pero nadie hace reduce el estigma y activa comentarios masivos.","Mirada directa, pausa de 1s.","Texto de la pregunta grande en pantalla.","La pregunta que nadie le hace al psicólogo pero todos quieren saber.","Tengo una pregunta que nadie se atreve a hacer en consulta: [Pregunta].","1. Hook normalizador.\n2. Por qué nadie la hace.\n3. Tu respuesta honesta.\n4. Devolver la pregunta al público.\n5. CTA comentarios.","Te leo en los comentarios.","Formula una pregunta tabú sobre salud mental que todos tienen pero pocas personas vocalizan. Contexto: [ESPECIALIDAD].","¿Puede uno enamorarse de su terapeuta? (Transferencia: qué es y por qué ocurre).","Hacer preguntas sensacionalistas sin dar valor real."),
+        makeFmt("41. POV: eres el que finalmente pide ayuda","Identificación / Deseo","Media","Generar el deseo de buscar ayuda.","Psicólogos que quieren atraer pacientes.","Reducir la barrera de entrada a la consulta.","Empatía cognitiva. Al ponerse en el lugar del paciente que da el primer paso, se activa el deseo de vivir esa experiencia.","Grabado desde la altura de los ojos.","Vista de primera persona entrando al espacio terapéutico.","POV: Por fin decides pedir ayuda.","(Audio suave o trend musical calmado).","1. Hook visual POV.\n2. El momento de la decisión.\n3. Cómo se siente dar el primer paso.\n4. Lo que encuentras al llegar.\n5. CTA.","Da el primer paso. Escríbeme.","Guion POV donde pongo al espectador en el momento de decidir pedir ayuda psicológica por primera vez. Empático y esperanzador.","POV: Después de meses, finalmente envías el mensaje que dice 'quisiera hacer una consulta'.","Romantizar demasiado el proceso sin reconocer que también puede dar miedo."),
+        makeFmt("42. Multi ángulos: la verdad difícil","Retención visual","Media","Mantener atención en contenido denso.","Psicólogos con mensajes directos.","Cuando el guion es muy hablado.","Disrupción de patrón visual constante. Cada corte reinicia la atención del cerebro.","Mismo audio, 3 ángulos distintos.","Corte brusco en cada idea importante.","La cruda realidad sobre [tema de salud mental].","Escúchame bien. [Corte]. Si sigues ignorando esto... [Corte] tu salud mental va a pagarlo.","1. Hook ángulo 1.\n2. Primera idea ángulo 2.\n3. Desarrollo saltando ángulos.\n4. Cierre en plano cercado.\n5. CTA.","Guarda esto para leerlo cuando estés listo.","Guion de 40s sobre [TEMA] con indicación exacta de dónde hacer cortes de cámara para mantener retención. Tono directo pero empático.","Reflexión sobre por qué ignoramos nuestra salud mental hasta que el cuerpo habla.","Mover la cámara en lugar de cambiar ángulos fijos."),
+        makeFmt("43. Metáfora con objetos (Faceless)","Faceless / Educación","Media","Conceptos abstractos a físicos.","Psicólogos creativos.","Educar sin mostrar rostro.","La tangibilidad hace lo invisible visible. Los procesos internos se comprenden mejor cuando tienen representación física.","Manos manipulando objetos (vasos, ligas, arena).","Objeto relevante al concepto.","Por qué tu mente no puede 'simplemente calmarse'.","(Solo ASMR y música suave, sin voz o con voz en off).","1. Mostrar objeto A (El sistema nervioso).\n2. Mostrar objeto B (El estímulo).\n3. Interacción visual.\n4. Texto con explicación.\n5. CTA.","Lee el caption completo.","Concepto visual Faceless usando objetos cotidianos para explicar [MECANISMO PSICOLÓGICO] sin palabras técnicas.","Vaso de agua al límite + gota que lo desborda = límite del sistema nervioso.","Objetos confusos que no conectan con el concepto."),
+        makeFmt("44. Carrusel: Herramientas para [situación]","Herramientas terapéuticas","Media","Enseñar técnicas prácticas.","Psicólogos de cualquier área.","Guardados masivos y autoridad.","Alto valor utilitario. Las herramientas concretas generan gratitud y sensación de cuidado.","Capturas de pantalla, diagramas o diseño limpio.","Portada con la situación nombrada.","3 herramientas para [situación emocional] que realmente funcionan.","N/A","1. Portada con la situación.\n2. Herramienta 1 + Cómo usarla.\n3. Herramienta 2 + Para qué sirve.\n4. Herramienta 3 + Cuándo aplicarla.\n5. Recordatorio empático.\n6. CTA.","Guarda este carrusel para cuando lo necesites.","Carrusel de 6 slides con 3 herramientas psicológicas concretas para manejar [SITUACIÓN EMOCIONAL]. Accesibles, éticas y con evidencia. Especialidad: [ESPECIALIDAD].","3 herramientas para manejar la ansiedad en el trabajo: técnica STOP, respiración cuadrada, ancla sensorial.","Herramientas que requieren guía profesional sin advertirlo."),
+        makeFmt("45. B-roll Storytelling personal","Emocional / Conexión","Fácil","Contar historia personal con B-roll.","Psicólogos con historia de vida relevante.","Conectar un domingo o en momentos reflexivos.","El B-roll relaja. El texto largo obliga a leer y reinicia el bucle de video, aumentando el Watch Time radicalmente.","Clips cotidianos de 2s cada uno.","Clip de café, libro abierto, luz entrando.","La historia que me hizo elegir la psicología.","(Audio ambiente o canción introspectiva).","1. Clip 1 + Hook texto.\n2. Clip 2 + El momento que cambió todo.\n3. Clip 3 + Lo que aprendí.\n4. Clip 4 + Por qué lo hago hoy.\n5. CTA al caption.","La historia completa está en la descripción.","Historia personal en 4 párrafos cortos para B-roll estético sobre cómo llegué a la psicología o [MOMENTO FORMATIVO].","Clips de lluvia + texto sobre cómo un duelo personal me hizo mejor terapeuta.","Texto ilegible o clips demasiado movidos."),
+        makeFmt("46. POV: tu primera sesión conmigo","Inmersión / Deseo","Fácil","Reducir el miedo a la primera sesión.","Psicólogos que quieren atraer pacientes.","Eliminar la barrera de entrada a la consulta.","La primera sesión es la mayor barrera para pedir ayuda. Visualizarla desde adentro reduce el miedo y activa el deseo.","Vista de primera persona del espacio terapéutico.","Tus manos preparando el espacio.","POV: Entras a tu primera sesión conmigo.","(Música calmada o silencio con ASMR del ambiente).","1. Hook visual POV.\n2. El espacio acogedor.\n3. La primera pregunta.\n4. Cómo te sentirías al salir.\n5. CTA.","¿Estás listo/a? Escríbeme.","Guion POV donde el espectador vive cómo sería su primera sesión conmigo como [ESPECIALIDAD]. Cálido, sin presión. Objetivo: reducir el miedo.","POV: Te sientas, te pregunto cómo te sientes y simplemente te escucho sin juzgarte.","Prometer experiencias específicas que no puedes garantizar."),
+        makeFmt("47. Plot twist: lo que crees que te ayuda vs lo que realmente pasa","Giro inesperado","Media","Retención hasta el último segundo.","Psicólogos que hablan de conductas.","Cuando la retención de tus videos es baja.","Violación de expectativas. El cerebro genera dopamina cuando la premisa inicial resulta ser distinta de lo esperado.","Vlog natural o tono conversacional.","Mirada pensativa antes del giro.","Por qué [hábito aparentemente saludable] puede estar haciéndote daño.","Creías que [X] te ayudaba. Pero mira lo que realmente está pasando.","1. Construir la premisa habitual.\n2. Desarrollar el argumento esperado.\n3. Giro: la perspectiva alternativa.\n4. La nueva comprensión.\n5. CTA.","Si te sorprendió, compártelo.","Guion que empiece con una premisa común sobre [HÁBITO O CREENCIA] y en el segundo 30 tenga un giro que cambie completamente la interpretación.","Empezar diciendo que 'desahogarse siempre ayuda' y revelar que la rumiación vocal puede mantener el dolor.","Que el giro sea decepcionante o clickbait sin sustancia."),
+        makeFmt("48. Un día en la vida de un psicólogo","Vlog / Humanización","Media","Documentar la vida profesional real.","Psicólogos que quieren humanizar su marca.","Crear relación a largo plazo.","Transparencia de proceso. Ver el trabajo real de un profesional derriba el pedestal que impide pedir ayuda.","Vlog en mano, saltos de tiempo.","Montaje rápido de momentos del día.","Un día real como psicólogo/a.","Día real: 6 sesiones, una supervisión y esto que aprendí.","1. Establecer el día (Hook).\n2. Preparación del espacio.\n3. Momentos entre sesiones.\n4. Reflexión del día.\n5. Un aprendizaje.\n6. CTA.","Sígueme para más detrás de cámaras.","Estructura de Vlog de 1 minuto documentando un día real en la práctica de [ESPECIALIDAD]. Con momentos honestos, sin glamorizar.","Las notas clínicas, la supervisión online y el café a las 3pm. Así es un martes.","Hacerlo aburrido o sin narrativa emocional."),
+        makeFmt("49. Faceless: 3 verdades sobre salud mental","Valor puro faceless","Fácil","Educar sin rostro ni esfuerzo extremo.","Psicólogos tímidos ante la cámara.","Mantener volumen de publicación alto.","Consumo rápido de información. El texto claro sobre imagen estética hace que el mensaje llegue sin fricción.","Clips de Pexels estéticos o fondos naturales.","Clip de naturaleza, luz, espacio en bucle.","3 verdades sobre salud mental que casi nadie dice.","(Audio instrumental tranquilo).","1. Visual estético en bucle.\n2. Hook en texto grande centrado.\n3. Verdad 1 (aparece y desaparece).\n4. Verdad 2.\n5. Verdad 3.\n6. CTA.","Guarda estas verdades.","3 verdades contraintuitivas sobre [TEMA DE SALUD MENTAL] en lenguaje accesible, listas para poner sobre video estético. Especialidad: [ESPECIALIDAD].","Verdad: Buscar ayuda no significa estar roto/a. Significa que te importas.","Texto tan rápido que no da tiempo a leer."),
+        makeFmt("50. Problema → Herramienta → Primer paso hoy","Conversión directa","Fácil","Motivar a tomar acción.","Psicólogos con recurso o servicio.","Bottom of Funnel. Cuando quieres conversiones hoy.","Contraste y alivio. Toca el dolor con empatía y da una salida concreta sin sobrevender.","Hablando directo, cálido pero claro.","Sosteniendo el recurso o mostrando pantalla de herramienta.","Cómo dejar de [problema] hoy.","Si estás harto/a de [dolor], hay un primer paso que sí puedes dar.","1. Nombrar el problema con empatía (5s).\n2. Por qué lo que has probado no alcanza (5s).\n3. La herramienta o enfoque (10s).\n4. El primer paso concreto.\n5. CTA de baja fricción.","Escríbeme 'INICIO' y te digo cómo empezar.","Guion directo y empático: Nombra el dolor de [PACIENTE IDEAL], muestra por qué las soluciones habituales no bastan, presenta [RECURSO/SERVICIO] como primer paso lógico.","¿Cansado/a de que la ansiedad te despierte a las 3am? Esta guía es tu primer paso.","No empatizar suficiente con el dolor antes de ofrecer la solución.")
+    ];
+
+    // RECURSOS DIGITALES (adaptado de ecommerce)
+    const recursosFormats = [
+        {n:"1. El recurso en uso", w:"Siempre. Para mostrar valor concreto.", r:"Mostrar páginas internas, capturas, el recurso en uso real.", h:"La guía que ojalá hubiera tenido cuando empecé a manejar [X].", c:"Comenta QUIERO y te envío el link.", p:"Actúa como psicólogo experto. Crea un guion mostrando cómo se usa [RECURSO DIGITAL] para trabajar [PROBLEMA EMOCIONAL]. Audiencia: [PERFIL]. Tono educativo y cercano.", e:"Mostrando las páginas internas de una guía de regulación emocional."},
+        {n:"2. Unboxing del recurso digital", w:"Lanzamiento de un nuevo recurso.", r:"Mostrar el acceso, las secciones, la portada y lo que incluye.", h:"Por fin está aquí... mira lo que incluye.", c:"Consíguelo en el link de mi bio.", p:"Guion de 'presentación' de mi recurso digital [NOMBRE] que trabaja [TEMA]. Qué incluye, para quién es y cuál es el primer paso.", e:"Recorriendo el índice de un taller online sobre ansiedad."},
+        {n:"3. Testimonio de alguien que lo usó", w:"Generar confianza y prueba social.", r:"Estilo natural, voz de quien lo usó, sin guion rígido.", h:"Usé esta guía durante 3 semanas y pasó esto.", c:"Úsalo con mi código de acceso.", p:"Guion UGC de alguien que completó [RECURSO DIGITAL] y tuvo un resultado real. Tono honesto, sin promesas exageradas.", e:"Persona contando cómo el workbook de duelo le ayudó a nominar sus emociones."},
+        {n:"4. Antes / Después de usar el recurso", w:"Para recursos de transformación gradual.", r:"Contraste en palabras o capturas de progreso.", h:"Cómo estaba antes de este workbook vs cómo estoy ahora.", c:"Empieza tu proceso hoy.", p:"Guion Antes/Después honesto y empático sobre el impacto de [RECURSO DIGITAL] en [ÁREA EMOCIONAL]. Sin prometer curas.", e:"Antes del diario de autoconocimiento: confusión. Después: vocabulario emocional propio."},
+        {n:"5. Esto o esto (Elige tu recurso)", w:"Cuando tienes más de un recurso disponible.", r:"Mostrar ambas opciones físicamente o en pantalla.", h:"¿Cuál de estos recursos es para ti?", c:"Comenta A o B y te ayudo a elegir.", p:"Guion comparando dos recursos digitales: [RECURSO A] vs [RECURSO B]. Para quién es cada uno y cuál elegir según la situación.", e:"Guía de ansiedad vs Guía de límites: ¿cuál necesitas primero?"},
+        {n:"6. No descargues esto si...", w:"Para filtrar a la audiencia correcta.", r:"Tono directo, empático.", h:"No descargues esta guía si buscas soluciones rápidas.", c:"Si estás listo para el proceso real, aquí está el link.", p:"Guion 'No lo uses si' para cualificar a la persona ideal para [RECURSO DIGITAL]. Ético y sin alienar.", e:"No descargues el workbook si no tienes 15 minutos al día para dedicarle."},
+        {n:"7. 3 formas de usar el mismo recurso", w:"Para mostrar versatilidad.", r:"Cortes rápidos cambiando contexto de uso.", h:"3 formas de aprovechar esta guía que no habías pensado.", c:"Guarda para usarlo de las 3 formas.", p:"3 formas distintas de usar [RECURSO DIGITAL] según el momento o la necesidad. Accesible y práctico.", e:"Usar el diario terapéutico: por la mañana, en crisis, o en sesión con tu terapeuta."},
+        {n:"8. El error más común al enfrentar [tema] sin guía", w:"Generar necesidad del recurso.", r:"Tono experto, señalando el error en pantalla.", h:"El error #1 al intentar trabajar [tema] solo/a.", c:"Esta guía evita ese error desde la primera página.", p:"Guion sobre el error más frecuente al intentar manejar [PROBLEMA] sin apoyo ni estructura. Cómo [RECURSO] lo evita.", e:"El error de trabajar la ansiedad solo controlando pensamientos, ignorando el cuerpo."},
+        {n:"9. Lo que incluye que no te esperabas", w:"Para aumentar el valor percibido.", r:"Mostrar secciones sorpresivas del recurso.", h:"Lo que este recurso incluye que nadie espera.", c:"El acceso está en mi bio.", p:"Guion revelando 3 elementos sorpresa de [RECURSO DIGITAL] que aumentan su valor percibido.", e:"El recurso de límites también incluye un apartado sobre cómo hablar con tu familia de origen."},
+        {n:"10. Gratuito vs De pago: ¿cuál necesitas?", w:"Para audiencias que dudan entre free y premium.", r:"Comparativa honesta, sin devaluar lo gratuito.", h:"¿El recurso gratis o el completo? Te ayudo a elegir.", c:"Invierte en tu proceso. Link en bio.", p:"Guion comparando honestamente el recurso gratuito y el de pago para [PROBLEMA]. Sin desprestigiar ninguno.", e:"La guía gratuita te da el primer paso. La completa te lleva al proceso entero."},
+        {n:"11. Mi reacción al terminar de crear este recurso", w:"Humanizar el proceso de creación.", r:"Tono genuino, emocionado o reflexivo.", h:"Acabo de terminar este recurso y quiero contarte por qué lo hice.", c:"Está disponible para ti desde hoy.", p:"Guion emocional sobre por qué creé [RECURSO DIGITAL] y a quién está dedicado.", e:"Este workbook lo creé pensando en quien yo era hace 5 años, sin saber qué hacer con su duelo."},
+        {n:"12. Solo quedan X accesos / edición limitada", w:"Lanzamiento o cierre de acceso.", r:"Mostrando el contador o la fecha límite.", h:"Solo quedan 3 días de acceso a precio de lanzamiento.", c:"No lo pierdas.", p:"Guion de urgencia ética para el cierre de acceso o precio de lanzamiento de [RECURSO DIGITAL].", e:"Mostrando que el precio sube el viernes."},
+        {n:"13. Cómo se ve el recurso en la práctica real", w:"Para eliminar dudas de expectativa vs realidad.", r:"Grabación real de pantalla, sin filtros.", h:"Sin edición: así se ve por dentro el workbook.", c:"Accede hoy desde el link.", p:"Guion mostrando el recurso real sin exagerarlo, para generar confianza.", e:"Scrolleando lentamente las páginas del PDF mientras explica lo que contiene cada sección."},
+        {n:"14. Detrás de la creación del recurso", w:"Humanizar y generar reciprocidad.", r:"Proceso de diseño o escritura.", h:"Lo que nadie ve al crear un recurso de salud mental.", c:"Apoya mi trabajo, accede en el link.", p:"Narrativa sobre el proceso real de crear [RECURSO DIGITAL]: investigación, diseño, revisión clínica.", e:"Mostrando borradores, correcciones y la consulta a colegas antes del lanzamiento."},
+        {n:"15. Cómo lo usan las personas que ya lo tienen", w:"Prueba social y comunidad.", r:"Repostear historias de quienes lo usan.", h:"Así lo están usando las personas que ya tienen acceso.", c:"Únete a ellos. Link en bio.", p:"Guion para voz en off sobre clips de personas usando o comentando [RECURSO DIGITAL].", e:"Montaje de screenshots de personas que comparten sus páginas del diario completadas."},
+        {n:"16. ¿Para quién es este recurso? (Duda frecuente)", w:"Manejo de objeciones de identidad.", r:"Respuesta directa y empática.", h:"Me preguntan mucho si este recurso es para ellos.", c:"Si dudas, escríbeme y te ayudo a decidir.", p:"Guion respondiendo la pregunta '¿Este recurso es para mí?' con 3 perfiles claros de a quién beneficia.", e:"Esta guía es para ti si llevas meses cargando con algo que no sabes cómo nombrar."},
+        {n:"17. Top 3 recursos más descargados", w:"Para orientar a nuevos seguidores.", r:"Mostrando brevemente cada recurso.", h:"Los 3 recursos que más han ayudado a mi comunidad.", c:"¿Cuál necesitas tú? Comenta.", p:"Guion clasificando mis 3 recursos digitales más populares con una frase de por qué cada uno funciona.", e:"1º Guía de límites, 2º Diario de autoconocimiento, 3º Workbook de duelo."},
+        {n:"18. Recurso A vs Recurso B para mismo problema", w:"Guiar a personas indecisos.", r:"Comparativa visual directa.", h:"¿[Recurso A] o [Recurso B] si tienes [problema específico]?", c:"Escríbeme AYUDA y te oriento.", p:"Guion de comparativa entre dos recursos propios para el mismo problema desde ángulos distintos.", e:"¿Guía de ansiedad o workbook de regulación emocional si sientes que todo te desborda?"},
+        {n:"19. Mitos sobre [tema] que este recurso desmonta", w:"Romper creencias que frenan la descarga.", r:"Tono experto y calmado.", h:"3 mitos sobre [tema] que este recurso va a cambiar.", c:"Educa tu proceso. Link en bio.", p:"Desmonta 3 mitos que impiden que las personas trabajen [TEMA] por su cuenta o busquen apoyo.", e:"Mito: Solo necesitas terapia para trabajar el duelo. Realidad: Un buen recurso también puede acompañar el proceso."},
+        {n:"20. Detrás del recurso: quién lo diseñó y por qué", w:"Humanizar la marca profesional.", r:"Tono personal, historia breve.", h:"Por qué creé este recurso y a quién está dedicado.", c:"Úsalo con intención. Link en bio.", p:"Storytelling breve sobre la historia personal o clínica que inspiró la creación de [RECURSO DIGITAL].", e:"Lo creé después de ver a decenas de personas sin herramientas para manejar la ansiedad fuera de consulta."}
+    ];
+
+    // SERVICIOS PREMIUM (adaptado de high ticket)
+    const htFormats = [
+        {n:"1. El error que frena tu proceso", o:"Generar consciencia de bloqueo.", w:"MoF, calentar audiencia.", h:"El error que mantiene a las personas atascadas en [X].", c:"Escríbeme 'AUDITORÍA'.", p:"Crea un guion de diagnóstico sobre un error estratégico que cometen las personas cuando intentan trabajar [TEMA] sin acompañamiento especializado. Especialidad: [ESPECIALIDAD].", e:"No tener un espacio seguro para procesar la emoción, solo gestionar el síntoma."},
+        {n:"2. Caso de transformación real", o:"Prueba social con historia.", w:"BoF, cierre de consultas.", h:"Cómo [Persona] pasó de [A] a [B] trabajando conmigo.", c:"Agenda tu sesión inicial.", p:"Estructura un caso de transformación enfocado en el proceso real, el obstáculo superado y el cambio observable. Sin revelar datos privados. Especialidad: [ESPECIALIDAD].", e:"De no poder nombrar sus emociones a tener un vocabulario emocional propio y límites saludables."},
+        {n:"3. La objeción más frecuente antes de pedir ayuda", o:"Destruir barreras de entrada.", w:"Lanzamientos, apertura de agenda.", h:"La razón más común por la que las personas no piden ayuda.", c:"Si eso te frena, escríbeme.", p:"Guion respondiendo a la objeción más común para buscar apoyo psicológico usando reencuadre empático. Especialidad: [ESPECIALIDAD].", e:"'No estoy tan mal como para ir al psicólogo.' La realidad es que no tienes que estar en crisis para merecer apoyo."},
+        {n:"4. Cómo trabajo: detrás del proceso", o:"Aumentar valor percibido del acompañamiento.", w:"Educar sobre el servicio.", h:"Lo que pasa entre sesión y sesión en mi forma de trabajar.", c:"¿Quieres este nivel de acompañamiento? Escríbeme.", p:"Guion revelando la profundidad de mi proceso de trabajo en [ESPECIALIDAD]. Lo que hace diferente mi acompañamiento.", e:"Mostrando el seguimiento entre sesiones y los materiales personalizados que entrego."},
+        {n:"5. Sin proceso vs Con proceso terapéutico", o:"Contraste emocional real.", w:"Promoción directa.", h:"Cómo vives [situación] sin apoyo vs con un proceso.", c:"Escríbeme 'PROCESO'.", p:"Guion contrastando la experiencia de atravesar [SITUACIÓN EMOCIONAL] sin acompañamiento vs con un proceso terapéutico real. Honesto y esperanzador.", e:"Atravesar un duelo solo vs tener un espacio donde nombrarlo y procesarlo sin tiempo límite."},
+        {n:"6. Solo/a vs Acompañada/o", o:"Vender el valor del acompañamiento.", w:"Elevar el valor percibido del servicio.", h:"Puedes hacerlo solo/a. Pero mira el costo real.", c:"Ahorra meses de proceso. Agenda conmigo.", p:"Guion justificando por qué el acompañamiento profesional es más eficiente que el autoconocimiento sin guía.", e:"Hacer autodescubrimiento con libros vs tener a alguien que vea lo que tú no puedes ver de ti mismo."},
+        {n:"7. Cómo es trabajar conmigo", o:"Tangibilizar el servicio.", w:"Reducir el miedo a dar el primer paso.", h:"¿Cómo es una sesión conmigo? Te cuento.", c:"Quedan 2 espacios en agenda. Escríbeme.", p:"Guion mostrando cómo es el proceso de trabajo en [ESPECIALIDAD], desde la primera sesión hasta el progreso. Sin prometer resultados exactos.", e:"Tour por el proceso: primera sesión de diagnóstico, objetivos compartidos, seguimiento semanal."},
+        {n:"8. Mi metodología paso a paso", o:"Autoridad clínica.", w:"MoF, posicionamiento.", h:"La metodología que uso para trabajar [área terapéutica].", c:"Escríbeme 'METODOLOGÍA'.", p:"Ayúdame a nombrar y explicar mi metodología de trabajo en [ESPECIALIDAD] en 3 fases comprensibles. Para audiencia general.", e:"Fase 1: Diagnóstico y encuadre. Fase 2: Trabajo de núcleo. Fase 3: Consolidación y autonomía."},
+        {n:"9. Analizando un patrón sin tu guía", o:"Demostrar ojo clínico.", w:"Captación de pacientes cualificados.", h:"Analicé este patrón y quiero hablarlo contigo.", c:"Si lo reconoces en ti, podemos trabajarlo. Escríbeme.", p:"Guion analizando un patrón emocional o relacional para demostrar profundidad clínica. Sin exponer pacientes.", e:"El ciclo hipervígilancia-agotamiento que veo repetirse en personas con historial de trauma."},
+        {n:"10. 3 señales de que necesitas apoyo profesional hoy", o:"Autodiagnóstico de urgencia.", w:"Inicio de embudo de consultas.", h:"3 señales de que este no es momento de seguir solo/a.", c:"Escríbeme 'URGENTE'.", p:"Enumera 3 señales emocionales o conductuales concretas que indican que la persona necesita apoyo profesional en [ESPECIALIDAD]. Tono empático, no alarmante.", e:"1. Llevas semanas sin dormir bien. 2. Lo que antes te ayudaba, ya no funciona. 3. Evitas pensar en ello porque es demasiado."},
+        {n:"11. Por qué publico contenido de salud mental y no tengo más consultas", o:"Tocar el dolor del psicólogo-creador.", w:"Dolor mercado B2B o de colegas.", h:"Tienes seguidores, das valor, pero tu agenda está vacía.", c:"El problema no es el contenido. Es la conversión. Escríbeme.", p:"Guion explicando la diferencia entre tener audiencia y tener pacientes, y qué hace el puente entre ambas.", e:"El mito de que más contenido = más consultas. No. Lo que falta es el sistema de confianza."},
+        {n:"12. Fragmento de proceso (anónimo)", o:"Cercanía y profundidad clínica.", w:"Mostrar expertise en un contexto real.", h:"Lo que aprendí en una sesión esta semana (sin nombres).", c:"Agenda tu espacio.", p:"Guion de reflexión sobre un aprendizaje clínico de esta semana, protegiendo la confidencialidad. Tono íntimo y profesional.", e:"Esta semana alguien me dijo algo que cambió cómo entiendo mi propio papel como terapeuta."},
+        {n:"13. Cómo elijo con quién trabajo", o:"Exclusividad y cualificación.", w:"Filtro de pacientes o clientes.", h:"No trabajo con cualquier persona. Esto es lo que busco.", c:"Si resuenas con esto, aplica.", p:"Guion listando mis 3 criterios de compatibilidad terapéutica para aceptar a alguien en proceso. Tono honesto y sin arrogancia.", e:"Busco personas con motivación genuina de proceso, no solo alivio inmediato del síntoma."},
+        {n:"14. Las preguntas que hago en la primera sesión", o:"Demostrar profundidad de diagnóstico.", w:"Posicionamiento como profesional de alto nivel.", h:"Las preguntas que hago al inicio de todo proceso.", c:"¿Quieres que te las haga a ti? Agenda.", p:"Lista las 3 preguntas de alta profundidad que haces en la sesión inicial de [ESPECIALIDAD] y por qué las haces.", e:"¿Qué parte de ti crees que necesita ser entendida primero?"},
+        {n:"15. La creencia que más me encuentro en consulta", o:"Cambiar el paradigma del paciente potencial.", w:"Educación profunda para atraer.", h:"La creencia más frecuente que frena el proceso terapéutico.", c:"Eleva tu autoconocimiento. Escríbeme.", p:"Guion confrontando la creencia más limitante que aparece en personas que buscan apoyo psicológico en [ESPECIALIDAD]. Tono empático y confrontador.", e:"'Debería poder con esto solo/a.' La independencia emocional no significa nunca necesitar ayuda."}
+    ];
+
+    // FACELESS
+    const facelessFormats = [
+        {n:"1. Manos escribiendo en diario clínico", r:"Top-down view escribiendo en libreta de cuero.", h:"Lo que escribí hoy en mi diario de proceso..."},
+        {n:"2. Post-it en pared o laptop", r:"Mano pega post-it con concepto psicológico.", h:"Regla #1 para trabajar tu ansiedad."},
+        {n:"3. Naturaleza + texto reflexivo", r:"Video de bosque, agua o luz entrando, texto centrado.", h:"Algo que no sé si nadie te ha dicho sobre el duelo..."},
+        {n:"4. Taza de té + libreta abierta", r:"Revolviendo la taza frente a libreta.", h:"Mi práctica matutina para mantener salud mental como psicóloga."},
+        {n:"5. Pantalla de recurso / plataforma", r:"Scroll por el recurso digital o la herramienta usada.", h:"Así se ve el workbook que más me piden."},
+        {n:"6. Captura de progreso / estadística", r:"Gráfico de bienestar emocional o captura de encuesta.", h:"Lo que pasa cuando llevas 30 días usando este hábito."},
+        {n:"7. B-roll de espacio terapéutico", r:"Tomas del consultorio, libros, planta, luz cálida.", h:"El ambiente donde ocurre el cambio."},
+        {n:"8. Preparando materiales de sesión", r:"ASMR acomodando libreta, pluma, caja de pañuelos.", h:"Preparando el espacio para la primera sesión del día."},
+        {n:"9. Time-lapse de escritura clínica", r:"Cámara rápida escribiendo notas o diseñando recurso.", h:"3 horas creando el recurso que me pidieron."},
+        {n:"10. Fondo de color + texto clínico", r:"Diseño minimalista con concepto psicológico.", h:"3 cosas que nadie te dice sobre la ansiedad."},
+        {n:"11. Collage de libros + citas", r:"Fotos de libros de psicología al ritmo del audio.", h:"El moodboard de una psicóloga que sigue formándose."},
+        {n:"12. POV: entrando al consultorio", r:"Cámara a la altura de los ojos abriendo la puerta.", h:"POV: Llegas a tu primera sesión y esto es lo que sientes."},
+        {n:"13. Texto manuscrito apareciendo", r:"Animación de texto escribiéndose en iPad.", h:"Nota para quien carga con demasiado hoy..."},
+        {n:"14. Pizarra con concepto clínico", r:"Plano cerrado de mano escribiendo en pizarra.", h:"El ciclo de la ansiedad, paso a paso."},
+        {n:"15. Objetos simbólicos de proceso", r:"Jugar con piezas de puzzle o hilo rojo.", h:"Así es el trabajo de construir vínculos seguros."},
+        {n:"16. Metáfora visual con líquido", r:"Verter agua en un vaso que ya está lleno.", h:"Así se siente el sistema nervioso en sobrecarga."},
+        {n:"17. Captura de libro + subrayado", r:"Plano macro de página subrayada de libro clínico.", h:"La frase que cambió cómo entiendo el trauma."},
+        {n:"18. Voz en off con B-roll suave", r:"Video de naturaleza o consultorio + voz reflexiva.", h:"Si escuchas esto, necesitabas escucharlo."},
+        {n:"19. Lista visual de herramientas", r:"Herramientas apareciendo una a una en pantalla.", h:"Checklist de regulación emocional para hoy."},
+        {n:"20. Carrusel puro con infografía", r:"Diseño de carrusel sin foto, solo concepto visual.", h:"Anatomía del apego ansioso en una imagen."}
+    ];
+
+    // HOOKS
+    const hooksDB = {
+        "Dolor emocional": [
+            "Si llevas semanas sintiéndote así, no es debilidad. Es una señal.",
+            "El agotamiento emocional que no para aunque descanses tiene un nombre.",
+            "Nadie te enseñó a procesar esto y por eso sigue doliendo.",
+            "Si te identificas con esto, necesitas escuchar lo que sigue.",
+            "Hay algo que sientes que no sabes cómo nombrar. Hoy vamos a intentarlo."
+        ],
+        "Deseo de bienestar": [
+            "Cómo se siente tener una relación sana contigo mismo/a.",
+            "Así se ve la vida cuando dejas de pelear contra tus emociones.",
+            "El momento en que todo cambia no es dramático. Es silencioso.",
+            "Cómo es tener límites sin sentir culpa después.",
+            "Así se siente la regulación emocional cuando ya es un hábito."
+        ],
+        "Ruptura de estigma": [
+            "Ir al psicólogo no es para locos. Es para personas que se conocen.",
+            "Pedir ayuda no te hace vulnerable. Te hace valiente.",
+            "Todos necesitamos apoyo. La diferencia es quién lo admite.",
+            "No tienes que estar en crisis para merecer un espacio terapéutico.",
+            "El bienestar mental no es un lujo. Debería ser un derecho."
+        ],
+        "Autoridad clínica": [
+            "Después de años trabajando con [población], vi un patrón que se repite.",
+            "Esto que te voy a contar no lo aprenderás en TikTok de salud mental.",
+            "La diferencia entre lo que divulgan y lo que realmente dice la evidencia.",
+            "Como psicólogo/a, tengo una perspectiva que no siempre es cómoda de escuchar.",
+            "Analicé este patrón en cientos de casos y la conclusión es siempre la misma."
+        ],
+        "Consulta / Servicio": [
+            "Antes de buscar psicólogo, revisa esto que nadie te dice.",
+            "Esto es lo que realmente pasa en una primera sesión de psicología.",
+            "No todos los psicólogos trabajan igual. Aquí está la diferencia.",
+            "Esto es para ti si llevas meses posponiendo pedir ayuda.",
+            "Si buscas un espacio para esto, déjame contarte cómo trabajo."
+        ],
+        "Curiosidad científica": [
+            "Tu cerebro no sabe distinguir esto de lo que crees que sí sabe.",
+            "Hay algo que pasa a nivel neurológico cuando te sientes [emoción].",
+            "Lo que la neurociencia dice sobre [hábito/creencia] cambia todo.",
+            "Esto que crees que es un defecto tuyo tiene una explicación biológica.",
+            "La ciencia explica por qué no 'simplemente puedes calmarte'."
+        ],
+        "Recursivos / Recursos digitales": [
+            "La guía que ojalá hubiera existido cuando yo atravesé [situación].",
+            "Un recurso para los días en que no puedes pagar sesión pero necesitas apoyo.",
+            "Esto es lo que contiene el recurso más descargado de mi cuenta.",
+            "Si no tienes psicólogo aún, este workbook puede ser tu primer paso.",
+            "Diseñé esto pensando en quien yo era antes de formarme."
+        ]
+    };
+
+    const ctasDB = {
+        "CTA suave (retención)": [
+            "Guárdalo para cuando lo necesites.",
+            "Sígueme para más contenido que te cuida.",
+            "Compártelo con alguien que necesite leer esto hoy.",
+            "Respóndeme con un 'yo' si esto te representa.",
+            "Vuelve a este video la próxima vez que te cueste nombrar lo que sientes."
+        ],
+        "CTA de conversación (comunidad)": [
+            "Respóndeme con tu mayor duda sobre [tema] y te respondo.",
+            "Cuéntame en comentarios si esto resuena contigo.",
+            "¿Qué parte te costó más? Te leo abajo.",
+            "Escríbeme una palabra que describa cómo te sientes hoy.",
+            "¿Cuánto tiempo llevas cargando con esto? Cuéntame."
+        ],
+        "CTA de consulta": [
+            "Si reconoces esto en ti, escríbeme y hablamos.",
+            "Escríbeme SESIÓN y revisamos tu situación.",
+            "Agenda tu primera sesión en el link de mi bio.",
+            "Si estás listo/a para empezar, escríbeme hoy.",
+            "DM con la palabra INICIO y te cuento cómo trabajo."
+        ],
+        "CTA de recurso digital": [
+            "Comenta GUÍA y te la envío automáticamente.",
+            "Escríbeme RECURSO y te paso el link.",
+            "El workbook está en el link de mi bio.",
+            "Comenta QUIERO y te lo envío por DM.",
+            "Descárgalo hoy desde el link y empieza hoy."
+        ],
+        "CTA de comunidad terapéutica": [
+            "Escríbeme COMUNIDAD y te cuento lo que tenemos.",
+            "Únete al espacio donde no estás solo/a en esto.",
+            "Si quieres acompañarte de personas en proceso, escríbeme GRUPO.",
+            "La comunidad donde se habla lo que no se habla en todas partes.",
+            "Escríbeme ACCESO y te explico cómo entrar."
+        ]
+    };
+
+    const visualHooksDB = {
+        "Sin rostro (faceless)": [
+            "Mano escribiendo en libreta abierta con luz suave.",
+            "Post-it pegándose bruscamente en laptop o pared.",
+            "Naturaleza en movimiento (hojas, agua) + texto de impacto.",
+            "Captura de recurso digital siendo scrolleado.",
+            "Vela encendiéndose (calma, inicio).",
+            "Taza de té o café caliente humeante.",
+            "Mano hojeando libro subrayado.",
+            "Diario abierto con escritura ilegible (intimidad).",
+            "Luz cálida entrando por ventana.",
+            "Hilo de lana desenredándose lentamente."
+        ],
+        "Frente a cámara": [
+            "Pausa larga de 2 segundos mirando a cámara.",
+            "Mirada empática directa antes de hablar.",
+            "Respiración profunda visible antes de la primera frase.",
+            "Señalar texto flotante con calma.",
+            "Zoom lento al rostro mientras hablas.",
+            "Gesto de 'espera' con la mano antes de revelar.",
+            "Inclinar la cabeza levemente antes de la frase clave.",
+            "Plano muy cercano, íntimo.",
+            "Cerrar los ojos un segundo antes de empezar.",
+            "Levantar una ceja antes del giro del video."
+        ],
+        "Recursos digitales": [
+            "Abrir el PDF del recurso en pantalla.",
+            "Scroll lento por las páginas del workbook.",
+            "Mano sosteniendo el recurso impreso.",
+            "Captura de página con ejercicio completado.",
+            "Laptop con el recurso abierto + taza al lado.",
+            "Vista superior del recurso sobre mesa de trabajo.",
+            "Highlight sobre una frase del recurso.",
+            "Cuaderno con respuestas escritas a mano.",
+            "Tableta mostrando el contenido del taller online.",
+            "Comparativa de recurso antes y después de llenarlo."
+        ],
+        "Servicios premium": [
+            "Pantalla de videollamada con cuadrado borroso (privacidad).",
+            "Libreta de notas clínicas siendo cerrada.",
+            "Calendario con horarios marcados.",
+            "Libro de psicología abierto con notas al margen.",
+            "Espacio terapéutico cálido con luz suave.",
+            "Nota escrita a mano 'Primera sesión'.",
+            "Reloj de pared con ticking suave (inicio de sesión).",
+            "Planta verde en espacio íntimo.",
+            "Cojín cómodo en sillón de consulta.",
+            "Tú caminando hacia la cámara con paso seguro."
+        ]
+    };
+
+    const peaksDB = {
+        "Validación emocional": [
+            "Y esto no significa que estés roto/a. Significa que eres humano/a.",
+            "No necesitas tener todo bajo control para merecer apoyo.",
+            "El hecho de que lo sientas no te define. Lo que hagas con ello, sí."
+        ],
+        "Autoridad clínica": [
+            "Esto aparece en prácticamente todos los casos que trabajo con [problema].",
+            "La evidencia científica de los últimos años es contundente en esto.",
+            "Como psicólogo/a, es de lo que más veo y menos se habla."
+        ],
+        "Ruptura de patrón": [
+            "Pero aquí viene la parte que incomoda: no es solo el síntoma el problema.",
+            "Lo que nadie dice sobre esto es que está relacionado con algo más profundo.",
+            "Y aquí es donde la mayoría de personas se queda atascada."
+        ],
+        "Historia clínica (anónima)": [
+            "Una persona con quien trabajé lo describió así: 'Es como cargar algo invisible'.",
+            "Y yo tampoco lo entendía del todo hasta que lo vi repetirse una y otra vez.",
+            "En mi experiencia, el momento de cambio casi nunca es dramático. Es silencioso."
+        ],
+        "Desmontando el mito": [
+            "Y no, no se trata de pensar positivo ni de estar siempre bien.",
+            "No es una cuestión de fuerza de voluntad. Nunca lo fue.",
+            "Y no, la terapia no es solo hablar del pasado. Ojalá fuera tan simple."
+        ]
+    };
+
+    const structuresDB = [
+        {n:"1. Dolor → Validación → Herramienta → Invitación", p:"El framework más cálido y efectivo para psicólogos.", w:"Educación, consulta, recursos.", s:"1. Nombrar el dolor emocional con precisión y empatía.\n2. Validar la experiencia sin minimizar.\n3. Ofrecer una herramienta o perspectiva concreta.\n4. Invitar a la acción (consulta, recurso, conversación)."},
+        {n:"2. Mito → Origen → Verdad → Aplicación", p:"Para desmontear creencias dañinas sobre salud mental.", w:"Contenido educativo, ruptura de estigma.", s:"1. Nombrar el mito tal como lo cree la audiencia.\n2. Entender de dónde viene ese mito.\n3. La perspectiva clínica basada en evidencia.\n4. Cómo aplicar esa nueva comprensión hoy."},
+        {n:"3. Antes del proceso → El proceso → Después → Puente", p:"Storytelling terapéutico clásico.", w:"Casos de transformación, testimonios.", s:"1. El estado de sufrimiento antes del proceso (empatía).\n2. Lo que ocurre durante el acompañamiento.\n3. Cómo se vive la vida después.\n4. El puente: cómo llegar de A a C pasando por B (tu trabajo)."},
+        {n:"4. Creencia → Costo → Alternativa → Primer paso", p:"Para cambiar paradigmas que frenan el bienestar.", w:"Ruptura de estigma, consulta.", s:"1. La creencia limitante que tiene la audiencia.\n2. El costo real de mantener esa creencia.\n3. La alternativa psicológica más sana.\n4. Un primer paso concreto y accesible."},
+        {n:"5. Caso → Obstáculo → Intervención → Transformación", p:"Storytelling aplicado a prueba social ética.", w:"Venta de servicios premium.", s:"1. Presentar una situación (sin datos privados).\n2. El obstáculo aparentemente insuperable.\n3. La intervención terapéutica que abre el camino.\n4. El cambio observable."},
+        {n:"6. Historia personal → Aprendizaje → Aplicación clínica", p:"Conexión humana profunda.", w:"Domingos, contenido reflexivo, humanización.", s:"1. Una anécdota personal honesta y vulnerable.\n2. Lo que aprendiste de ella.\n3. Cómo eso transformó tu forma de trabajar.\n4. CTA a conversación o reflexión."},
+        {n:"7. Objeción → Comprensión → Reencuadre → Invitación", p:"Manejo de objeciones preventivo y empático.", w:"Apertura de agenda, lanzamientos.", s:"1. Nombrar la objeción con empatía ('Entiendo que piensas X').\n2. Por qué tiene sentido pensarlo.\n3. La perspectiva alternativa que libera.\n4. La invitación sin presión."},
+        {n:"8. Señal → Reconocimiento → Interpretación clínica → Recurso", p:"Autodiagnóstico responsable.", w:"Contenido educativo de alto valor.", s:"1. Nombrar una señal concreta.\n2. Hacer que la persona la reconozca en sí misma.\n3. Dar la interpretación clínica accesible.\n4. Ofrecer un recurso o primer paso."},
+        {n:"9. Hook de alerta → El patrón → Alternativa → Esperanza", p:"Aversión a la pérdida + salvación.", w:"Generar urgencia ética.", s:"1. Una señal de alerta sobre algo que está costando bienestar.\n2. Explicar el patrón que lo mantiene.\n3. La alternativa que interrumpe el patrón.\n4. Un mensaje de esperanza y CTA."},
+        {n:"10. Estructura E.V.C. (Emoción → Validación → Cambio)", p:"El estándar de oro para reels de psicología.", w:"Todos los formatos de psicólogos.", s:"1. Hook que activa una emoción reconocible (3s).\n2. Validación genuina y sin minimizar (10s).\n3. Perspectiva o herramienta que abre el cambio (15s).\n4. Invitación a continuar (CTA)."},
+        {n:"11. Storytelling del Proceso Terapéutico (mini)", p:"Hacer comprensible lo que es la terapia.", w:"Para personas que nunca han ido al psicólogo.", s:"1. El momento de llegada (caos o desorientación).\n2. El espacio que se abre (la consulta).\n3. El trabajo que ocurre dentro.\n4. La persona que emerge del proceso."},
+        {n:"12. Mini documental clínico", p:"Genera respeto por el trabajo terapéutico.", w:"Vlogs, detrás de cámaras, humanización.", s:"1. La meta o el caso del día (sin datos privados).\n2. El momento de preparación o supervisión.\n3. La reflexión entre sesiones.\n4. El aprendizaje al final del día.\n5. CTA a conversación o comunidad."}
+    ];
+
+    const promptsIA = [
+        "Actúa como psicólogo/a experto/a en contenido de salud mental. Mi especialidad es [ESPECIALIDAD], trabajo con [POBLACIÓN]. Crea 1 guion de Reel usando el formato 'Dolor → Validación → Herramienta'. Incluye hook empático, texto en pantalla claro, guion narrado cálido y directo. CTA para guardar o comentar. Sin prometer curas ni trivializar.",
+        "Actúa como copywriter especializado en psicología. Mi objetivo es educar sobre [TEMA] a [AVATAR]. Crea un carrusel de 6 slides. Slide 1: título que detenga el scroll. Slides 2-5: contenido clínico accesible sin jerga. Slide 6: CTA empático y claro. Tono: cálido y experto.",
+        "Soy psicólogo/a especializado/a en [ESPECIALIDAD]. Quiero hacer un video 'Lo que hago vs Lo que no hago'. Explica mi posicionamiento con claridad, diferenciando mi enfoque de otros, de forma ética y sin atacar a colegas. Dame 3 variaciones de distintos tonos.",
+        "Actúa como experto en hooks para contenido de salud mental. Dame 20 ganchos para los primeros 3 segundos de un video sobre [TEMA]. Divídelos en: 5 de empatía, 5 de curiosidad clínica, 5 de ruptura de estigma, 5 de autoridad. Sin sensacionalismo ni promesas imposibles.",
+        "Mi servicio terapéutico tiene un precio de [PRECIO]. Necesito 10 CTAs éticos que inviten a dar el primer paso sin sonar desesperado ni comercial. El tono debe ser cálido, profesional y de baja fricción.",
+        "Crea una secuencia de 5 Historias de Instagram para presentar [RECURSO DIGITAL] de salud mental. Story 1: Hook empático. Story 2-3: Qué problema resuelve. Story 4: Qué incluye. Story 5: CTA. Dame el texto de cada historia.",
+        "Quiero crear un Reel Faceless sobre [TEMA DE SALUD MENTAL]. Dame la idea visual (B-roll suave o imágenes de naturaleza) y redacta 4 textos cortos para poner en pantalla. Tono reflexivo, sin alarmar ni trivializar.",
+        "Soy psicólogo/a de [ESPECIALIDAD]. Crea un guion para un video educativo sobre [CONCEPTO CLÍNICO] en lenguaje accesible para personas sin formación psicológica. Incluye una analogía cotidiana, explicación clara y CTA para guardar.",
+        "Actúa como consultor de psicólogos que crean contenido. Vendo servicios terapéuticos a [AVATAR]. Crea un guion de 60 segundos que diagnostique el error más frecuente que frena a las personas de [ESPECIALIDAD], con tono empático y autoridad clínica. CTA a primera sesión.",
+        "Analiza este tipo de contenido viral de salud mental: [DESCRIBIR VIDEO]. Desglosa: Por qué funcionó emocionalmente, cuál fue el pico de interés, qué patrón psicológico activó. Dame un framework para replicarlo en mi nicho de [ESPECIALIDAD] de forma ética.",
+        "He visto un video con esta estructura: [DESCRIBIR ESTRUCTURA]. Toma ese esqueleto narrativo y constrúyeme un guion para presentar mi [SERVICIO/RECURSO] manteniendo el ritmo emocional pero adaptado a mi trabajo como psicólogo/a de [ESPECIALIDAD].",
+        "Escribe un guion de storytelling terapéutico donde narro (de forma anónima y ética) el patrón que más veo repetirse en [ESPECIALIDAD] y el momento de cambio que ocurre en el proceso. Tono empático y reflexivo, sin revelar datos privados.",
+        "Escribe un guion de presentación directa de [RECURSO DIGITAL]. Objetivo: mostrar qué es, para quién es, qué problema resuelve y cuál es el primer paso para usarlo. Tono empático pero claro. CTA de baja fricción.",
+        "Crea un guion enfocado 100% en generar comentarios. Abre con una verdad incómoda sobre [TEMA DE SALUD MENTAL], da mi postura profesional, y devuelve la pregunta a la audiencia con un CTA a debate sano y empático.",
+        "Necesito un guion para entregar un [LEAD MAGNET / GUÍA / RECURSO GRATUITO] sobre [TEMA]. El guion debe mostrar el valor del recurso de forma honesta y terminar con un CTA para que comenten una palabra clave. Tono cálido y sin presión."
+    ];
+
+    const situations = [
+        {n:"1. Estoy en consulta todo el día", fmt:"Reflexión de cierre del día, Algo que aprendí hoy (anónimo), Diario de consulta.", hv:"Cerrar la libreta de notas o apagar la luz del consultorio.", txt:"Cerrando el día con este pensamiento que no me deja ir a casa tranquilo/a.", cta:"¿A ti también te pasa esto? Cuéntame.", p:"Dame una reflexión breve y anónima sobre un aprendizaje clínico de hoy en [ESPECIALIDAD]. Tono íntimo y sin datos privados."},
+        {n:"2. Estoy en un café con mi laptop", fmt:"B-roll con texto, Texto sobre recurso, Reflexión sobre el proceso de creación.", hv:"Manos en teclado, café humeante al lado.", txt:"Creando contenido de [tema] desde un café porque la salud mental también se trabaja fuera del consultorio.", cta:"Guarda esto para cuando lo necesites.", p:"Dame un guion de Reel de 'trabajando desde el café' que conecte la escena con un mensaje de [ESPECIALIDAD]."},
+        {n:"3. Estoy en casa, sin energía para cámara", fmt:"Faceless con texto, Post-its, B-roll faceless.", hv:"Solo manos y libreta con luz natural desde la ventana.", txt:"Hoy no tengo energía para cámara. Pero sí para compartir esto.", cta:"Guarda esto para cuando lo necesites.", p:"3 verdades sobre [TEMA DE SALUD MENTAL] para un video Faceless de baja producción pero alto valor."},
+        {n:"4. Acabo de supervisar con un colega", fmt:"Reflexión clínica, Lo que aprendí (sin exponer), Diferencia enfoques.", hv:"Laptop cerrada, libreta de notas al lado.", txt:"En supervisión de hoy me hicieron una pregunta que me quedó dando vueltas.", cta:"¿Qué pregunta te haría pensar a ti?", p:"Reflexión corta sobre un insight clínico de supervisión sin datos privados. Especialidad: [ESPECIALIDAD]."},
+        {n:"5. No sé qué publicar hoy", fmt:"10 ideas terapéuticas, Mito vs Verdad, Pregunta incómoda.", hv:"Texto grande con pregunta o verdad incómoda.", txt:"10 cosas que aprendí en años de trabajar con [población].", cta:"Guarda esto, tiene más valor del que parece.", p:"Hazme una lista de 10 insights psicológicos valiosos sobre [TEMA] que pueda grabar leyendo rápidamente."},
+        {n:"6. Estoy con poca energía emocional", fmt:"Carrusel de texto, Faceless reflexivo, Cita de autor.", hv:"Texto minimalista sobre fondo suave.", txt:"Si hoy tú también estás con poca energía, esta publicación es para ti.", cta:"Guarda esto para los días difíciles.", p:"Carrusel empático sobre cómo cuidarse cuando el cuidador también necesita cuidado. Especialidad: [ESPECIALIDAD]."},
+        {n:"7. Quiero atraer nuevos pacientes hoy", fmt:"Diagnóstico de error, Señales de que necesitas apoyo, Cómo trabajo.", hv:"Mirada directa, señalando un texto de alerta.", txt:"Si reconoces esto en ti, no tienes que seguir cargándolo solo/a.", cta:"Escríbeme hoy. Tengo espacio en agenda.", p:"Guion Bottom of Funnel empático y directo: nombra el dolor de [PACIENTE IDEAL], valida y presenta tu servicio como primer paso lógico."},
+        {n:"8. Quiero generar comunidad", fmt:"Pregunta incómoda, Reflexión de la semana, Debate sano.", hv:"Texto de pregunta en pantalla con fondo suave.", txt:"Alguien me preguntó esto y necesito saber qué opina mi comunidad.", cta:"¿Tú qué opinas? Te leo abajo.", p:"Dame una pregunta reflexiva sobre [TEMA DE SALUD MENTAL] para generar conversación sana en comentarios."},
+        {n:"9. Tengo un testimonio nuevo", fmt:"Caso de transformación, Antes/Después del proceso, Carta de agradecimiento anónima.", hv:"Captura borrosa o texto del testimonio anónimo.", txt:"Alguien compartió esto conmigo esta semana y me dio permiso para publicarlo.", cta:"Agenda tu proceso si quieres vivir algo así.", p:"Estructura este testimonio anónimo en una historia de transformación usando el formato 'Antes → Proceso → Ahora'."},
+        {n:"10. Estoy lanzando un recurso nuevo", fmt:"Presentación del recurso, Unboxing digital, Detrás de la creación.", hv:"Abrir el PDF del recurso en pantalla o mostrar la portada.", txt:"Por fin está listo. Y lo creé pensando en exactamente lo que estás viviendo.", cta:"El acceso está en el link. Solo quedan 24 horas al precio de lanzamiento.", p:"Dame 3 guiones cortos para lanzar [RECURSO DIGITAL]: uno emocional, uno educativo y uno de urgencia ética."},
+        {n:"11. Acabo de dar una charla o taller", fmt:"Lo que aprendí al enseñar, Reflexión post-evento, Extracto del contenido.", hv:"Cierre del portátil o último slide del taller.", txt:"Terminé el taller y hay algo que la audiencia dijo que no me espera.", cta:"Compártelo con quien lo necesite.", p:"Guion tipo 'Lo mejor que aprendí enseñando' sobre [TEMA DEL TALLER]. Reflexivo y valioso."},
+        {n:"12. Tengo una nueva apertura en agenda", fmt:"Anuncio cálido de espacio disponible, Para quién es ideal, Proceso de trabajo.", hv:"Calendario con espacio disponible marcado.", txt:"Hay un espacio nuevo en mi agenda y quiero que sea para la persona correcta.", cta:"Escríbeme si crees que eres esa persona.", p:"Anuncio de apertura de agenda para [ESPECIALIDAD]. Tono cálido, claro y sin presión. Que cualifique al paciente ideal."},
+        {n:"13. Es lunes y quiero conectar", fmt:"Reflexión del inicio de semana, Intención terapéutica para la semana, Pregunta a la comunidad.", hv:"Luz de mañana entrando, taza de café.", txt:"Este lunes, la pregunta que me llevo a consulta es...", cta:"¿Cuál es la tuya? Te leo.", p:"Reflexión de inicio de semana sobre [TEMA DE SALUD MENTAL]. Cálida, corta y que invite a comentar."},
+        {n:"14. Es viernes y quiero cerrar la semana", fmt:"Diario de consulta, Lo que aprendí esta semana, Autocuidado del fin de semana.", hv:"Cerrar libreta de notas o apagar computadora.", txt:"Cierro la semana con este aprendizaje y te lo regalo.", cta:"Guárdalo para el domingo de reflexión.", p:"Reflexión de cierre de semana para psicólogo/a. Qué aprendí, qué suelto, qué me llevo. Tono íntimo y sin tecnicismos."},
+        {n:"15. Estoy en formación / supervisión grupal", fmt:"Lo que aprendí hoy (anónimo), Diferencia entre enfoques, Reflexión de la formación.", hv:"Libro de psicología abierto con notas al margen.", txt:"Hoy en formación aprendí algo que cambia cómo voy a seguir trabajando.", cta:"Sígueme para más reflexiones de práctica clínica.", p:"Reflexión honesta sobre un aprendizaje de hoy en formación de [ESPECIALIDAD]. Sin datos privados, con profundidad."},
+        {n:"16. Estoy en vacaciones o descanso", fmt:"Faceless lifestyle + salud mental, Importancia del descanso, B-roll reflexivo.", hv:"Vista de playa, montaña o espacio de descanso + texto.", txt:"Estar aquí también es parte del trabajo. El descanso no es el opuesto del cuidado, es parte de él.", cta:"Guarda esto para tu próxima vez que sientas que no mereces descansar.", p:"Texto reflexivo para video Faceless de vacaciones atando el descanso con la salud mental del profesional. Tono genuino."}
+    ];
+
+    const errorsDB = {
+        "Errores de hooks en psicología": [
+            "Empezar con 'Hola chicos, hoy vamos a hablar de...' Pierdes el 70% de la atención en los primeros 2 segundos.",
+            "Usar términos diagnósticos sin contextualizar ('¿Eres borderline?'). Genera miedo, no conexión.",
+            "Ser tan genérico que nadie se identifique. 'El bienestar mental es importante' no activa nada.",
+            "Sensacionalizar síntomas para captar atención. Daña a personas vulnerables y destruye tu credibilidad.",
+            "Prometer 'cómo curar la ansiedad en 5 pasos'. Ningún profesional serio puede prometer eso."
+        ],
+        "Errores de CTA en contenido de salud mental": [
+            "Usar CTAs de ventas agresivas en contenido sobre temas sensibles. Rompe la confianza que acabas de construir.",
+            "No tener ningún CTA. El buen contenido sin dirección no genera consultas ni comunidad.",
+            "Pedir una consulta directamente en un video de puro valor educativo a audiencia fría.",
+            "CTAs de urgencia falsa ('solo quedan 2 espacios') cuando no es verdad. Destruye credibilidad profesional.",
+            "No diversificar CTAs. No todos están listos para consultar, pero sí para guardar, seguir o descargar."
+        ],
+        "Errores éticos en contenido de psicología": [
+            "Diagnosticar a personas o personajes públicos en redes sin evaluación. Viola la ética profesional.",
+            "Compartir casos de pacientes aunque sea 'anónimo' sin permiso explícito.",
+            "Usar el trauma ajeno como gancho de atención sin contexto ni respeto.",
+            "Simplificar condiciones clínicas complejas hasta el punto de desinformar (ej. 'todos tenemos bipolar a veces').",
+            "Prometer resultados específicos de la terapia. Es imposible e irresponsable hacerlo."
+        ],
+        "Errores de posicionamiento": [
+            "No definir tu especialidad. 'Psicólogo general' posiciona a nadie.",
+            "Hablar solo de teoría sin mostrar cómo trabajas. La audiencia no puede imaginarte en consulta.",
+            "Imitar a influencers de salud mental sin formación. Tu valor es la precisión clínica.",
+            "No mostrar nunca tu proceso o metodología. La audiencia no sabe qué esperar al contratarte.",
+            "Ser tan académico que nadie entienda. La divulgación accesible es una habilidad que vale la pena desarrollar."
+        ],
+        "Errores en recursos digitales": [
+            "Crear recursos genéricos que podría hacer cualquiera. El valor está en tu criterio clínico.",
+            "No aclarar para quién es y para quién no es el recurso. Genera frustración y reseñas negativas.",
+            "Vender un recurso como sustituto de la terapia cuando no lo es. Es un complemento, no un reemplazo.",
+            "Presentar el recurso sin mostrar su interior. La audiencia no confía en lo que no puede ver.",
+            "Precio demasiado bajo que devalúa el conocimiento clínico que hay detrás."
+        ]
+    };
+
+    const glossaryData = [
+        {level:"Nivel 1", tag:"Fundamentos", term:"Contenido de salud mental", def:"Publicaciones en redes que educan, acompañan, visibilizan o desmitifican aspectos del bienestar psicológico de forma accesible y éticamente responsable."},
+        {level:"Nivel 1", tag:"Fundamentos", term:"Nicho terapéutico", def:"El área específica de la psicología en la que te especializas y desde la que creas contenido: ansiedad, duelo, trauma, parejas, infancia, etc."},
+        {level:"Nivel 1", tag:"Fundamentos", term:"Audiencia objetivo", def:"El grupo de personas a las que va dirigido tu contenido: adultos con ansiedad, padres, profesionales de salud mental, adolescentes, etc."},
+        {level:"Nivel 1", tag:"Fundamentos", term:"Paciente ideal", def:"El perfil concreto de persona que mejor se beneficia de tu trabajo. Tiene un problema específico, un momento de vida determinado y la disposición para el proceso."},
+        {level:"Nivel 1", tag:"Fundamentos", term:"Hook", def:"La primera frase, imagen o idea que capta la atención. En psicología, debe activar reconocimiento emocional sin sensacionalizar ni alarmar."},
+        {level:"Nivel 1", tag:"Fundamentos", term:"CTA", def:"Llamado a la acción. Puede ser guardar, comentar, descargar, agendar o escribir. Debe ser coherente con el tono del contenido y el nivel de confianza de la audiencia."},
+        {level:"Nivel 1", tag:"Fundamentos", term:"Carrusel educativo", def:"Publicación de varias diapositivas para explicar un concepto psicológico paso a paso. Ideal para guardar y compartir."},
+        {level:"Nivel 1", tag:"Fundamentos", term:"Reel", def:"Video corto vertical pensado para atraer, educar o conectar en Instagram y TikTok."},
+        {level:"Nivel 1", tag:"Fundamentos", term:"Engagement", def:"Nivel de interacción que genera tu contenido: guardados, comentarios, compartidos, respuestas. En psicología, el guardado suele ser el indicador más valioso."},
+        {level:"Nivel 1", tag:"Fundamentos", term:"Faceless", def:"Contenido creado sin mostrar el rostro. Muy útil para temas sensibles o cuando quieres que el mensaje sea protagonista en lugar de la persona."},
+        {level:"Nivel 2", tag:"Estrategia de contenido", term:"Ángulo terapéutico", def:"La perspectiva desde la que abordas un tema. Un mismo tema puede trabajarse desde el dolor, el deseo, la ruptura de mito, la historia personal o la herramienta práctica."},
+        {level:"Nivel 2", tag:"Estrategia de contenido", term:"Formato de contenido", def:"La estructura creativa que usas para presentar una idea: antes/después, señales, pregunta-respuesta, storytelling, comparativa o herramienta."},
+        {level:"Nivel 2", tag:"Estrategia de contenido", term:"Pilar de contenido", def:"Categoría principal sobre la que publicas consistentemente: educación clínica, recursos, autoridad, conexión, ruptura de estigma o servicios."},
+        {level:"Nivel 2", tag:"Estrategia de contenido", term:"Divulgación psicológica", def:"Comunicar conocimiento clínico en lenguaje accesible para personas sin formación, manteniendo rigor ético y científico."},
+        {level:"Nivel 2", tag:"Estrategia de contenido", term:"Contenido de valor", def:"Contenido que enseña algo útil, valida una experiencia o da una herramienta concreta sin pedir nada a cambio."},
+        {level:"Nivel 2", tag:"Estrategia de contenido", term:"Contenido de conversión", def:"Contenido diseñado para que la persona dé un paso hacia el servicio o recurso: ver la consulta, descargar la guía, agendar."},
+        {level:"Nivel 2", tag:"Estrategia de contenido", term:"Prueba social", def:"Evidencia de que otras personas han confiado o tenido proceso contigo: testimonios anónimos, capturas (con permiso), compartidos de alumnos."},
+        {level:"Nivel 2", tag:"Estrategia de contenido", term:"Objeción", def:"La razón por la que alguien no da el paso. Las más comunes en psicología: 'no estoy tan mal', 'es caro', 'no tengo tiempo', 'no creo en la terapia'."},
+        {level:"Nivel 2", tag:"Estrategia de contenido", term:"Lead magnet", def:"Recurso gratuito que entregas a cambio de iniciar una conversación: guía, checklist, clase breve, workbook de muestra o diagnóstico."},
+        {level:"Nivel 2", tag:"Estrategia de contenido", term:"B-roll", def:"Clips de apoyo visual: libreta, café, naturaleza, consultorio, manos. En psicología, el B-roll comunica calma, seguridad y calidez."},
+        {level:"Nivel 3", tag:"Negocio de psicología", term:"Embudo de consulta", def:"El camino que lleva a una persona desde descubrirte en redes hasta agendar su primera sesión: contenido → confianza → contacto → consulta."},
+        {level:"Nivel 3", tag:"Negocio de psicología", term:"TOF (Top of Funnel)", def:"Contenido para personas que aún no te conocen. Busca visibilidad y atracción: temas amplios, ruptura de estigma, divulgación."},
+        {level:"Nivel 3", tag:"Negocio de psicología", term:"BOF (Bottom of Funnel)", def:"Contenido para personas más cercanas a buscar ayuda. Resuelve objeciones, presenta el servicio, invita al primer paso."},
+        {level:"Nivel 3", tag:"Negocio de psicología", term:"Posicionamiento clínico", def:"La forma en que tu audiencia te percibe: especialista, empático, riguroso, cercano, innovador. Define qué tipo de pacientes atraes."},
+        {level:"Nivel 3", tag:"Negocio de psicología", term:"Recurso digital terapéutico", def:"Material descargable con criterio clínico: workbook, guía, diario, cuestionario o taller grabado que trabaja una habilidad emocional."},
+        {level:"Nivel 3", tag:"Negocio de psicología", term:"Encuadre terapéutico en redes", def:"Mantener en el contenido digital los límites éticos de la profesión: no diagnosticar, no prometer resultados, no reemplazar la consulta."},
+        {level:"Nivel 3", tag:"Negocio de psicología", term:"Autoridad clínica digital", def:"La percepción de competencia y rigor que genera tu contenido. Se construye con precisión conceptual, ética visible y consistencia."},
+        {level:"Nivel 3", tag:"Negocio de psicología", term:"Sistema de contenido", def:"Proceso organizado para crear y publicar con intención: atraer, educar, conectar, convertir y medir. Aplicado a la práctica psicológica."},
+        {level:"Nivel 3", tag:"Negocio de psicología", term:"Metodología propia", def:"El sistema de trabajo que has desarrollado como profesional, explicado de forma accesible y memorable para tu audiencia."},
+        {level:"Nivel 3", tag:"Negocio de psicología", term:"Escalamiento ético", def:"Crecer el alcance e impacto de tu práctica (más pacientes, recursos, talleres) sin comprometer la calidad del vínculo terapéutico ni la ética profesional."}
+    ];
+
+    /* =====================================================================
+       RENDER FUNCTIONS
+    ===================================================================== */
+
+    function renderVideoFormats() {
+        const grid = document.getElementById('grid-video-formats');
+        grid.innerHTML = videoFormats.map((item, idx) => `
+            <div class="data-card">
+                <span class="card-tag">${item.c}</span>
+                <h4>${item.n}</h4>
+                <div class="meta">
+                    <p><strong>Objetivo:</strong> ${item.o}</p>
+                    <p><strong>Dificultad:</strong> ${item.d}</p>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-sage btn-sm" onclick="openFormatModal(${idx}, 'video')">Ver Estructura</button>
+                    <button class="btn btn-outline btn-sm" onclick="copyText('${item.p.replace(/'/g, "\\'").replace(/\n/g, "\\n")}')">Copiar Prompt</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderObjectives() {
+        const acc = document.getElementById('acc-objectives');
+        const data = [
+            {t:"Quiero atraer pacientes (BoF)", p:"Señales de que necesitas apoyo, Error que frena el proceso, Caso de transformación, Sin proceso vs Con proceso, Cómo es trabajar conmigo."},
+            {t:"Quiero educar sobre salud mental (Autoridad)", p:"Mito + Verdad, Explicación de mecanismo psicológico, ¿Esto es normal?, Emoción que confundes con otra, Categoría A vs B."},
+            {t:"Quiero romper el estigma (ToF)", p:"Lo que se ve vs Lo que pasa por dentro, ¿Qué pasaría si normalizáramos?, Respuesta a crítica frecuente, Tipos de perfiles emocionales."},
+            {t:"Quiero vender recurso digital", p:"El recurso en uso, Antes/Después de usarlo, No lo descargues si, Lo que incluye que no te esperabas, Mitos que este recurso desmonta."},
+            {t:"Quiero generar comunidad", p:"Pregunta que nadie se atreve a hacer, Reflexión semanal, La parte que nadie quiere escuchar, Debate empático, Diario de consulta."},
+            {t:"Quiero contenido sin rostro", p:"Faceless clips + texto, Manos escribiendo en diario, Metáfora con objetos, B-roll reflexivo, Carrusel herramientas."}
+        ];
+        acc.innerHTML = data.map(d => `
+            <div class="accordion">
+                <div class="accordion-head" onclick="toggleAccordion(this)">
+                    <span>${d.t}</span><span>▼</span>
+                </div>
+                <div class="accordion-body">
+                    <p style="margin-bottom:10px;"><strong>Formatos recomendados:</strong><br>${d.p}</p>
+                    <button class="btn btn-sm btn-outline" onclick="copyText('${d.p}')">Copiar Lista</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderRecursos() {
+        const grid = document.getElementById('grid-recursos');
+        grid.innerHTML = recursosFormats.map((item, idx) => `
+            <div class="data-card">
+                <span class="card-tag terra">Recurso Digital</span>
+                <h4>${item.n}</h4>
+                <div class="meta">
+                    <p><strong>Cuándo usar:</strong> ${item.w}</p>
+                    <p><strong>Hook:</strong> ${item.h}</p>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-sage btn-sm" onclick="openRecursoModal(${idx})">Ver Detalles</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderHighTicket() {
+        const grid = document.getElementById('grid-highticket');
+        grid.innerHTML = htFormats.map((item, idx) => `
+            <div class="data-card">
+                <span class="card-tag">Servicio Premium</span>
+                <h4>${item.n}</h4>
+                <div class="meta">
+                    <p><strong>Objetivo:</strong> ${item.o}</p>
+                    <p><strong>Hook:</strong> ${item.h}</p>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-sage btn-sm" onclick="openHTModal(${idx})">Ver Detalles</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderFaceless() {
+        const grid = document.getElementById('grid-faceless');
+        grid.innerHTML = facelessFormats.map(item => `
+            <div class="data-card">
+                <span class="card-tag">Faceless</span>
+                <h4>${item.n}</h4>
+                <div class="meta">
+                    <p><strong>Dirección:</strong> ${item.r}</p>
+                    <p><strong>Hook texto:</strong> ${item.h}</p>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderListDB(elementId, dataObj) {
+        const el = document.getElementById(elementId);
+        let html = '';
+        for (const [cat, items] of Object.entries(dataObj)) {
+            let itemsHtml = items.map(t => `
+                <div class="copy-row">
+                    <span class="copy-text">"${t}"</span>
+                    <button class="btn btn-sm btn-outline" onclick="copyText('${t.replace(/'/g, "\\'")}')">Copiar</button>
+                </div>
+            `).join('');
+            html += `
+                <div class="accordion">
+                    <div class="accordion-head" onclick="toggleAccordion(this)"><span>${cat}</span><span>▼</span></div>
+                    <div class="accordion-body">${itemsHtml}</div>
+                </div>
+            `;
+        }
+        el.innerHTML = html;
+    }
+
+    function renderStructures() {
+        const acc = document.getElementById('acc-structures');
+        acc.innerHTML = structuresDB.map(s => `
+            <div class="accordion">
+                <div class="accordion-head" onclick="toggleAccordion(this)"><span>${s.n}</span><span>▼</span></div>
+                <div class="accordion-body">
+                    <p style="margin-bottom:8px; color:var(--sage);"><strong>${s.p}</strong></p>
+                    <p style="margin-bottom:14px; font-size:0.84rem;"><em>Ideal para: ${s.w}</em></p>
+                    <div style="background:var(--sage-pale); padding:1rem; border-radius:8px; white-space:pre-line; font-family:monospace; font-size:0.88rem; margin-bottom:14px;">${s.s}</div>
+                    <button class="btn btn-sm btn-sage" onclick="copyText('${s.s.replace(/\n/g, '\\n').replace(/'/g, "\\'")}')">Copiar Estructura</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderPrompts() {
+        const acc = document.getElementById('acc-prompts');
+        acc.innerHTML = promptsIA.map((p, idx) => `
+            <div class="accordion">
+                <div class="accordion-head" onclick="toggleAccordion(this)"><span>Prompt Maestro #${idx+1}</span><span>▼</span></div>
+                <div class="accordion-body">
+                    <div class="prompt-box" id="p-box-${idx}">${p}</div>
+                    <button class="btn btn-sm btn-sage" onclick="copyText(document.getElementById('p-box-${idx}').innerText)">Copiar Prompt</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderSituations() {
+        const grid = document.getElementById('grid-situations');
+        grid.innerHTML = situations.map((s, idx) => `
+            <div class="data-card" style="align-items:flex-start; cursor:pointer;" onclick="openSituationModal(${idx})">
+                <h4 style="margin:0;">${s.n}</h4>
+                <p style="font-size:0.82rem;">${s.fmt.split(',')[0]}...</p>
+            </div>
+        `).join('');
+    }
+
+    function renderGlossary() {
+        const container = document.getElementById('acc-glossary');
+        if (!container) return;
+        container.innerHTML = `
+            <div class="gloss-grid">
+                ${glossaryData.map(g => `
+                    <div class="gloss-item">
+                        <div class="gloss-level">${g.level} · ${g.tag}</div>
+                        <div class="gloss-term">${g.term}</div>
+                        <div class="gloss-def">${g.def}</div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    function initApp() {
+        renderVideoFormats();
+        renderObjectives();
+        renderRecursos();
+        renderHighTicket();
+        renderFaceless();
+        renderListDB('acc-hooks', hooksDB);
+        renderListDB('acc-ctas', ctasDB);
+        renderListDB('acc-visual-hooks', visualHooksDB);
+        renderListDB('acc-peaks', peaksDB);
+        renderStructures();
+        renderPrompts();
+        renderSituations();
+        renderGlossary();
+        renderListDB('acc-errors', errorsDB);
+    }
+
+    /* =====================================================================
+       UI INTERACTIONS
+    ===================================================================== */
+
+    function openSection(id) {
+        const target = document.getElementById(id);
+        if (!target) return;
+        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+        document.getElementById('hero').style.display = 'none';
+        document.getElementById('hub').style.display = 'none';
+        target.classList.add('active');
+        window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function closeSection() {
+        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+        document.getElementById('hero').style.display = 'block';
+        document.getElementById('hub').style.display = 'block';
+        window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function toggleAccordion(el) {
+        el.parentElement.classList.toggle('open');
+    }
+
+    function openFormatModal(idx, type) {
+        const data = videoFormats[idx];
+        document.getElementById('fm-title').innerText = data.n;
+        document.getElementById('fm-cat').innerText = data.c;
+        document.getElementById('fm-obj').innerText = data.o;
+        document.getElementById('fm-idl').innerText = data.i;
+        document.getElementById('fm-dif').innerText = data.d;
+        document.getElementById('fm-whe').innerText = data.w;
+        document.getElementById('fm-psy').innerText = data.psy;
+        document.getElementById('fm-rec').innerText = data.r;
+        document.getElementById('fm-hv').innerText = data.hv;
+        document.getElementById('fm-ht').innerText = data.ht;
+        document.getElementById('fm-hb').innerText = data.hb;
+        document.getElementById('fm-str').innerText = data.s;
+        document.getElementById('fm-cta').innerText = data.cta;
+        document.getElementById('fm-ej').innerText = data.ej;
+        document.getElementById('fm-err').innerText = data.err;
+        document.getElementById('fm-prm').innerText = data.p;
+        document.getElementById('formatModal').classList.add('active');
+    }
+
+    function openRecursoModal(idx) {
+        const e = recursosFormats[idx];
+        document.getElementById('fm-title').innerText = e.n;
+        document.getElementById('fm-cat').innerText = 'Recurso Digital';
+        document.getElementById('fm-obj').innerText = 'Vender o promocionar recurso digital terapéutico.';
+        document.getElementById('fm-idl').innerText = 'Psicólogos con guías, workbooks o talleres.';
+        document.getElementById('fm-dif').innerText = 'Variable';
+        document.getElementById('fm-whe').innerText = e.w;
+        document.getElementById('fm-psy').innerText = 'Generación de deseo y confianza a través de la transparencia sobre el recurso.';
+        document.getElementById('fm-rec').innerText = e.r;
+        document.getElementById('fm-hv').innerText = e.h;
+        document.getElementById('fm-ht').innerText = e.h;
+        document.getElementById('fm-hb').innerText = 'N/A - usar el hook textual como apertura verbal.';
+        document.getElementById('fm-str').innerText = '1. Hook visual\n2. Desarrollo del valor del recurso\n3. Para quién es\n4. CTA';
+        document.getElementById('fm-cta').innerText = e.c;
+        document.getElementById('fm-ej').innerText = e.e;
+        document.getElementById('fm-err').innerText = 'Mostrar el recurso sin enseñar su interior o prometer que reemplaza la terapia.';
+        document.getElementById('fm-prm').innerText = e.p;
+        document.getElementById('formatModal').classList.add('active');
+    }
+
+    function openHTModal(idx) {
+        const h = htFormats[idx];
+        document.getElementById('fm-title').innerText = h.n;
+        document.getElementById('fm-cat').innerText = 'Servicio Premium';
+        document.getElementById('fm-obj').innerText = h.o;
+        document.getElementById('fm-idl').innerText = 'Psicólogos con servicios de consulta, mentoría o programas.';
+        document.getElementById('fm-dif').innerText = 'Avanzada';
+        document.getElementById('fm-whe').innerText = h.w;
+        document.getElementById('fm-psy').innerText = 'Filtro de autoridad y reducción del miedo a dar el primer paso.';
+        document.getElementById('fm-rec').innerText = 'Tono empático y profesional, entorno cálido.';
+        document.getElementById('fm-hv').innerText = 'Visual asociado al proceso o al bienestar.';
+        document.getElementById('fm-ht').innerText = h.h;
+        document.getElementById('fm-hb').innerText = h.h;
+        document.getElementById('fm-str').innerText = '1. Hook\n2. Diagnóstico o dolor\n3. Reencuadre empático\n4. Solución/proceso\n5. CTA ético';
+        document.getElementById('fm-cta').innerText = h.c;
+        document.getElementById('fm-ej').innerText = h.e;
+        document.getElementById('fm-err').innerText = 'Sonar desesperado por llenar agenda o prometer resultados garantizados.';
+        document.getElementById('fm-prm').innerText = h.p;
+        document.getElementById('formatModal').classList.add('active');
+    }
+
+    function openSituationModal(idx) {
+        const s = situations[idx];
+        document.getElementById('sm-title').innerText = s.n;
+        document.getElementById('sm-fmt').innerHTML = `<li>${s.fmt}</li>`;
+        document.getElementById('sm-hv').innerText = s.hv;
+        document.getElementById('sm-txt').innerText = s.txt;
+        document.getElementById('sm-cta').innerText = s.cta;
+        document.getElementById('sm-prm').innerText = s.p;
+        document.getElementById('sitModal').classList.add('active');
+    }
+
+    function closeModal(id) {
+        document.getElementById(id).classList.remove('active');
+    }
+
+    function showToast() {
+        const t = document.getElementById('toast');
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    function copyText(text) {
+        const decoded = text.replace(/\\n/g, '\n');
+        const temp = document.createElement('textarea');
+        temp.value = decoded;
+        document.body.appendChild(temp);
+        temp.select();
+        try { document.execCommand('copy'); showToast(); } catch(e) {}
+        document.body.removeChild(temp);
+    }
+
+    function copyFromElement(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        copyText(el.innerText);
+    }
+
+    function buildFormula() {
+        const obj = document.getElementById('b-obj').value;
+        const fmt = document.getElementById('b-fmt').value;
+        const eng = document.getElementById('b-eng').value;
+        const cta = document.getElementById('b-cta').value;
+
+        document.getElementById('r-fmt').innerText = `${fmt} con tono ${eng}`;
+        document.getElementById('r-hvis').innerText = 'Si es Faceless: B-roll de naturaleza, manos o espacio terapéutico. Si es a cámara: mirada directa con pausa empática.';
+        document.getElementById('r-htex').innerText = `Texto ancla en pantalla conectando con el dolor para el objetivo de "${obj.toLowerCase()}".`;
+        document.getElementById('r-hver').innerText = `Apertura ${eng.toLowerCase()} que valide y active reconocimiento emocional.`;
+        document.getElementById('r-str').innerText = '1. Hook empático\n2. Validación / Contexto clínico\n3. Herramienta o perspectiva\n4. Cierre esperanzador\n5. CTA';
+        document.getElementById('r-cta').innerText = cta;
+
+        const prompt = `Actúa como Estratega de Contenido especializado en Psicología y Salud Mental.
+Objetivo del video: ${obj}.
+Formato visual: ${fmt}.
+Tono de marca: ${eng}.
+Llamado a la acción: Que la persona termine haciendo "${cta}".
+
+Genera 3 ideas de guion usando la estructura 'Dolor → Validación → Herramienta → Invitación' para este formato exacto.
+Aplica neuroventas éticas y lenguaje accesible sin trivializar la salud mental.
+Incluye: dirección visual de los primeros 3 segundos, texto en pantalla y guion narrado completo.
+Especialidad: [MI ESPECIALIDAD]. Paciente ideal: [DESCRIBE A TU PACIENTE IDEAL].`;
+
+        document.getElementById('r-prompt').innerText = prompt;
+        const resultBox = document.getElementById('builder-result');
+        resultBox.style.display = 'block';
+        resultBox.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }
+
+    window.onload = function() {
+        try { initApp(); } catch(e) { console.error(e); }
+    };
+    </script>
+</body>
+</html>
