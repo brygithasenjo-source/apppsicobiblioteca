@@ -208,344 +208,361 @@
             .modal-footer { flex-direction:column; }
             .btn { width:100%; }
         }
+
+        /* ESTILOS PANTALLA DE PROTECCIÓN FIREBASE */
+        #auth-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--bg-main);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 99999;
+        }
     </style>
 </head>
 <body>
-
-    <header>
-        <div class="header-logo" onclick="closeSection()">
-            <img src="https://i.ibb.co/MDsC0Zt1/Chat-GPT-Image-18-may-2026-08-53-18-p-m.png" alt="Logo IA para Psicólogos">
-            <div class="header-logo-text">
-                <h1>IA para Psicólogos</h1>
-                <span>Biblioteca de Contenido Estratégico</span>
-            </div>
-        </div>
-        <nav>
-            <ul>
-                <li><a onclick="closeSection()">Inicio</a></li>
-                <li><a onclick="document.getElementById('hub').scrollIntoView()">Secciones</a></li>
-                <li><a onclick="openSection('sec-builder')">Constructor</a></li>
-                <li><a onclick="openSection('sec-glossary')">Glosario</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="hero" id="hero">
-        <img src="https://i.ibb.co/MDsC0Zt1/Chat-GPT-Image-18-may-2026-08-53-18-p-m.png" alt="Logo">
-        <div class="hero-badge">IA para Psicólogos</div>
-        <h2>Crea contenido que <em>sana</em> y que vende</h2>
-        <p>Biblioteca estratégica de formatos, hooks y prompts diseñada para psicólogos que quieren impactar en redes, atraer clientes y compartir su conocimiento con intención.</p>
-        <div class="hero-btns">
-            <button class="btn btn-sage" onclick="openSection('sec-video-formats')">Ver Formatos de Video</button>
-            <button class="btn btn-outline" onclick="openSection('sec-hooks')">Ver Hooks</button>
-            <button class="btn btn-outline" onclick="openSection('sec-prompts')">Ver Prompts</button>
-            <button class="btn btn-outline" onclick="openSection('sec-builder')">Crear Fórmula</button>
+    
+    <!-- PANTALLA DE AUTORIZACIÓN (FIREBASE) -->
+    <div id="auth-screen">
+        <div id="auth-message" style="text-align: center;">
+            <h2 style="color: var(--sage); font-family: 'DM Serif Display', serif; font-size: 2rem;">Validando acceso...</h2>
         </div>
     </div>
 
-    <main id="hub" class="hub-container">
-        <div class="hub-intro">
-            <h2>Hub Estratégico</h2>
-            <p style="margin:0;">Selecciona una categoría para desplegar su contenido.</p>
-        </div>
-        <div class="hub-grid">
-            <div class="hub-card" onclick="openSection('sec-video-formats')">
-                <div class="hub-icon">🎥</div>
-                <h3>1. Formatos de Video</h3>
-                <p>50 estructuras comprobadas con prompts adaptados a psicología</p>
+    <!-- CONTENEDOR PRINCIPAL DE LA APP (OCULTO POR DEFECTO HASTA VALIDAR) -->
+    <div id="app-content" style="display: none;">
+        
+        <header>
+            <div class="header-logo" onclick="closeSection()">
+                <img src="https://i.ibb.co/MDsC0Zt1/Chat-GPT-Image-18-may-2026-08-53-18-p-m.png" alt="Logo IA para Psicólogos">
+                <div class="header-logo-text">
+                    <h1>IA para Psicólogos</h1>
+                    <span>Biblioteca de Contenido Estratégico</span>
+                </div>
             </div>
-            <div class="hub-card" onclick="openSection('sec-hooks')">
-                <div class="hub-icon">🪝</div>
-                <h3>2. Banco de Hooks</h3>
-                <p>Ganchos textuales por categoría emocional y clínica</p>
-            </div>
-            <div class="hub-card" onclick="openSection('sec-ctas')">
-                <div class="hub-icon">🎯</div>
-                <h3>3. Banco de CTAs</h3>
-                <p>Llamados a la acción para consulta, recursos y comunidad</p>
-            </div>
-            <div class="hub-card" onclick="openSection('sec-prompts')">
-                <div class="hub-icon">🤖</div>
-                <h3>4. Prompts para IA</h3>
-                <p>Prompts listos para generar guiones psicológicos premium</p>
-            </div>
-            <div class="hub-card" onclick="openSection('sec-recursos')">
-                <div class="hub-icon">📦</div>
-                <h3>5. Recursos Digitales</h3>
-                <p>20 formatos para vender guías, talleres y recursos de salud mental</p>
-            </div>
-            <div class="hub-card" onclick="openSection('sec-highticket')">
-                <div class="hub-icon">💎</div>
-                <h3>6. Servicios Premium</h3>
-                <p>15 formatos para mentoría, supervisión y programas terapéuticos</p>
-            </div>
-            <div class="hub-card" onclick="openSection('sec-faceless')">
-                <div class="hub-icon">🎭</div>
-                <h3>7. Faceless</h3>
-                <p>20 formatos sin mostrar el rostro, ideales para temas sensibles</p>
-            </div>
-            <div class="hub-card" onclick="openSection('sec-objectives')">
-                <div class="hub-icon">🧭</div>
-                <h3>8. Por Objetivo</h3>
-                <p>Formatos según lo que quieras lograr hoy</p>
-            </div>
-            <div class="hub-card" onclick="openSection('sec-visual-hooks')">
-                <div class="hub-icon">👁️</div>
-                <h3>9. Ganchos Visuales</h3>
-                <p>Retención visual en los primeros 3 segundos</p>
-            </div>
-            <div class="hub-card" onclick="openSection('sec-peaks')">
-                <div class="hub-icon">📈</div>
-                <h3>10. Picos de Interés</h3>
-                <p>Frases para reactivar la atención a mitad del video</p>
-            </div>
-            <div class="hub-card" onclick="openSection('sec-structures')">
-                <div class="hub-icon">🏗️</div>
-                <h3>11. Estructuras Narrativas</h3>
-                <p>12 guiones paso a paso para psicólogos</p>
-            </div>
-            <div class="hub-card" onclick="openSection('sec-builder')">
-                <div class="hub-icon">🧪</div>
-                <h3>12. Constructor Estratégico</h3>
-                <p>Crea tu fórmula de contenido al instante</p>
-            </div>
-            <div class="hub-card" onclick="openSection('sec-situations')">
-                <div class="hub-icon">📍</div>
-                <h3>13. Situaciones Reales</h3>
-                <p>Qué publicar según dónde estés o cómo te sientes</p>
-            </div>
-            <div class="hub-card" onclick="openSection('sec-new-format-lab')">
-                <div class="hub-icon">🔬</div>
-                <h3>14. Adapta un Formato Nuevo</h3>
-                <p>Analiza tendencias y conviértelas en formatos para psicología</p>
-            </div>
-            <div class="hub-card" onclick="openSection('sec-errors')">
-                <div class="hub-icon">❌</div>
-                <h3>15. Errores a Evitar</h3>
-                <p>Lo que destruye la autoridad y la confianza en tu contenido</p>
-            </div>
-            <div class="hub-card" onclick="openSection('sec-glossary')">
-                <div class="hub-icon">📖</div>
-                <h3>16. Glosario</h3>
-                <p>Diccionario de términos de contenido para psicólogos</p>
+            <nav>
+                <ul>
+                    <li><a onclick="closeSection()">Inicio</a></li>
+                    <li><a onclick="document.getElementById('hub').scrollIntoView()">Secciones</a></li>
+                    <li><a onclick="openSection('sec-builder')">Constructor</a></li>
+                    <li><a onclick="openSection('sec-glossary')">Glosario</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="hero" id="hero">
+            <img src="https://i.ibb.co/MDsC0Zt1/Chat-GPT-Image-18-may-2026-08-53-18-p-m.png" alt="Logo">
+            <div class="hero-badge">IA para Psicólogos</div>
+            <h2>Crea contenido que <em>sana</em> y que vende</h2>
+            <p>Biblioteca estratégica de formatos, hooks y prompts diseñada para psicólogos que quieren impactar en redes, atraer clientes y compartir su conocimiento con intención.</p>
+            <div class="hero-btns">
+                <button class="btn btn-sage" onclick="openSection('sec-video-formats')">Ver Formatos de Video</button>
+                <button class="btn btn-outline" onclick="openSection('sec-hooks')">Ver Hooks</button>
+                <button class="btn btn-outline" onclick="openSection('sec-prompts')">Ver Prompts</button>
+                <button class="btn btn-outline" onclick="openSection('sec-builder')">Crear Fórmula</button>
             </div>
         </div>
-    </main>
 
-    <div id="dynamic-sections-container">
-
-        <!-- VIDEO FORMATS -->
-        <section id="sec-video-formats" class="content-section">
-            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
-            <div class="section-header">
-                <h2>Formatos de Video</h2>
-                <p>50 estructuras maestras adaptadas al lenguaje, ética y autoridad de la psicología. Haz clic en "Ver estructura" para acceder a la psicología, el guion y el prompt.</p>
+        <main id="hub" class="hub-container">
+            <div class="hub-intro">
+                <h2>Hub Estratégico</h2>
+                <p style="margin:0;">Selecciona una categoría para desplegar su contenido.</p>
             </div>
-            <div class="cards-grid" id="grid-video-formats"></div>
-        </section>
-
-        <!-- OBJECTIVES -->
-        <section id="sec-objectives" class="content-section">
-            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
-            <div class="section-header">
-                <h2>Formatos por Objetivo</h2>
-                <p>Despliega lo que quieres lograr hoy y copia la lista de recomendaciones.</p>
-            </div>
-            <div id="acc-objectives"></div>
-        </section>
-
-        <!-- RECURSOS DIGITALES -->
-        <section id="sec-recursos" class="content-section">
-            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
-            <div class="section-header">
-                <h2>Formatos para Recursos Digitales</h2>
-                <p>20 estructuras para vender guías de salud mental, talleres, cursos, plantillas y recursos terapéuticos.</p>
-            </div>
-            <div class="cards-grid" id="grid-recursos"></div>
-        </section>
-
-        <!-- HIGH TICKET / SERVICIOS PREMIUM -->
-        <section id="sec-highticket" class="content-section">
-            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
-            <div class="section-header">
-                <h2>Servicios Premium</h2>
-                <p>15 formatos para psicólogos que ofrecen mentoría, supervisión clínica, programas intensivos o acompañamiento de alto impacto.</p>
-            </div>
-            <div class="cards-grid" id="grid-highticket"></div>
-        </section>
-
-        <!-- FACELESS -->
-        <section id="sec-faceless" class="content-section">
-            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
-            <div class="section-header">
-                <h2>Formatos Faceless</h2>
-                <p>20 formas de crear contenido de alto valor sin mostrar tu rostro, ideales para temas sensibles o días de baja energía.</p>
-            </div>
-            <div class="m-block" style="background:var(--sage-pale); border-color:var(--sage); margin-bottom:2rem;">
-                <h4 style="color:var(--ink);">💡 ¿Por qué faceless funciona en psicología?</h4>
-                <p>El anonimato parcial puede generar mayor apertura emocional en la audiencia. Al no ver un rostro, el espectador proyecta menos juicio y se identifica más con el mensaje. Perfecto para temas de salud mental delicados.</p>
-            </div>
-            <div class="cards-grid" id="grid-faceless"></div>
-        </section>
-
-        <!-- HOOKS -->
-        <section id="sec-hooks" class="content-section">
-            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
-            <div class="section-header">
-                <h2>Banco de Hooks para Psicólogos</h2>
-                <p>Las frases exactas para captar atención en los primeros 3 segundos sin sensacionalismo y con autoridad clínica.</p>
-            </div>
-            <div id="acc-hooks"></div>
-        </section>
-
-        <!-- CTAs -->
-        <section id="sec-ctas" class="content-section">
-            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
-            <div class="section-header">
-                <h2>Banco de Llamados a la Acción</h2>
-                <p>CTAs éticos, cálidos y estratégicos para consulta, recursos y comunidad terapéutica.</p>
-            </div>
-            <div id="acc-ctas"></div>
-        </section>
-
-        <!-- VISUAL HOOKS -->
-        <section id="sec-visual-hooks" class="content-section">
-            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
-            <div class="section-header">
-                <h2>Banco de Ganchos Visuales</h2>
-                <p>Acciones visuales para detener el scroll desde el primer segundo.</p>
-            </div>
-            <div id="acc-visual-hooks"></div>
-        </section>
-
-        <!-- PEAKS -->
-        <section id="sec-peaks" class="content-section">
-            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
-            <div class="section-header">
-                <h2>Banco de Picos de Interés</h2>
-                <p>Frases estratégicas para reactivar la atención a mitad del video.</p>
-            </div>
-            <div id="acc-peaks"></div>
-        </section>
-
-        <!-- STRUCTURES -->
-        <section id="sec-structures" class="content-section">
-            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
-            <div class="section-header">
-                <h2>Estructuras Narrativas Maestras</h2>
-                <p>El esqueleto psicológico y estratégico detrás de un buen guion para psicólogos.</p>
-            </div>
-            <div id="acc-structures"></div>
-        </section>
-
-        <!-- PROMPTS -->
-        <section id="sec-prompts" class="content-section">
-            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
-            <div class="section-header">
-                <h2>Prompts Maestros para IA</h2>
-                <p>Copia y pega en tu inteligencia artificial favorita para generar guiones terapéuticos premium y éticamente responsables.</p>
-            </div>
-            <div id="acc-prompts"></div>
-        </section>
-
-        <!-- BUILDER -->
-        <section id="sec-builder" class="content-section">
-            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
-            <div class="section-header">
-                <h2>Constructor Estratégico</h2>
-                <p>Combina tus variables y genera tu receta de contenido al instante.</p>
-            </div>
-            <div class="builder-grid">
-                <div class="input-group">
-                    <label>Objetivo</label>
-                    <select id="b-obj">
-                        <option value="Atraer pacientes">Atraer pacientes</option>
-                        <option value="Educar sobre salud mental">Educar sobre salud mental</option>
-                        <option value="Vender recurso digital">Vender recurso digital</option>
-                        <option value="Generar comunidad terapéutica">Generar comunidad</option>
-                        <option value="Mostrar autoridad clínica">Mostrar autoridad clínica</option>
-                        <option value="Romper estigma">Romper estigma</option>
-                    </select>
+            <div class="hub-grid">
+                <div class="hub-card" onclick="openSection('sec-video-formats')">
+                    <div class="hub-icon">🎥</div>
+                    <h3>1. Formatos de Video</h3>
+                    <p>50 estructuras comprobadas con prompts adaptados a psicología</p>
                 </div>
-                <div class="input-group">
-                    <label>Formato</label>
-                    <select id="b-fmt">
-                        <option value="Frente a cámara">Frente a cámara</option>
-                        <option value="Faceless">Faceless</option>
-                        <option value="Carrusel educativo">Carrusel educativo</option>
-                        <option value="Recurso digital">Recurso digital</option>
-                        <option value="Servicio premium">Servicio premium</option>
-                        <option value="Historias">Historias</option>
-                        <option value="B-roll reflexivo">B-roll reflexivo</option>
-                    </select>
+                <div class="hub-card" onclick="openSection('sec-hooks')">
+                    <div class="hub-icon">🪝</div>
+                    <h3>2. Banco de Hooks</h3>
+                    <p>Ganchos textuales por categoría emocional y clínica</p>
                 </div>
-                <div class="input-group">
-                    <label>Tono</label>
-                    <select id="b-eng">
-                        <option value="Cálido y empático">Cálido y empático</option>
-                        <option value="Directo y clínico">Directo y clínico</option>
-                        <option value="Reflexivo e íntimo">Reflexivo e íntimo</option>
-                        <option value="Educativo y accesible">Educativo y accesible</option>
-                        <option value="Confrontador suave">Confrontador suave</option>
-                        <option value="Inspirador">Inspirador</option>
-                        <option value="Premium y sereno">Premium y sereno</option>
-                    </select>
+                <div class="hub-card" onclick="openSection('sec-ctas')">
+                    <div class="hub-icon">🎯</div>
+                    <h3>3. Banco de CTAs</h3>
+                    <p>Llamados a la acción para consulta, recursos y comunidad</p>
                 </div>
-                <div class="input-group">
-                    <label>CTA Final</label>
-                    <select id="b-cta">
-                        <option value="Guardar">Guardar</option>
-                        <option value="Comentar">Comentar</option>
-                        <option value="DM para consulta">DM para consulta</option>
-                        <option value="Descargar recurso">Descargar recurso</option>
-                        <option value="Agendar sesión">Agendar sesión</option>
-                        <option value="Unirse a comunidad">Unirse a comunidad</option>
-                        <option value="Compartir">Compartir</option>
-                    </select>
+                <div class="hub-card" onclick="openSection('sec-prompts')">
+                    <div class="hub-icon">🤖</div>
+                    <h3>4. Prompts para IA</h3>
+                    <p>Prompts listos para generar guiones psicológicos premium</p>
+                </div>
+                <div class="hub-card" onclick="openSection('sec-recursos')">
+                    <div class="hub-icon">📦</div>
+                    <h3>5. Recursos Digitales</h3>
+                    <p>20 formatos para vender guías, talleres y recursos de salud mental</p>
+                </div>
+                <div class="hub-card" onclick="openSection('sec-highticket')">
+                    <div class="hub-icon">💎</div>
+                    <h3>6. Servicios Premium</h3>
+                    <p>15 formatos para mentoría, supervisión y programas terapéuticos</p>
+                </div>
+                <div class="hub-card" onclick="openSection('sec-faceless')">
+                    <div class="hub-icon">🎭</div>
+                    <h3>7. Faceless</h3>
+                    <p>20 formatos sin mostrar el rostro, ideales para temas sensibles</p>
+                </div>
+                <div class="hub-card" onclick="openSection('sec-objectives')">
+                    <div class="hub-icon">🧭</div>
+                    <h3>8. Por Objetivo</h3>
+                    <p>Formatos según lo que quieras lograr hoy</p>
+                </div>
+                <div class="hub-card" onclick="openSection('sec-visual-hooks')">
+                    <div class="hub-icon">👁️</div>
+                    <h3>9. Ganchos Visuales</h3>
+                    <p>Retención visual en los primeros 3 segundos</p>
+                </div>
+                <div class="hub-card" onclick="openSection('sec-peaks')">
+                    <div class="hub-icon">📈</div>
+                    <h3>10. Picos de Interés</h3>
+                    <p>Frases para reactivar la atención a mitad del video</p>
+                </div>
+                <div class="hub-card" onclick="openSection('sec-structures')">
+                    <div class="hub-icon">🏗️</div>
+                    <h3>11. Estructuras Narrativas</h3>
+                    <p>12 guiones paso a paso para psicólogos</p>
+                </div>
+                <div class="hub-card" onclick="openSection('sec-builder')">
+                    <div class="hub-icon">🧪</div>
+                    <h3>12. Constructor Estratégico</h3>
+                    <p>Crea tu fórmula de contenido al instante</p>
+                </div>
+                <div class="hub-card" onclick="openSection('sec-situations')">
+                    <div class="hub-icon">📍</div>
+                    <h3>13. Situaciones Reales</h3>
+                    <p>Qué publicar según dónde estés o cómo te sientes</p>
+                </div>
+                <div class="hub-card" onclick="openSection('sec-new-format-lab')">
+                    <div class="hub-icon">🔬</div>
+                    <h3>14. Adapta un Formato Nuevo</h3>
+                    <p>Analiza tendencias y conviértelas en formatos para psicología</p>
+                </div>
+                <div class="hub-card" onclick="openSection('sec-errors')">
+                    <div class="hub-icon">❌</div>
+                    <h3>15. Errores a Evitar</h3>
+                    <p>Lo que destruye la autoridad y la confianza en tu contenido</p>
+                </div>
+                <div class="hub-card" onclick="openSection('sec-glossary')">
+                    <div class="hub-icon">📖</div>
+                    <h3>16. Glosario</h3>
+                    <p>Diccionario de términos de contenido para psicólogos</p>
                 </div>
             </div>
-            <div style="text-align:center;">
-                <button class="btn btn-sage" onclick="buildFormula()">Generar Fórmula Estratégica ✨</button>
-            </div>
-            <div id="builder-result">
-                <div class="m-block" style="border-color:var(--sage); margin-top:2rem;">
-                    <h3 style="color:var(--sage); margin-bottom:1rem;">Tu Receta de Contenido</h3>
-                    <p><strong>Formato Recomendado:</strong> <span id="r-fmt">...</span></p>
-                    <p><strong>Hook Visual:</strong> <span id="r-hvis">...</span></p>
-                    <p><strong>Hook Textual:</strong> <span id="r-htex">...</span></p>
-                    <p><strong>Hook Verbal:</strong> <span id="r-hver">...</span></p>
-                    <p><strong>Estructura:</strong> <span id="r-str">...</span></p>
-                    <p><strong>CTA:</strong> <span id="r-cta">...</span></p>
-                    <h4 style="margin-top:1.5rem; color:var(--ink);">Prompt para IA:</h4>
-                    <div class="prompt-box" id="r-prompt">...</div>
-                    <button class="btn btn-sm btn-outline" onclick="copyText(document.getElementById('r-prompt').innerText)">Copiar Prompt</button>
+        </main>
+
+        <div id="dynamic-sections-container">
+            <!-- VIDEO FORMATS -->
+            <section id="sec-video-formats" class="content-section">
+                <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+                <div class="section-header">
+                    <h2>Formatos de Video</h2>
+                    <p>50 estructuras maestras adaptadas al lenguaje, ética y autoridad de la psicología. Haz clic en "Ver estructura" para acceder a la psicología, el guion y el prompt.</p>
                 </div>
-            </div>
-        </section>
+                <div class="cards-grid" id="grid-video-formats"></div>
+            </section>
 
-        <!-- SITUATIONS -->
-        <section id="sec-situations" class="content-section">
-            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
-            <div class="section-header">
-                <h2>Situaciones Reales</h2>
-                <p>¿No sabes qué publicar hoy? Selecciona tu situación actual.</p>
-            </div>
-            <div class="cards-grid" id="grid-situations"></div>
-        </section>
+            <!-- OBJECTIVES -->
+            <section id="sec-objectives" class="content-section">
+                <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+                <div class="section-header">
+                    <h2>Formatos por Objetivo</h2>
+                    <p>Despliega lo que quieres lograr hoy y copia la lista de recomendaciones.</p>
+                </div>
+                <div id="acc-objectives"></div>
+            </section>
 
-        <!-- NEW FORMAT LAB -->
-        <section id="sec-new-format-lab" class="content-section">
-            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
-            <div class="section-header">
-                <h2>Adapta cualquier formato nuevo</h2>
-                <p>Analiza una tendencia, extrae su estructura y conviértela en un formato reutilizable para psicología.</p>
-            </div>
-            <div class="prompt-lab-grid">
-                <div class="prompt-lab-card">
-                    <div class="prompt-lab-step">Paso 1</div>
-                    <h3>Analiza el video viral</h3>
-                    <p>Copia este prompt junto con el link, descripción o transcripción del video que quieras adaptar.</p>
-                    <pre id="analysisPromptBox">PROMPT 1 - ANALIZAR UN VIDEO VIRAL
+            <!-- RECURSOS DIGITALES -->
+            <section id="sec-recursos" class="content-section">
+                <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+                <div class="section-header">
+                    <h2>Formatos para Recursos Digitales</h2>
+                    <p>20 estructuras para vender guías de salud mental, talleres, cursos, plantillas y recursos terapéuticos.</p>
+                </div>
+                <div class="cards-grid" id="grid-recursos"></div>
+            </section>
+
+            <!-- HIGH TICKET / SERVICIOS PREMIUM -->
+            <section id="sec-highticket" class="content-section">
+                <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+                <div class="section-header">
+                    <h2>Servicios Premium</h2>
+                    <p>15 formatos para psicólogos que ofrecen mentoría, supervisión clínica, programas intensivos o acompañamiento de alto impacto.</p>
+                </div>
+                <div class="cards-grid" id="grid-highticket"></div>
+            </section>
+
+            <!-- FACELESS -->
+            <section id="sec-faceless" class="content-section">
+                <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+                <div class="section-header">
+                    <h2>Formatos Faceless</h2>
+                    <p>20 formas de crear contenido de alto valor sin mostrar tu rostro, ideales para temas sensibles o días de baja energía.</p>
+                </div>
+                <div class="m-block" style="background:var(--sage-pale); border-color:var(--sage); margin-bottom:2rem;">
+                    <h4 style="color:var(--ink);">💡 ¿Por qué faceless funciona en psicología?</h4>
+                    <p>El anonimato parcial puede generar mayor apertura emocional en la audiencia. Al no ver un rostro, el espectador proyecta menos juicio y se identifica más con el mensaje. Perfecto para temas de salud mental delicados.</p>
+                </div>
+                <div class="cards-grid" id="grid-faceless"></div>
+            </section>
+
+            <!-- HOOKS -->
+            <section id="sec-hooks" class="content-section">
+                <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+                <div class="section-header">
+                    <h2>Banco de Hooks para Psicólogos</h2>
+                    <p>Las frases exactas para captar atención en los primeros 3 segundos sin sensacionalismo y con autoridad clínica.</p>
+                </div>
+                <div id="acc-hooks"></div>
+            </section>
+
+            <!-- CTAs -->
+            <section id="sec-ctas" class="content-section">
+                <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+                <div class="section-header">
+                    <h2>Banco de Llamados a la Acción</h2>
+                    <p>CTAs éticos, cálidos y estratégicos para consulta, recursos y comunidad terapéutica.</p>
+                </div>
+                <div id="acc-ctas"></div>
+            </section>
+
+            <!-- VISUAL HOOKS -->
+            <section id="sec-visual-hooks" class="content-section">
+                <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+                <div class="section-header">
+                    <h2>Banco de Ganchos Visuales</h2>
+                    <p>Acciones visuales para detener el scroll desde el primer segundo.</p>
+                </div>
+                <div id="acc-visual-hooks"></div>
+            </section>
+
+            <!-- PEAKS -->
+            <section id="sec-peaks" class="content-section">
+                <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+                <div class="section-header">
+                    <h2>Banco de Picos de Interés</h2>
+                    <p>Frases estratégicas para reactivar la atención a mitad del video.</p>
+                </div>
+                <div id="acc-peaks"></div>
+            </section>
+
+            <!-- STRUCTURES -->
+            <section id="sec-structures" class="content-section">
+                <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+                <div class="section-header">
+                    <h2>Estructuras Narrativas Maestras</h2>
+                    <p>El esqueleto psicológico y estratégico detrás de un buen guion para psicólogos.</p>
+                </div>
+                <div id="acc-structures"></div>
+            </section>
+
+            <!-- PROMPTS -->
+            <section id="sec-prompts" class="content-section">
+                <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+                <div class="section-header">
+                    <h2>Prompts Maestros para IA</h2>
+                    <p>Copia y pega en tu inteligencia artificial favorita para generar guiones terapéuticos premium y éticamente responsables.</p>
+                </div>
+                <div id="acc-prompts"></div>
+            </section>
+
+            <!-- BUILDER -->
+            <section id="sec-builder" class="content-section">
+                <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+                <div class="section-header">
+                    <h2>Constructor Estratégico</h2>
+                    <p>Combina tus variables y genera tu receta de contenido al instante.</p>
+                </div>
+                <div class="builder-grid">
+                    <div class="input-group">
+                        <label>Objetivo</label>
+                        <select id="b-obj">
+                            <option value="Atraer pacientes">Atraer pacientes</option>
+                            <option value="Educar sobre salud mental">Educar sobre salud mental</option>
+                            <option value="Vender recurso digital">Vender recurso digital</option>
+                            <option value="Generar comunidad terapéutica">Generar comunidad</option>
+                            <option value="Mostrar autoridad clínica">Mostrar autoridad clínica</option>
+                            <option value="Romper estigma">Romper estigma</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Formato</label>
+                        <select id="b-fmt">
+                            <option value="Frente a cámara">Frente a cámara</option>
+                            <option value="Faceless">Faceless</option>
+                            <option value="Carrusel educativo">Carrusel educativo</option>
+                            <option value="Recurso digital">Recurso digital</option>
+                            <option value="Servicio premium">Servicio premium</option>
+                            <option value="Historias">Historias</option>
+                            <option value="B-roll reflexivo">B-roll reflexivo</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Tono</label>
+                        <select id="b-eng">
+                            <option value="Cálido y empático">Cálido y empático</option>
+                            <option value="Directo y clínico">Directo y clínico</option>
+                            <option value="Reflexivo e íntimo">Reflexivo e íntimo</option>
+                            <option value="Educativo y accesible">Educativo y accesible</option>
+                            <option value="Confrontador suave">Confrontador suave</option>
+                            <option value="Inspirador">Inspirador</option>
+                            <option value="Premium y sereno">Premium y sereno</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>CTA Final</label>
+                        <select id="b-cta">
+                            <option value="Guardar">Guardar</option>
+                            <option value="Comentar">Comentar</option>
+                            <option value="DM para consulta">DM para consulta</option>
+                            <option value="Descargar recurso">Descargar recurso</option>
+                            <option value="Agendar sesión">Agendar sesión</option>
+                            <option value="Unirse a comunidad">Unirse a comunidad</option>
+                            <option value="Compartir">Compartir</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="text-align:center;">
+                    <button class="btn btn-sage" onclick="buildFormula()">Generar Fórmula Estratégica ✨</button>
+                </div>
+                <div id="builder-result">
+                    <div class="m-block" style="border-color:var(--sage); margin-top:2rem;">
+                        <h3 style="color:var(--sage); margin-bottom:1rem;">Tu Receta de Contenido</h3>
+                        <p><strong>Formato Recomendado:</strong> <span id="r-fmt">...</span></p>
+                        <p><strong>Hook Visual:</strong> <span id="r-hvis">...</span></p>
+                        <p><strong>Hook Textual:</strong> <span id="r-htex">...</span></p>
+                        <p><strong>Hook Verbal:</strong> <span id="r-hver">...</span></p>
+                        <p><strong>Estructura:</strong> <span id="r-str">...</span></p>
+                        <p><strong>CTA:</strong> <span id="r-cta">...</span></p>
+                        <h4 style="margin-top:1.5rem; color:var(--ink);">Prompt para IA:</h4>
+                        <div class="prompt-box" id="r-prompt">...</div>
+                        <button class="btn btn-sm btn-outline" onclick="copyText(document.getElementById('r-prompt').innerText)">Copiar Prompt</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SITUATIONS -->
+            <section id="sec-situations" class="content-section">
+                <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+                <div class="section-header">
+                    <h2>Situaciones Reales</h2>
+                    <p>¿No sabes qué publicar hoy? Selecciona tu situación actual.</p>
+                </div>
+                <div class="cards-grid" id="grid-situations"></div>
+            </section>
+
+            <!-- NEW FORMAT LAB -->
+            <section id="sec-new-format-lab" class="content-section">
+                <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+                <div class="section-header">
+                    <h2>Adapta cualquier formato nuevo</h2>
+                    <p>Analiza una tendencia, extrae su estructura y conviértela en un formato reutilizable para psicología.</p>
+                </div>
+                <div class="prompt-lab-grid">
+                    <div class="prompt-lab-card">
+                        <div class="prompt-lab-step">Paso 1</div>
+                        <h3>Analiza el video viral</h3>
+                        <p>Copia este prompt junto con el link, descripción o transcripción del video que quieras adaptar.</p>
+                        <pre id="analysisPromptBox">PROMPT 1 - ANALIZAR UN VIDEO VIRAL
 
 Actúa como estratega de contenido especializado en salud mental y psicología.
 
@@ -571,13 +588,13 @@ Analiza el video y extrae:
 10. Qué elementos son replicables y cuáles dependen del creador original.
 
 Considera siempre la ética profesional de la psicología: no reproduzcas contenido que trivialice diagnósticos, genere dependencia o prometa curas. Extrae solo la estructura estratégica del formato.</pre>
-                    <button class="btn btn-sage" onclick="copyFromElement('analysisPromptBox')">Copiar Prompt 1</button>
-                </div>
-                <div class="prompt-lab-card">
-                    <div class="prompt-lab-step">Paso 2</div>
-                    <h3>Conviértelo en tu formato</h3>
-                    <p>Después de recibir el análisis, usa este prompt para adaptarlo a tu práctica o especialidad.</p>
-                    <pre id="adaptationPromptBox">PROMPT 2 - CONVERTIR EL ANÁLISIS EN FORMATO PARA PSICOLOGÍA
+                        <button class="btn btn-sage" onclick="copyFromElement('analysisPromptBox')">Copiar Prompt 1</button>
+                    </div>
+                    <div class="prompt-lab-card">
+                        <div class="prompt-lab-step">Paso 2</div>
+                        <h3>Conviértelo en tu formato</h3>
+                        <p>Después de recibir el análisis, usa este prompt para adaptarlo a tu práctica o especialidad.</p>
+                        <pre id="adaptationPromptBox">PROMPT 2 - CONVERTIR EL ANÁLISIS EN FORMATO PARA PSICOLOGÍA
 
 Actúa como estratega de contenido especializado en psicología y salud mental.
 
@@ -619,117 +636,213 @@ Entrega:
 15. Errores a evitar para no comprometer la ética profesional.
 
 No copies el video original. Crea una versión estratégica, ética y adaptada a mi marca como psicólogo/a.</pre>
-                    <button class="btn btn-sage" onclick="copyFromElement('adaptationPromptBox')">Copiar Prompt 2</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- ERRORS -->
-        <section id="sec-errors" class="content-section">
-            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
-            <div class="section-header">
-                <h2>Errores que destruyen tu autoridad</h2>
-                <p>Audita tu contenido y evita estos bloqueos comunes en psicólogos que crean contenido.</p>
-            </div>
-            <div id="acc-errors"></div>
-        </section>
-
-        <!-- GLOSSARY -->
-        <section id="sec-glossary" class="content-section">
-            <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
-            <div class="section-header">
-                <h2>Glosario de Contenido para Psicólogos</h2>
-                <p>El diccionario del psicólogo que crea contenido estratégico y con propósito.</p>
-            </div>
-            <div id="acc-glossary"></div>
-        </section>
-
-    </div>
-
-    <!-- FORMAT MODAL -->
-    <div class="modal-overlay" id="formatModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div>
-                    <h2 id="fm-title" style="color:var(--sage); font-size:1.7rem; margin-bottom:5px;">Título</h2>
-                    <span id="fm-cat" class="card-tag" style="margin:0;">Categoría</span>
-                </div>
-                <button class="modal-close" onclick="closeModal('formatModal')">×</button>
-            </div>
-            <div class="modal-body">
-                <div class="m-grid-info">
-                    <div class="m-info-box"><span>🎯 Objetivo</span><strong id="fm-obj">...</strong></div>
-                    <div class="m-info-box"><span>👤 Ideal para</span><strong id="fm-idl">...</strong></div>
-                    <div class="m-info-box"><span>⚖️ Dificultad</span><strong id="fm-dif">...</strong></div>
-                    <div class="m-info-box"><span>⏱️ Cuándo usar</span><strong id="fm-whe">...</strong></div>
-                </div>
-                <div class="m-block"><h4>🧠 Por qué funciona psicológicamente</h4><p id="fm-psy">...</p></div>
-                <div class="m-block">
-                    <h4>🎥 Grabación y Ganchos</h4>
-                    <p style="margin-bottom:10px;"><strong>Cómo grabarlo:</strong> <span id="fm-rec">...</span></p>
-                    <ul>
-                        <li><strong>Hook Visual (0-3s):</strong> <span id="fm-hv">...</span></li>
-                        <li><strong>Hook Textual:</strong> <span id="fm-ht">...</span></li>
-                        <li><strong>Hook Verbal:</strong> <span id="fm-hb">...</span></li>
-                    </ul>
-                </div>
-                <div class="m-block">
-                    <h4>🏗️ Estructura Narrativa</h4>
-                    <div id="fm-str" style="white-space:pre-line; color:var(--ink-light); margin-bottom:15px;">...</div>
-                    <div style="background:var(--sage-pale); padding:1rem; border-radius:8px;">
-                        <strong>🎯 CTA Recomendado:</strong> <span id="fm-cta" style="color:var(--sage); font-weight:600;">...</span>
+                        <button class="btn btn-sage" onclick="copyFromElement('adaptationPromptBox')">Copiar Prompt 2</button>
                     </div>
                 </div>
-                <div class="m-block" style="background:var(--cream);">
-                    <h4>🌿 Ejemplo Aplicado</h4>
-                    <p style="margin-bottom:10px;"><strong>Ejemplo:</strong> <span id="fm-ej">...</span></p>
-                    <p style="color:#c0392b;"><strong>❌ Error a evitar:</strong> <span id="fm-err">...</span></p>
+            </section>
+
+            <!-- ERRORS -->
+            <section id="sec-errors" class="content-section">
+                <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+                <div class="section-header">
+                    <h2>Errores que destruyen tu autoridad</h2>
+                    <p>Audita tu contenido y evita estos bloqueos comunes en psicólogos que crean contenido.</p>
                 </div>
-                <div class="m-block" style="border-color:var(--ink);">
-                    <h4>🤖 Prompt Listo para IA</h4>
-                    <p style="font-size:0.84rem; margin-bottom:8px;">Copia esto en ChatGPT o Claude para generar tu guion personalizado:</p>
-                    <div class="prompt-box" id="fm-prm">...</div>
+                <div id="acc-errors"></div>
+            </section>
+
+            <!-- GLOSSARY -->
+            <section id="sec-glossary" class="content-section">
+                <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
+                <div class="section-header">
+                    <h2>Glosario de Contenido para Psicólogos</h2>
+                    <p>El diccionario del psicólogo que crea contenido estratégico y con propósito.</p>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-sage" onclick="copyText(document.getElementById('fm-prm').innerText)">Copiar Prompt</button>
-                <button class="btn btn-outline" onclick="copyText(document.getElementById('fm-str').innerText)">Copiar Estructura</button>
-                <button class="btn btn-outline" onclick="closeModal('formatModal')">Cerrar</button>
+                <div id="acc-glossary"></div>
+            </section>
+
+        </div>
+
+        <!-- FORMAT MODAL -->
+        <div class="modal-overlay" id="formatModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <h2 id="fm-title" style="color:var(--sage); font-size:1.7rem; margin-bottom:5px;">Título</h2>
+                        <span id="fm-cat" class="card-tag" style="margin:0;">Categoría</span>
+                    </div>
+                    <button class="modal-close" onclick="closeModal('formatModal')">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="m-grid-info">
+                        <div class="m-info-box"><span>🎯 Objetivo</span><strong id="fm-obj">...</strong></div>
+                        <div class="m-info-box"><span>👤 Ideal para</span><strong id="fm-idl">...</strong></div>
+                        <div class="m-info-box"><span>⚖️ Dificultad</span><strong id="fm-dif">...</strong></div>
+                        <div class="m-info-box"><span>⏱️ Cuándo usar</span><strong id="fm-whe">...</strong></div>
+                    </div>
+                    <div class="m-block"><h4>🧠 Por qué funciona psicológicamente</h4><p id="fm-psy">...</p></div>
+                    <div class="m-block">
+                        <h4>🎥 Grabación y Ganchos</h4>
+                        <p style="margin-bottom:10px;"><strong>Cómo grabarlo:</strong> <span id="fm-rec">...</span></p>
+                        <ul>
+                            <li><strong>Hook Visual (0-3s):</strong> <span id="fm-hv">...</span></li>
+                            <li><strong>Hook Textual:</strong> <span id="fm-ht">...</span></li>
+                            <li><strong>Hook Verbal:</strong> <span id="fm-hb">...</span></li>
+                        </ul>
+                    </div>
+                    <div class="m-block">
+                        <h4>🏗️ Estructura Narrativa</h4>
+                        <div id="fm-str" style="white-space:pre-line; color:var(--ink-light); margin-bottom:15px;">...</div>
+                        <div style="background:var(--sage-pale); padding:1rem; border-radius:8px;">
+                            <strong>🎯 CTA Recomendado:</strong> <span id="fm-cta" style="color:var(--sage); font-weight:600;">...</span>
+                        </div>
+                    </div>
+                    <div class="m-block" style="background:var(--cream);">
+                        <h4>🌿 Ejemplo Aplicado</h4>
+                        <p style="margin-bottom:10px;"><strong>Ejemplo:</strong> <span id="fm-ej">...</span></p>
+                        <p style="color:#c0392b;"><strong>❌ Error a evitar:</strong> <span id="fm-err">...</span></p>
+                    </div>
+                    <div class="m-block" style="border-color:var(--ink);">
+                        <h4>🤖 Prompt Listo para IA</h4>
+                        <p style="font-size:0.84rem; margin-bottom:8px;">Copia esto en ChatGPT o Claude para generar tu guion personalizado:</p>
+                        <div class="prompt-box" id="fm-prm">...</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sage" onclick="copyText(document.getElementById('fm-prm').innerText)">Copiar Prompt</button>
+                    <button class="btn btn-outline" onclick="copyText(document.getElementById('fm-str').innerText)">Copiar Estructura</button>
+                    <button class="btn btn-outline" onclick="closeModal('formatModal')">Cerrar</button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- SITUATION MODAL -->
-    <div class="modal-overlay" id="sitModal">
-        <div class="modal-content" style="max-width:580px;">
-            <div class="modal-header">
-                <h2 id="sm-title" style="color:var(--sage); font-size:1.4rem;">Situación</h2>
-                <button class="modal-close" onclick="closeModal('sitModal')">×</button>
-            </div>
-            <div class="modal-body">
-                <div class="m-block"><h4>📌 Formatos Recomendados</h4><ul id="sm-fmt">...</ul></div>
-                <div class="m-block"><h4>👁️ Hook Visual</h4><p id="sm-hv">...</p></div>
-                <div class="m-block"><h4>🗣️ Texto de apertura</h4><p id="sm-txt">...</p></div>
-                <div class="m-block"><h4>🎯 CTA Sugerido</h4><p id="sm-cta" style="color:var(--sage); font-weight:600;">...</p></div>
-                <div class="m-block" style="border-color:var(--ink);">
-                    <h4>🤖 Prompt de emergencia</h4>
-                    <div class="prompt-box" id="sm-prm">...</div>
-                    <button class="btn btn-sm btn-sage" onclick="copyText(document.getElementById('sm-prm').innerText)" style="margin-top:10px;">Copiar Prompt</button>
+        <!-- SITUATION MODAL -->
+        <div class="modal-overlay" id="sitModal">
+            <div class="modal-content" style="max-width:580px;">
+                <div class="modal-header">
+                    <h2 id="sm-title" style="color:var(--sage); font-size:1.4rem;">Situación</h2>
+                    <button class="modal-close" onclick="closeModal('sitModal')">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="m-block"><h4>📌 Formatos Recomendados</h4><ul id="sm-fmt">...</ul></div>
+                    <div class="m-block"><h4>👁️ Hook Visual</h4><p id="sm-hv">...</p></div>
+                    <div class="m-block"><h4>🗣️ Texto de apertura</h4><p id="sm-txt">...</p></div>
+                    <div class="m-block"><h4>🎯 CTA Sugerido</h4><p id="sm-cta" style="color:var(--sage); font-weight:600;">...</p></div>
+                    <div class="m-block" style="border-color:var(--ink);">
+                        <h4>🤖 Prompt de emergencia</h4>
+                        <div class="prompt-box" id="sm-prm">...</div>
+                        <button class="btn btn-sm btn-sage" onclick="copyText(document.getElementById('sm-prm').innerText)" style="margin-top:10px;">Copiar Prompt</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="toast" id="toast">Copiado al portapapeles ✓</div>
+        <div class="toast" id="toast">Copiado al portapapeles ✓</div>
 
-    <footer>
-        <img src="https://i.ibb.co/MDsC0Zt1/Chat-GPT-Image-18-may-2026-08-53-18-p-m.png" alt="Logo">
-        <p>Biblioteca creada para psicólogos que quieren compartir su conocimiento, impactar vidas y construir un negocio con propósito.</p>
-        <span class="signature">Creada por Brygith Asenjo</span>
-        <span class="sub-signature">Psicóloga · Estratega de Contenido para Psicólogos</span>
-        <a href="https://instagram.com/brygith.asenjo" class="ig-link" target="_blank">@brygith.asenjo</a>
-    </footer>
+        <footer>
+            <img src="https://i.ibb.co/MDsC0Zt1/Chat-GPT-Image-18-may-2026-08-53-18-p-m.png" alt="Logo">
+            <p>Biblioteca creada para psicólogos que quieren compartir su conocimiento, impactar vidas y construir un negocio con propósito.</p>
+            <span class="signature">Creada por Brygith Asenjo</span>
+            <span class="sub-signature">Psicóloga · Estratega de Contenido para Psicólogos</span>
+            <a href="https://instagram.com/brygith.asenjo" class="ig-link" target="_blank">@brygith.asenjo</a>
+        </footer>
+        
+    </div><!-- FIN DE #app-content -->
 
+
+    <!-- =====================================================================
+         1. SCRIPT DE AUTENTICACIÓN FIREBASE (ES MODULE VITE)
+    ====================================================================== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // NOTA VITE: Cuando construyas el proyecto en Vite, las importaciones 
+        // a URLs absolutas funcionarán o puedes cambiarlas a importaciones de npm:
+        // import { initializeApp } from "firebase/app"; ...etc.
+
+        const firebaseConfig = {
+            apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+            authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+            projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+            storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+            messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+            appId: import.meta.env.VITE_FIREBASE_APP_ID
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const appContent = document.getElementById('app-content');
+        const authScreen = document.getElementById('auth-screen');
+        const authMessage = document.getElementById('auth-message');
+
+        function showRestrictedScreen() {
+            // Elimina el DOM principal por seguridad para evitar accesos inspeccionando HTML
+            appContent.innerHTML = ''; 
+
+            authMessage.innerHTML = `
+                <div style="background: var(--white); padding: 3rem 2rem; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); border: 1.5px solid var(--sage-pale); max-width: 440px; margin: 0 20px;">
+                    <h2 style="color: var(--terracotta); font-size: 1.8rem; margin-bottom: 1rem; font-family: 'DM Serif Display', serif;">Acceso restringido</h2>
+                    <p style="color: var(--ink-light); margin-bottom: 2rem; font-size: 1rem; line-height: 1.5; font-family: 'DM Sans', sans-serif;">Esta herramienta pertenece al ecosistema privado IA para Psicólogos. Inicia sesión desde el portal o renueva tu membresía para continuar.</p>
+                    <a href="https://ia-para-psicologos.vercel.app/" class="btn btn-sage" style="text-decoration: none; display: inline-flex; width: 100%;">Ir al portal</a>
+                </div>
+            `;
+        }
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                try {
+                    const userDoc = await getDoc(doc(db, "membership_users", user.uid));
+                    
+                    if (userDoc.exists()) {
+                        const data = userDoc.data();
+                        const { role, status, plan, end_date } = data;
+                        let hasAccess = false;
+
+                        if (role === "admin") {
+                            hasAccess = true;
+                        } else if (status === "active") {
+                            if (plan === "lifetime") {
+                                hasAccess = true;
+                            } else if (end_date) {
+                                // Soporta tanto timestamp de Firebase como formato ISO string
+                                const endDateObj = end_date.toDate ? end_date.toDate() : new Date(end_date);
+                                if (endDateObj > new Date()) {
+                                    hasAccess = true;
+                                }
+                            }
+                        }
+
+                        if (hasAccess) {
+                            // Conceder acceso
+                            authScreen.style.display = 'none';
+                            appContent.style.display = 'block';
+                        } else {
+                            // Denegar: plan pending, status expired/blocked o fecha vencida
+                            showRestrictedScreen();
+                        }
+                    } else {
+                        // Sin registro en base de datos
+                        showRestrictedScreen();
+                    }
+                } catch (error) {
+                    console.error("Error al validar membresía:", error);
+                    showRestrictedScreen();
+                }
+            } else {
+                // No autenticado
+                showRestrictedScreen();
+            }
+        });
+    </script>
+
+
+    <!-- =====================================================================
+         2. SCRIPT ORIGINAL DE LA APLICACIÓN (INTACTO)
+    ====================================================================== -->
     <script>
     /* =====================================================================
        DATA — Adapted for Psychology
