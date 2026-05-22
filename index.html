@@ -351,7 +351,6 @@
         </main>
 
         <div id="dynamic-sections-container">
-            <!-- (El contenido interno se mantiene idéntico, solo comprimido por legibilidad...) -->
             <section id="sec-video-formats" class="content-section">
                 <button class="btn btn-close-section" onclick="closeSection()">← Volver al Hub</button>
                 <div class="section-header">
@@ -593,7 +592,6 @@
                     <button class="modal-close" onclick="closeModal('formatModal')">×</button>
                 </div>
                 <div class="modal-body">
-                    <!-- Detalle omitido en plantilla por legibilidad, se dibuja por JS dinámicamente -->
                     <div class="m-grid-info">
                         <div class="m-info-box"><span>🎯 Objetivo</span><strong id="fm-obj">...</strong></div>
                         <div class="m-info-box"><span>👤 Ideal para</span><strong id="fm-idl">...</strong></div>
@@ -669,160 +667,6 @@
         
     </div><!-- FIN DE #app-content -->
 
-    <!-- =====================================================================
-         1. SCRIPT DE AUTENTICACIÓN FIREBASE (ES MODULE VITE) - ¡LÓGICA CORREGIDA!
-    ====================================================================== -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-            authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-            projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-            storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-            messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-            appId: import.meta.env.VITE_FIREBASE_APP_ID
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        const appContent = document.getElementById('app-content');
-        const authScreen = document.getElementById('auth-screen');
-        const authMessage = document.getElementById('auth-message');
-
-        // Simulamos la estructura de tu estado de React para evitar el loading infinito
-        function setLoading(isLoading) {
-            if (isLoading) {
-                authScreen.style.display = 'flex';
-                appContent.style.display = 'none';
-                authMessage.innerHTML = `<h2 style="color: var(--sage); font-family: 'DM Serif Display', serif; font-size: 2rem;">Validando acceso...</h2>`;
-            }
-            // Si es falso, el setHasAccess manejará la pantalla resultante.
-        }
-
-        function setHasAccess(hasAccess) {
-            if (hasAccess) {
-                authScreen.style.display = 'none';
-                appContent.style.display = 'block';
-            } else {
-                appContent.innerHTML = ''; // Destruimos el dom de la app
-                authScreen.style.display = 'flex';
-                authMessage.innerHTML = `
-                    <div style="background: var(--white); padding: 3rem 2rem; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); border: 1.5px solid var(--sage-pale); max-width: 440px; margin: 0 20px;">
-                        <h2 style="color: var(--terracotta); font-size: 1.8rem; margin-bottom: 1rem; font-family: 'DM Serif Display', serif;">Acceso restringido</h2>
-                        <p style="color: var(--ink-light); margin-bottom: 2rem; font-size: 1rem; line-height: 1.5; font-family: 'DM Sans', sans-serif;">Esta herramienta pertenece al ecosistema privado IA para Psicólogos. Inicia sesión desde el portal o renueva tu membresía.</p>
-                        <a href="https://ia-para-psicologos.vercel.app/" class="btn btn-sage" style="text-decoration: none; display: inline-flex; width: 100%;">Ir al portal</a>
-                    </div>
-                `;
-            }
-        }
-
-        // 1. Empezamos con loading en true por defecto
-        setLoading(true);
-
-        onAuthStateChanged(auth, async (user) => {
-            // 2. Si no hay usuario
-            if (!user) {
-                setHasAccess(false);
-                setLoading(false); // SIEMPRE apagar loading
-                return;
-            }
-
-            try {
-                // 3. Buscar documento en Firestore
-                const userDoc = await getDoc(doc(db, "membership_users", user.uid));
-                
-                // 4. Si no existe documento
-                if (!userDoc.exists()) {
-                    setHasAccess(false);
-                    setLoading(false); // SIEMPRE apagar loading
-                    return;
-                }
-
-                // 5. Parsear datos y preparar flag
-                const data = userDoc.data();
-                const { role, status, plan, end_date } = data || {};
-                
-                let accessGranted = false;
-
-                // Reglas de acceso exclusivas
-                if (role === "admin") {
-                    accessGranted = true;
-                } else if (status === "active") {
-                    if (plan === "lifetime") {
-                        accessGranted = true;
-                    } else if (end_date) {
-                        const endDateObj = end_date.toDate ? end_date.toDate() : new Date(end_date);
-                        if (endDateObj > new Date()) {
-                            accessGranted = true;
-                        }
-                    }
-                }
-
-                // 6. Asignar estado final
-                setHasAccess(accessGranted);
-
-            } catch (error) {
-                // 8. Manejo de errores Firebase
-                console.error("Error validando membresía:", error);
-                setHasAccess(false);
-            } finally {
-                // 7. EN TODOS LOS ESCENARIOS, aseguramos apagar el loading al final del bloque
-                setLoading(false);
-            }
-        });
-    </script>
-
-    <!-- =====================================================================
-         2. SCRIPT ORIGINAL DE LA APLICACIÓN (INTACTO)
-    ====================================================================== -->
-    <script>
-    function makeFmt(n,c,d,o,i,w,psy,r,hv,ht,hb,s,cta,p,ej,err){ return{n,c,d,o,i,w,psy,r,hv,ht,hb,s,cta,p,ej,err}; }
-    const videoFormats = [ /* Array original intacto */ ];
-    const recursosFormats = [ /* Array original intacto */ ];
-    const htFormats = [ /* Array original intacto */ ];
-    const facelessFormats = [ /* Array original intacto */ ];
-    const hooksDB = { /* Objeto original intacto */ };
-    const ctasDB = { /* Objeto original intacto */ };
-    const visualHooksDB = { /* Objeto original intacto */ };
-    const peaksDB = { /* Objeto original intacto */ };
-    const structuresDB = [ /* Array original intacto */ ];
-    const promptsIA = [ /* Array original intacto */ ];
-    const situations = [ /* Array original intacto */ ];
-    const errorsDB = { /* Objeto original intacto */ };
-    const glossaryData = [ /* Array original intacto */ ];
-
-    function renderVideoFormats() { /* Lógica UI original */ }
-    function renderObjectives() { /* Lógica UI original */ }
-    function renderRecursos() { /* Lógica UI original */ }
-    function renderHighTicket() { /* Lógica UI original */ }
-    function renderFaceless() { /* Lógica UI original */ }
-    function renderListDB(elementId, dataObj) { /* Lógica UI original */ }
-    function renderStructures() { /* Lógica UI original */ }
-    function renderPrompts() { /* Lógica UI original */ }
-    function renderSituations() { /* Lógica UI original */ }
-    function renderGlossary() { /* Lógica UI original */ }
-    function initApp() { /* Lógica UI original */ }
-    function openSection(id) { /* Lógica UI original */ }
-    function closeSection() { /* Lógica UI original */ }
-    function toggleAccordion(el) { /* Lógica UI original */ }
-    function openFormatModal(idx, type) { /* Lógica UI original */ }
-    function openRecursoModal(idx) { /* Lógica UI original */ }
-    function openHTModal(idx) { /* Lógica UI original */ }
-    function openSituationModal(idx) { /* Lógica UI original */ }
-    function closeModal(id) { /* Lógica UI original */ }
-    function showToast() { /* Lógica UI original */ }
-    function copyText(text) { /* Lógica UI original */ }
-    function copyFromElement(id) { /* Lógica UI original */ }
-    function buildFormula() { /* Lógica UI original */ }
-
-    window.onload = function() {
-        try { initApp(); } catch(e) { console.error(e); }
-    };
-    </script>
+    <script type="module" src="/main.js"></script>
 </body>
 </html>
